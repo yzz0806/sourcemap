@@ -21,6 +21,8 @@ The pure logic that turns records, claims and verdicts into scores — every rul
 | Sampling, freshness | which claims get lookups (widest intervals first, seeded); expiry; re-check selection |
 | Health, drift | ok / degraded / broken / shape_changed / changed; drift alert on non-overlapping intervals |
 | Assembly choice | winning value per field, alternatives, reason |
+| Benchmark metrics | hits → candidates; per provider precision, pooled recall, known-source recall, exclusive finds, cost per good find, with intervals (ADR 0015) |
+| Monitor matching | news hit → tracked entity by normalised name; matched claims first in the re-check queue (ADR 0016) |
 
 Plus project setup: `pyproject.toml`, pytest (fast suite default, `slow` marker), import-linter
 contracts from `docs/components/README.md`, `scipy` for Beta quantiles.
@@ -46,4 +48,6 @@ contracts from `docs/components/README.md`, `scipy` for Beta quantiles.
 4. Names: "Park, Hyung-Kwan" / "Hyung-Kwan Park" / "HYUNG KWAN PARK" match; "Dr. Jane Smith" /
    "Jane Smith" match; "John Smith" / "Jane Smith" don't; "J. Smith" / "Jane Smith" → judge;
    "박형관" / "Hyung-Kwan Park" → judge.
-5. Import-linter proves `measure` imports no database, HTTP or model library.
+5. Benchmark case table: two providers with known hits → expected precision, pooled recall and
+   exclusive finds; a provider that errored → "failed", not 0.
+6. Import-linter proves `measure` imports no database, HTTP or model library.

@@ -18,6 +18,8 @@ An accepted ADR is not rewritten; a new ADR supersedes it and the old one gets a
 | [0012](0012-drift-health-and-verdict-expiry.md) | Source health, verdict expiry and re-checks, drift alerts |
 | [0013](0013-stable-entity-ids.md) | Entity ids stay stable across runs; merges and splits logged |
 | [0014](0014-simulated-runs-isolated.md) | Simulated runs in a separate database, fabricated fetches flagged |
+| [0015](0015-search-provider-benchmark.md) | Search-provider benchmark: fixed queries to every Telem provider, blind gate B, scored with intervals (centrepiece) |
+| [0016](0016-change-monitor.md) | Change monitor: daily news searches reorder re-checks, never decide verdicts |
 
 All stage-0 ADRs are **proposed** until the user approves stage 0, then marked accepted. Until then
 they are amended in place; after acceptance they are only superseded.

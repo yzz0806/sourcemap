@@ -35,6 +35,17 @@ scope; agents limited to discovery; first-party pages extracted by a judge call 
 for every stage, and one file per stage (0–9) with goal, what gets built, order of work and checks.
 Keep each stage file's status line current.
 
+### More Telem: benchmark and monitor (user's decision)
+- The user wants Telem used as much as is legitimate. **User's decision:** build the
+  **search-provider benchmark first, as the centrepiece** (ADR 0015, domain §10), and the **change
+  monitor second** (ADR 0016, domain §11). In the demo the monitor is presented honestly as "how it
+  works, plus one real example if we caught one", not as a measured result.
+- Telem stays out of verification and probe evidence (R2); the schema has no link from a
+  verification to a search hit.
+- Stages 3 and 4 swapped so the benchmark is built right after storage: stage 3 = discovery +
+  benchmark, stage 4 = reading sources.
+- Considered and not taken now: gap finder, identifier finder at seed time (cheap extras for later).
+
 ### Notes for later stages (from the review)
 - **Stage 3/5:** first-party extraction — every extracted value's quote must be found in the visible
   text of the raw HTML, else the value is dropped and counted; `record.extracted_by_judge_call_id`

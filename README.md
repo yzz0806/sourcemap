@@ -29,6 +29,9 @@ it, and every check to a saved copy of what the source returned.
   university directories.
 - No human-labelled gold set: ground truth comes from reference sources and cross-lineage
   lookups (ADR 0003).
+- **Centrepiece: the search-provider benchmark** — the same queries through every search provider
+  behind Telem, scored per segment on how well each finds sources (ADR 0015). Second: a daily news
+  **change monitor** that decides which claims to re-check first, never what is true (ADR 0016).
 
 ## Running it
 

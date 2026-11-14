@@ -1,4 +1,4 @@
-# Stage 5 — The daily pipeline and drift
+# Stage 5 — The daily pipeline, change monitor and drift
 
 ## Goal
 A maintenance run that works end to end on real data — probe → match → verify → score → map
@@ -15,6 +15,10 @@ simulated scenarios for the drift demo.
 - Judge calibration (second-judge agreement) and matching quality (identifier-known pairs) per run.
 - `sourcemap run maintenance <data_type> --mode test`, `status`, `map` (terminal print), `trace`.
 - `sourcemap sim <scenario>`: departure and broken-source scenarios in a database copy (ADR 0014).
+- **Change monitor** (ADR 0016): one Telem news search per company per maintenance run (last 7 days),
+  hits matched to tracked people by name, their claims moved to the front of the re-check queue;
+  verifications record the triggering hit. Presented as how it works plus any real case caught,
+  never as a measured hit rate.
 
 ## Order of work
 Docs for any rule refined while wiring → whole-run tests with fake adapters, fake judge, fake
@@ -34,3 +38,6 @@ experiment note → checks, log, commit, wait.
 8. Academic identity run: many "unverifiable" verdicts expected; low measured share, not high accuracy.
 9. Kill the worker mid-run, restart: the run continues from its stage without repaying.
 10. Judge calibration and matching quality are printed with the map.
+11. Monitor: the run made one news search per company (16, see the spend ledger); any matched hit
+    shows the person, the triggered re-check and its verdict, which came from a lookup or reference,
+    not from the news. With no real departure caught, the monitor page says so plainly.

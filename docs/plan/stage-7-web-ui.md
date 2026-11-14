@@ -10,6 +10,7 @@ assembled data with export, history — plus a demo database for UI work.
   interval, raw and weighted n, and the distinct states not enough data / unmeasured / not probed
   (incl. "no adapter") / failed / "k of N failed". Judge-calibration banner. Simulation banner.
 - Time slider over map snapshots; history per cell with breakages and alerts.
+- **Provider leaderboard** (centrepiece page), the blind gate-B review page, and the monitor page.
 
 ## Order of work
 `api-and-web.md` refined → API tests on a demo database → API → UI → doc updated → checks, log,
@@ -25,3 +26,6 @@ commit, wait.
 7. Phone width (375 px): nothing overflows.
 8. Stop the worker: the UI still shows the last map.
 9. Open a simulation: the banner shows on every page and export is disabled.
+10. Leaderboard numbers equal `sourcemap leaderboard` for the same run; click a provider to see the
+    candidates it found; the pooled-recall limit is stated on the page.
+11. Gate B review page shows no provider names.

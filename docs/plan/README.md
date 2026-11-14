@@ -8,16 +8,17 @@ and **how you check it**. A stage is done only when every check passes and the u
 | 0 | [Design on paper](stage-0-design.md) | done, awaiting approval |
 | 1 | [Measuring rules, offline](stage-1-measuring-rules.md) | next |
 | 2 | [Storage and starting content](stage-2-storage-and-seed.md) | — |
-| 3 | [Reading sources safely](stage-3-reading-sources.md) | — |
-| 4 | [Discovery](stage-4-discovery.md) | — |
-| 5 | [The daily pipeline and drift](stage-5-daily-pipeline.md) | — |
+| 3 | [Discovery and the search-provider benchmark](stage-3-discovery-and-benchmark.md) — **centrepiece** | — |
+| 4 | [Reading sources safely](stage-4-reading-sources.md) | — |
+| 5 | [The daily pipeline, change monitor and drift](stage-5-daily-pipeline.md) | — |
 | 6 | [Assembly](stage-6-assembly.md) | — |
 | 7 | [Web UI](stage-7-web-ui.md) | — |
 | 8 | [First live runs](stage-8-live-runs.md) | — |
 | 9 | [Finish](stage-9-finish.md) | — |
 
 Scope and the user's decisions: see `docs/agent/log.md` (both data types, 4 org-chart segments incl.
-Korean listed, no human gold set, Telem for search). Rules: `docs/domain.md`.
+Korean listed, no human gold set, Telem for search, the search-provider benchmark as centrepiece
+and the change monitor second). Rules: `docs/domain.md`.
 
 ## Order of work inside every stage
 

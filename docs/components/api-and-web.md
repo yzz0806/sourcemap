@@ -11,6 +11,7 @@ writes only gate decisions and run requests. It works with the worker stopped.
 | `api/routes_trace.py` | `GET /api/verifications/{id}` — claim, verdict, method, reason, quote, links; `GET /api/raw/{raw_fetch_id}` — the raw bytes with their content type. |
 | `api/routes_sources.py` | `GET /api/sources/{id}` — tier, lineage, offers, health history, scores. |
 | `api/routes_runs.py` | `POST /api/runs` — enqueue; `GET /api/runs/{id}` and `/events?after=` — live console; `POST /api/runs/{id}/gates/{gate}` — approve/reject. |
+| `api/routes_benchmark.py` | `GET /api/benchmark/{run}` — leaderboard per provider and segment; `GET /api/benchmark/{run}/candidates?blind=1` — pooled candidates for gate B without provider names; `GET /api/monitor` — news hits, triggered re-checks and their outcomes. |
 | `api/routes_assembled.py` | `GET /api/assembled/{data_type}` — entities with chosen values, origin and reason; `GET …/export.csv`. |
 
 ## Pages (`web/`, React + Vite)
@@ -24,4 +25,7 @@ writes only gate decisions and run requests. It works with the worker stopped.
 | Run console | Live events, spend, gate approvals. |
 | Assembled data | One row per entity; each value with origin and "why this source won"; CSV export. |
 | History | Per cell coverage and accuracy over runs, breakages and drift alerts marked. |
+| Provider leaderboard | Per provider and segment: precision, pooled recall, known-source recall, exclusive finds, cost per good find, latency, with intervals; the pooled-recall limit stated; click a provider → the candidates it found. |
+| Blind review (gate B) | Pooled candidates without provider names; keep / reject. |
+| Monitor | News hits → matched person → triggered re-check → verdict; raw counts, "too few to measure". |
 | Any page, simulation open | Permanent "SIMULATION — <scenario>" banner; CSV export disabled. |

@@ -11,7 +11,8 @@ Turn the brief into a design the user agrees with, before any code.
 - `docs/containers.md` — API, worker, adapter child, SQLite, raw store, outside services.
 - `docs/data-model.md` — every table, with the trace from score to evidence.
 - `docs/components/` — one doc per part, planned functions, layering contracts.
-- ADRs 0001–0014; README skeleton; `.gitignore`; this plan.
+- ADRs 0001–0016 (0015: search-provider benchmark, 0016: change monitor); README skeleton;
+  `.gitignore`; this plan.
 
 ## How you check
 1. Read `docs/domain.md` without the brief open: can a new teammate follow the steps and the 10 rules?
@@ -27,4 +28,4 @@ Turn the brief into a design the user agrees with, before any code.
    map snapshots, runs, jobs, gate decisions and the run event log.
 
 ## On approval
-ADRs 0001–0014 change from *proposed* to *accepted*; after that they are only superseded.
+ADRs 0001–0016 change from *proposed* to *accepted*; after that they are only superseded.

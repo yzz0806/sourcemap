@@ -208,6 +208,7 @@ over theorg *VP Sales* (0.71)".
 | **Setup** | discover → gate B → probe → match → verify → score → assemble → gate D | B, D | discovery |
 | **Maintenance** (daily, scheduled after publish) | probe → match → verify → score → assemble | none | none |
 | **Discovery** (on demand only; not scheduled in the demo) | discover → gate B → probe and measure sources that have adapters, on trial | B | discovery |
+| **Benchmark** (on demand) | plan queries once → send them to every search provider → pool candidates → blind gate B → score providers (§11) | B | discovery (query plan only) |
 
 **Test vs real mode** differ only in settings: test uses ~3 units per segment, few lookups and a
 ~$6 budget; real uses the full panel and ~$15. The demo total stays under $20; any single run over
@@ -364,7 +365,49 @@ invalidates the reference and agreement verdicts that relied on the wrong merge.
 
 ---
 
-## 10. Money
+## 10. Search-provider benchmark (the demo's centrepiece)
+
+sourcemap measures which source is good for what. The benchmark applies the same method to the
+search providers behind Telem: **which provider is good at finding sources, for which segment**
+(ADR 0015).
+
+1. The discovery agent plans publisher categories and writes the queries **once**.
+2. The same fixed queries go to every provider pinned on its own, and to Telem's automatic routing,
+   with the same number of results.
+3. Hits collapse into **candidates** by domain and path; each candidate remembers which providers,
+   ranks and queries found it.
+4. **Good finds** = known sources from the seed (automatic) + candidates the user keeps at gate B.
+   Gate B is **blind**: candidates are shown without which provider found them.
+5. Each provider gets, per segment: precision, pooled recall, known-source recall, exclusive finds,
+   cost per good find, latency — proportions as Beta(1, 1) intervals with n, "not enough data"
+   under 5 trials, "failed" when the provider errored. Later: the measured coverage and accuracy of
+   the sources it found.
+
+*Example:* for "Korean listed", provider A surfaces DART and 3 kept candidates out of 15 proposed
+(precision 0.25 [0.10, 0.45]); provider B surfaces none of them. The leaderboard shows A ahead for
+that segment only.
+
+Limit, stated on the leaderboard: pooled recall only knows what *some* provider found.
+
+---
+
+## 11. Change monitor
+
+Each daily maintenance run makes one news search per company for the last 7 days (appoints, joins,
+leaves…). If a hit names a person we track at that company, that person's employment and title
+claims jump to the front of the re-check queue (ADR 0016). **The news never decides a verdict**
+(R2): the re-check's lookup or reference does, and the drill-down says "re-check triggered by a
+news hit".
+
+*Example:* a hit "Gong's VP Sales Jane Smith steps down" → her claims are re-checked that day → the
+LinkedIn lookup shows the position ended → `stale`.
+
+In the demo this is shown as **how it works plus any real case caught** — not as a measured hit
+rate. Counts stay raw with "too few to measure" until triggered and random re-checks can be compared.
+
+---
+
+## 12. Money
 
 Every paid call (Telem, OpenRouter, Apify) is charged to the run's budget before it is made. A
 run stops cleanly when its budget is spent. Agent sessions are capped by count as well as

@@ -39,3 +39,5 @@ flowchart LR
 | `health.py` | `source_health(prev_stats, this_stats) -> HealthState`. |
 | `drift.py` | `drift_alert(prev_interval, new_interval) -> bool` — true when they don't overlap. |
 | `assemble.py` | `choose_value(entity, claim_type, claims, scores) -> Choice` — winner by accuracy for that segment and claim type, with alternatives and the reason. |
+| `benchmark.py` | `to_candidates(hits) -> list[Candidate]` — collapse by registrable domain + path prefix; `provider_metrics(candidates, good_finds, calls) -> list[ProviderMetric]` — precision, pooled recall, known-source recall, exclusive finds, cost per good find, latency, with Beta(1, 1) intervals and states (ADR 0015). |
+| `monitor.py` | `match_hits(hits, entities) -> list[MonitorMatch]` — normalised entity names found in hit title/snippet; `prioritise(recheck_queue, matches) -> queue` — matched claims first, within the re-check share (ADR 0016). |

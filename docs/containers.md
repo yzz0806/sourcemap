@@ -25,7 +25,7 @@ flowchart TB
   child -->|API| dart[(Open DART)]
   child -->|API| oa[(OpenAlex, ORCID)]
   child -->|API, paid| apify[(Apify<br/>LinkedIn)]
-  worker -->|search + page reading, paid<br/>discovery and finding people pages<br/>never evidence| telem[(Telem<br/>/v1/search, /v1/fetch)]
+  worker -->|search + page reading, paid<br/>discovery, provider benchmark,<br/>change monitor, finding people pages<br/>never evidence| telem[(Telem<br/>/v1/search, /v1/fetch)]
   worker -->|judge calls, paid| openrouter[(OpenRouter)]
   worker -->|agent sessions| claude[(Claude Agent SDK<br/>local Claude Code login)]
 ```
@@ -54,7 +54,7 @@ and raw store.
 
 | Service | Used by | For | Not allowed for |
 |---|---|---|---|
-| Telem | worker (discovery agent tools; people-page finder) | finding sources; reading a site's pages when planning; finding a probe unit's leadership/people page by a search restricted to its own domain (ADR 0006, 0010) | verifying claims; probe fetches; anything stored as evidence (R2) |
+| Telem | worker (discovery agent tools; benchmark; change monitor; people-page finder) | finding sources; reading a site's pages when planning; the search-provider benchmark (ADR 0015); daily news searches that reorder re-checks (ADR 0016); finding a probe unit's leadership/people page by a search restricted to its own domain (ADR 0006, 0010) | verifying claims; probe fetches; anything stored as evidence (R2) |
 | OpenRouter | worker (judge) | title / name / value comparisons; borderline entity pairs; second-judge calibration | — |
 | Claude Agent SDK | worker | discovery agent sessions | anything without structured output |
 | Apify (LinkedIn) | adapter child | LinkedIn company people lists and person lookups | — |

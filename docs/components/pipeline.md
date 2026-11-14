@@ -11,7 +11,10 @@ flowchart LR
     discover --> gateB{{gate B}} --> p1[probe] --> m1[match] --> v1[verify] --> s1[score] --> a1[assemble] --> gateD{{gate D}} --> publish
   end
   subgraph maintenance[Maintenance run, daily after publish, no gates]
-    p2[probe] --> m2[match] --> v2[verify] --> s2[score] --> a2[assemble]
+    p2[probe] --> m2[match] --> mon[monitor] --> v2[verify] --> s2[score] --> a2[assemble]
+  end
+  subgraph benchmark[Benchmark run, on demand]
+    plan --> send --> pool --> gateBb{{blind gate B}} --> bscore[score providers]
   end
   publish -.schedules.-> maintenance
 ```
@@ -23,6 +26,8 @@ only. Simulated runs (ADR 0014) use the same stages against a copy of the databa
 |---|---|
 | `pipeline/runs.py` | `stages_for(kind) -> list[str]`; `advance(run)` — enqueue the next stage or wait at a gate. |
 | `pipeline/discover.py` | `run(ctx)` — discovery agent → proposed sources + offers; then wait at gate B. |
+| `pipeline/benchmark.py` | `plan(ctx)` — discovery agent writes the fixed query plan once; `send(ctx)` — every query to every provider pinned + auto routing, randomised order, cached; `pool(ctx)` — candidates, then wait at a **blind** gate B; `score(ctx)` — `measure.benchmark.provider_metrics` → `benchmark_result` (ADR 0015). |
+| `pipeline/monitor.py` | `run(ctx)` — inside maintenance, before verify: one news search per company, `measure.monitor.match_hits`, save `monitor_hit`, reorder re-checks (ADR 0016). |
 | `pipeline/probe.py` | `run(ctx)` — for each approved source × offered panel unit: reuse a fresh raw fetch or call the adapter; save raw fetches, records, mentions; claim drafts; health per source. |
 | `pipeline/match.py` | `run(ctx)` — load existing entities of each probe unit, `measure.match_mentions` new mentions against them (ADR 0013), borderline pairs to the judge, apply merges/splits with `entity_event` rows; attach claims to entities (upsert by fingerprint). |
 | `pipeline/verify.py` | `run(ctx)` — reference and agreement verdicts for all claims; lookups for the claims `measure.sampling` picks within budget; re-checks due by `measure.freshness`; R9 spot-checks of tier-1 sources; second-judge calibration sample. |
@@ -37,7 +42,9 @@ only. Simulated runs (ADR 0014) use the same stages against a copy of the databa
 ## CLI
 
 `sourcemap.cli` is the only entry point that reads `.env`. Commands: `seed`, `worker`, `api`,
-`run <kind> <data_type> [--mode test|real] [--as-of DATE] [--replay]`, `status <run>`,
+`run <kind> <data_type> [--mode test|real] [--as-of DATE] [--replay]` (kinds include `benchmark`),
+`benchmark plan <data_type>` (show query plan, providers and estimated cost before sending),
+`leaderboard [--segment]`, `status <run>`,
 `approve <run> <gate>`, `map <data_type> [--claim-type]`, `trace <score_id|verification_id>`,
 `adapter <source> <unit>` (dev: run one adapter on one unit), `sim <scenario> [--days N]`
 (run a scenario in a database copy, ADR 0014).

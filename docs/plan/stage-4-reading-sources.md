@@ -1,4 +1,4 @@
-# Stage 3 — Reading sources safely
+# Stage 4 — Reading sources safely
 
 ## Goal
 Run adapter code isolated from the worker, fetch politely, and read every known source.
