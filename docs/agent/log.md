@@ -240,3 +240,9 @@ Checked by headless Chrome render (no JS errors) and screenshots. web/dist is gi
   parsed from each executive's 담당업무 (heads = titles ending in 장, members = 담당임원); English names
   (source spelling or romanized*), Korean name, rank, LinkedIn where reliable. The plain list is folded
   under "Show as a list". The Tavily tree (orgchart.js, samsung_tree.py) is no longer shown.
+- Per-question benchmark redesigned (user: "not very clear"; follow the provider tab): one table, row 0 =
+  the reference, then each source with three bar columns — coverage (how many of the reference's
+  marketing executives it names, for this company), accuracy (title accuracy across the segment, with
+  90% bracket), cost (finding + reading + checking, and per confirmed person) — best per column in blue,
+  a "Best at" column, a one-line verdict and four KPIs. Code in app.js `benchmark()`; styles in
+  web/dartchart.css. app.js is still uncommitted because another session's provider-page work is in it.

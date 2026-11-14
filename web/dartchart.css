@@ -31,3 +31,10 @@
 .dc-p.big .oc-name { font-size: 14px; }
 .dc-rank { font: 700 9.5px ui-monospace, Menlo, monospace; letter-spacing: .06em; color: #5f6170; }
 .dc-star { color: #5f6170; font-weight: 400; margin-left: 1px; }
+/* per-question benchmark table */
+.bhow { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 6px 28px; margin: 0 0 14px; color: #5f6170; }
+.btable td { vertical-align: top; }
+.btable svg { display: block; margin: 3px 0 4px; }
+.bv { font: 700 13px ui-monospace, Menlo, monospace; }
+.bv.best, b.blue { color: #1f4fd8; }
+tr.refrow td { background: #f6f6f8; }
