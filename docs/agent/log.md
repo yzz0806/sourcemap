@@ -197,3 +197,19 @@ data type; design: verify web-facing tech by our own fingerprint scan of the com
 report recall and confirmed share (absence of detection ≠ wrong). Not built yet.
 A subagent built the references (`demo_refs.py`) while I built plan/search/read/verify/page.
 Open: shared DART parser bug (layouts), tests for demo modules, SAP reference.
+
+## 2026-11-14 — Frontend (web/)
+
+Framing agreed with the user: sourcemap is the missing layer between an agent and web search — a
+**source library** (which sources to cite per data type × segment, with accuracy, coverage, cost)
+and a **provider library** (which search provider behind Telem reaches those sources; used to
+discover sources and to locate a source's page at question time). The left "plain web search" panel
+is the user's separate Tavily experiment; not built here.
+
+Built a static frontend in the user's editorial style (ink on white, one blue accent #1f4fd8,
+Georgia headlines, monospace labels, hairlines, hand-drawn SVG: coverage bar, accuracy colour,
+interval bracket; Poppins brand mark). `scripts/build_web.py` turns data/seg + data/demo into
+`web/dist/data.js` and copies `web/{index.html,style.css,app.js}`; open `web/dist/index.html`.
+Sections: hero + diagram, Ask (routed answer for Samsung / Nvidia / Airbus), Source library (click a
+cell for its checks), Provider library (TELEM), Method (TELEM marks on discover, route, keep current).
+Checked by headless Chrome render (no JS errors) and screenshots. web/dist is git-ignored (built).
