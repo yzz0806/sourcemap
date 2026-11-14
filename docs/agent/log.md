@@ -221,3 +221,17 @@ Checked by headless Chrome render (no JS errors) and screenshots. web/dist is gi
   on 2026-11-14 (stated on every page). Unknown companies show "not in the library — would run
   discovery"; unbuilt data types say so. Checked: nine routes rendered headless with no JS errors.
   Next: live mode (small server: model classifies the query, Telem locates pages per question).
+- Samsung org chart as a graph (user's spec): `web/orgchart.js` (root → bus → 5 columns, stacked
+  children on a left spine, grandchild sub-spine; three statuses encoded by outline + fill + pill +
+  avatar; legend; timeline, gaps, and a DART cross-check panel). Tree data = the user's spec from the
+  Tavily experiment, in `scripts/samsung_tree.py`; every person and unit is cross-checked against DART
+  (2025-12-31) as dated notes — statuses unchanged. DART names heads the spec lists as unknown (D2C
+  조철호, CX 이종민, MX Strategic Marketing 조성혁 = Seong H. Cho).
+- English names for the 93 DART marketing executives (source spelling where a source named the
+  person, else model romanization, marked *). LinkedIn via Telem (`scripts/samsung_linkedin.py`,
+  ≈$0.83 over two runs): the first loose rule accepted wrong people (Seung-hyun ≠ Seung-eun; Heon
+  Hee Lee ≠ Lee Heon); final rule = exact name + Samsung Electronics (not affiliates) + executive or
+  marketing title, or a source-spelled name → 6 reliable candidates of 100, labelled "found by
+  search, not verified". Shown honestly as few.
+- Shared files (build_web.py, app.js, style.css, index.html) also hold another session's uncommitted
+  provider-library rework; not committed here to avoid committing its unfinished work.
