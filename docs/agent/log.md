@@ -46,6 +46,25 @@ Keep each stage file's status line current.
   benchmark, stage 4 = reading sources.
 - Considered and not taken now: gap finder, identifier finder at seed time (cheap extras for later).
 
+### Plan review fixes
+1. **Dependencies:** judge service moved to stage 4 (first-party extraction needs it; ADR 0009).
+   Stage 3 runs the benchmark **inline** from the CLI with the same jobs and stage code (the worker
+   arrives in 5a). Blind gate B before the UI: `review export/import` CSV or `review` in the terminal.
+   Polite fetch helper (`sandbox.kit`) moved to stage 2 for the identifier checks.
+2. **Known-answer task** added to the benchmark: seeded theorg / LinkedIn / ROR / people-page URLs
+   searched through every provider and scored automatically (~80 trials per provider per data type)
+   (ADR 0015, domain §10, `known_answer_trial`).
+3. `benchmark plan` shows the expected review count; review capped at ~80 per data type, random
+   sample above that (ADR 0015).
+4. Stage 5 split into **5a** (pipeline, trace, resume) and **5b** (expiry, simulations, monitor,
+   calibration).
+- Stage 2 gets automatic identifier checks (`seed --check-ids`, `identifier_check`).
+- Every stage file has "You need to provide" and "Cost"; the plan index sums them: ≈ $15–21,
+  close to the $20 budget — stage 8 re-scores the cached benchmark; the open task is trimmed first
+  if Telem prices are higher.
+- Monitor `OR` support: to be confirmed per provider in stage 3 with a probe query and recorded in
+  ADR 0016; fallback is one plain query per company.
+
 ### Notes for later stages (from the review)
 - **Stage 3/5:** first-party extraction — every extracted value's quote must be found in the visible
   text of the raw HTML, else the value is dropped and counted; `record.extracted_by_judge_call_id`
@@ -60,7 +79,7 @@ Keep each stage file's status line current.
 **Open items:**
 - Open DART API key — user is getting it. Without it the Korean segment's DART cells are "not probed".
 - Telem request/response details (provider names, `usage` field) to confirm against its docs at stage 4.
-- Exact OpenRouter model ids for primary and second judge, chosen at stage 5 with prices.
+- Exact OpenRouter model ids: primary judge chosen at stage 4, second judge at stage 5b, with prices.
 - Leadership/people page URLs per probe unit: to be found at seed time (stage 2) or setup.
 - No tests or import-linter yet (no code); they start at stage 1.
 

@@ -8,6 +8,7 @@ run requests) and the pipeline (everything else). Schema in `docs/data-model.md`
 | `db.py` | `connect(path) -> Connection` — WAL mode, foreign keys on; `migrate(conn)` — apply `migrations/NNNN_*.sql` in order. |
 | `rawstore.py` | `put(bytes) -> sha256` — write-once, content-addressed; `get(sha256) -> bytes`; `path_of(sha256)`. |
 | `seed.py` | `seed(conn, specs, sources)` — load data types, segments, panels, sources, offers, adapters; idempotent. |
+| `idcheck.py` | `check_identifiers(conn, fetch) -> list[IdentifierCheck]` — one automatic check per seeded identifier (`docs/plan/stage-2…`), `fetch` passed in (polite kit), results saved to `identifier_check`; `known_answers(conn) -> list` — only passing identifiers. |
 | `queue.py` | `enqueue_run(conn, kind, data_type, mode, as_of, budget) -> run_id`; `lease_job(conn, now) -> Job | None`; `finish_job`, `fail_job`, `heartbeat(job)`. |
 | `events.py` | `log_event(conn, run_id, stage, level, message, data)`; `events_since(conn, run_id, after_id)`. |
 | `spend.py` | `charge(conn, run_id, service, units, usd, ref)`; `remaining(conn, run_id) -> usd`. |

@@ -18,7 +18,7 @@ commit, wait.
 
 ## How you check
 1. Every page loads with no browser console errors.
-2. A map cell's coverage and interval equal what stage 5 printed for the same run.
+2. A map cell's coverage and interval equal what stage 5a printed for the same run.
 3. From a map cell to the raw evidence in 3 clicks or fewer.
 4. Start a test run from the catalog; the console shows events live; approve a gate from the UI.
 5. The time slider shows older snapshots.
@@ -29,3 +29,9 @@ commit, wait.
 10. Leaderboard numbers equal `sourcemap leaderboard` for the same run; click a provider to see the
     candidates it found; the pooled-recall limit is stated on the page.
 11. Gate B review page shows no provider names.
+
+## You need to provide
+15 minutes in a browser for the checks (including phone width).
+
+## Cost
+$0 (works on the existing database; a test run started from the UI follows the stage 5a budget).

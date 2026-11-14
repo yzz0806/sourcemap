@@ -22,3 +22,9 @@ Domain step 8 re-read → tests on winner choice, ties, unmeasured cells, altern
 3. Two different people with similar names at one company stay separate.
 4. "How many entities, how many in more than one source, how many pairs went to the judge?"
 5. After gate D approval, a daily maintenance schedule exists.
+
+## You need to provide
+Gate D: look over a sample of about 10 assembled entries and approve or reject.
+
+## Cost
+About $0.10 (judge calls for any new borderline entity pairs; otherwise local).

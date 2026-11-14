@@ -56,6 +56,7 @@ erDiagram
 | `segment` | id, data_type_id, parent_id, slug, name, criteria | A tree; each data type has a root `all`. |
 | `probe_unit` | id, data_type_id, slug, name, identifiers_json | e.g. `{"theorg":"airtable","domain":"airtable.com","linkedin":"…","dart_corp_code":"…"}`; `{"openalex_institution":"I…","ror":"…","dept_url":"…"}`. |
 | `panel_member` | segment_id, probe_unit_id | |
+| `identifier_check` | id, probe_unit_id, kind (`theorg`/`linkedin`/`dart`/`ror`/`openalex`/`people_page`), value, result (`ok`/`format_ok`/`mismatch`/`unreachable`/`blocked_by_robots`/`bad_format`/`no_key`), detail, checked_at | From `seed --check-ids`. Only `ok`/`format_ok` identifiers become known answers. |
 | `source` | id, data_type_id, slug, name, url, tier, subtype, lineage, lineage_by_claim_json, access, status (`proposed`/`approved`/`rejected`/`retired`), can_verify_json, found_by_json | `found_by_json`: which search provider and query found it (discovery provenance). |
 | `offer` | source_id, segment_id, state (`hypothesis`/`measured`) | |
 | `adapter` | id, source_id, version, module, keys_json, supports_lookup, status | Hand-written in the demo; `keys_json` lists the only env keys the child receives. |
@@ -105,8 +106,9 @@ erDiagram
 | `search_query` | id, run_id, data_type_id, segment_id, category, text, purpose (`discovery`/`benchmark`/`monitor`/`people_page`) | The fixed query plan of a benchmark is these rows. |
 | `search_call` | id, query_id, provider, routing (`pinned`/`auto`), num_results, status, usd, latency_ms, at | One row per query × provider. Charged to `spend`. |
 | `search_hit` | id, call_id, rank, url, domain, title, snippet, candidate_id | Search results. **Never evidence**: no foreign key from `verification` points here. |
-| `source_candidate` | id, data_type_id, domain, url_prefix, known_source_id, review (`keep`/`reject`/`pending`), reviewed_blind, source_id | Hits collapsed by domain + path. `known_source_id` set when it is a seed source. |
-| `benchmark_result` | id, run_id, provider, segment_id, metric (`precision`/`pooled_recall`/`known_recall`/`exclusive`/`usd_per_good_find`/`latency_ms`), num, den, mean, lo90, hi90, state | The leaderboard. |
+| `source_candidate` | id, data_type_id, domain, url_prefix, known_source_id, in_review_sample, review (`keep`/`reject`/`pending`/`not_sampled`), reviewed_blind, source_id | Hits collapsed by domain + path. `known_source_id` set when it is a seed source. At most ~80 per data type are sampled for review. |
+| `known_answer_trial` | id, run_id, probe_unit_id, target (`theorg`/`linkedin`/`ror`/`people_page`), query_id, provider, expected_url, found_rank, hit | One row per (unit, target, provider); scored automatically against the seed. |
+| `benchmark_result` | id, run_id, provider, segment_id, metric (`known_hit_rate`/`known_mrr`/`precision`/`pooled_recall`/`known_recall`/`exclusive`/`usd_per_good_find`/`latency_ms`), num, den, mean, lo90, hi90, state | The leaderboard. |
 | `monitor_hit` | id, run_id, probe_unit_id, hit_id, matched_entity_id, recheck_claim_ids_json | Links a news hit to the re-checks it triggered; outcome is read from the triggered verifications. |
 
 ## Assembly

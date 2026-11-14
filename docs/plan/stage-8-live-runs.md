@@ -23,3 +23,12 @@ Fresh database → runs → bugs each fixed with a failing-first test → `docs/
 2. Every bug it lists has a fix commit with a test.
 3. "What we learned" contains only things the runs showed.
 4. Total spend roughly matches the Apify, OpenRouter and Telem dashboards.
+
+## You need to provide
+- Approval before each run over $5.
+- Access to the Apify, OpenRouter and Telem dashboards to compare total spend.
+- The blind gate-B review again if the benchmark is re-run on the fresh database.
+
+## Cost
+About **$5–7**: org-chart setup + two maintenance runs, one academic run, the simulations; the
+benchmark is re-scored from stage 3's cached results unless you ask for a fresh run (+$3–5).

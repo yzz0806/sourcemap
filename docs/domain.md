@@ -371,15 +371,26 @@ sourcemap measures which source is good for what. The benchmark applies the same
 search providers behind Telem: **which provider is good at finding sources, for which segment**
 (ADR 0015).
 
+0. **Known-answer task** (automatic, most of the trials): for each probe unit, fixed queries whose
+   right answer is a seeded identifier checked in stage 2 — its theorg page, LinkedIn company page,
+   ROR record, people/leadership page. Every provider's hits are matched to the expected URL
+   automatically: hit in the top k, and the rank. About 80 trials per provider per data type.
+   *Example:* `"Gong org chart"` → expected `theorg.com/org/gong`; provider A returns it at rank 2,
+   provider B not at all.
+
+The **open discovery task** finds sources nobody seeded:
+
 1. The discovery agent plans publisher categories and writes the queries **once**.
 2. The same fixed queries go to every provider pinned on its own, and to Telem's automatic routing,
    with the same number of results.
 3. Hits collapse into **candidates** by domain and path; each candidate remembers which providers,
    ranks and queries found it.
 4. **Good finds** = known sources from the seed (automatic) + candidates the user keeps at gate B.
-   Gate B is **blind**: candidates are shown without which provider found them.
-5. Each provider gets, per segment: precision, pooled recall, known-source recall, exclusive finds,
-   cost per good find, latency — proportions as Beta(1, 1) intervals with n, "not enough data"
+   Gate B is **blind**: candidates are shown without which provider found them (a CSV or the
+   terminal before the UI exists). At most ~80 candidates per data type are reviewed; above that a
+   random sample is reviewed and metrics use the reviewed ones only.
+5. Each provider gets, per segment: known-answer hit rate and mean reciprocal rank; precision,
+   pooled recall, known-source recall, exclusive finds; cost per good find, latency — proportions as Beta(1, 1) intervals with n, "not enough data"
    under 5 trials, "failed" when the provider errored. Later: the measured coverage and accuracy of
    the sources it found.
 

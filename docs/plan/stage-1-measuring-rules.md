@@ -51,3 +51,10 @@ contracts from `docs/components/README.md`, `scipy` for Beta quantiles.
 5. Benchmark case table: two providers with known hits → expected precision, pooled recall and
    exclusive finds; a provider that errored → "failed", not 0.
 6. Import-linter proves `measure` imports no database, HTTP or model library.
+
+## You need to provide
+- OK to install Python 3.13 with Homebrew, only if packages fail on the machine's Python 3.15.
+- 10 minutes to read the case table and do the one hand calculation.
+
+## Cost
+$0 (no network, no keys).

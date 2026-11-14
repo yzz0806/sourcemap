@@ -26,7 +26,9 @@ only. Simulated runs (ADR 0014) use the same stages against a copy of the databa
 |---|---|
 | `pipeline/runs.py` | `stages_for(kind) -> list[str]`; `advance(run)` — enqueue the next stage or wait at a gate. |
 | `pipeline/discover.py` | `run(ctx)` — discovery agent → proposed sources + offers; then wait at gate B. |
-| `pipeline/benchmark.py` | `plan(ctx)` — discovery agent writes the fixed query plan once; `send(ctx)` — every query to every provider pinned + auto routing, randomised order, cached; `pool(ctx)` — candidates, then wait at a **blind** gate B; `score(ctx)` — `measure.benchmark.provider_metrics` → `benchmark_result` (ADR 0015). |
+| `pipeline/benchmark.py` | `plan(ctx)` — known-answer queries from passing identifiers + the discovery agent's fixed open query plan; estimated cost and review count; `send(ctx)` — every query to every provider pinned + auto routing, randomised order, cached; `known_answers(ctx)` — score trials automatically; `pool(ctx)` — candidates, review sample (≤ 80), then wait at a **blind** gate B; `score(ctx)` — `measure.benchmark.provider_metrics` → `benchmark_result` (ADR 0015). |
+| `pipeline/inline.py` | `run_inline(run_id)` — execute a run's queued jobs in the CLI process with the same stage code, stopping at gates (used before the worker exists, and for dev). |
+| `pipeline/review.py` | `export_csv(run) -> str` — blind rows, random order, no provider/rank/query; `import_csv(run, text)` — validate and record decisions; `review_terminal(run)`. |
 | `pipeline/monitor.py` | `run(ctx)` — inside maintenance, before verify: one news search per company, `measure.monitor.match_hits`, save `monitor_hit`, reorder re-checks (ADR 0016). |
 | `pipeline/probe.py` | `run(ctx)` — for each approved source × offered panel unit: reuse a fresh raw fetch or call the adapter; save raw fetches, records, mentions; claim drafts; health per source. |
 | `pipeline/match.py` | `run(ctx)` — load existing entities of each probe unit, `measure.match_mentions` new mentions against them (ADR 0013), borderline pairs to the judge, apply merges/splits with `entity_event` rows; attach claims to entities (upsert by fingerprint). |
@@ -43,7 +45,9 @@ only. Simulated runs (ADR 0014) use the same stages against a copy of the databa
 
 `sourcemap.cli` is the only entry point that reads `.env`. Commands: `seed`, `worker`, `api`,
 `run <kind> <data_type> [--mode test|real] [--as-of DATE] [--replay]` (kinds include `benchmark`),
-`benchmark plan <data_type>` (show query plan, providers and estimated cost before sending),
+`benchmark plan <data_type>` (show query plan, providers, estimated cost and expected review count before sending),
+`run … --inline` / `resume <run> --inline`, `review export|import <run>`, `review <run>` (terminal),
+`seed --check-ids`,
 `leaderboard [--segment]`, `status <run>`,
 `approve <run> <gate>`, `map <data_type> [--claim-type]`, `trace <score_id|verification_id>`,
 `adapter <source> <unit>` (dev: run one adapter on one unit), `sim <scenario> [--days N]`

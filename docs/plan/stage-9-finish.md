@@ -16,3 +16,9 @@ Someone else can run the demo from the README alone; docs match the code; open i
    run and see the map in the browser.
 2. Pick 3 functions named in the component docs: they exist and do what the docs say.
 3. The log lists open items honestly.
+
+## You need to provide
+Someone (or you, in a fresh folder) to follow the README from scratch.
+
+## Cost
+About $1 (one test-mode maintenance run during the README check).

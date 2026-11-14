@@ -11,6 +11,10 @@ by R2 they can never be evidence.
 - **Daily, org chart only.** Each maintenance run makes one Telem search per company, restricted to
   the last 7 days, e.g. `"<company>" (appoints OR joins OR leaves OR steps down OR hires)`, with pinned
   providers and small `num_results`. 16 searches per run.
+- **`OR` support is confirmed, not assumed.** Stage 3 sends one tiny probe query with `OR` to each
+  provider and records here which honour it. The monitor uses the `OR` query only with those
+  providers; otherwise it sends one plain query (`"<company>" executive appointment departure`), never
+  several queries per company. Result of the stage 3 check: _to be filled in_.
 - **Matching hits to people.** A hit matches a tracked entity of that company when a normalised name
   of the entity appears in the hit's title or snippet (rules only, no judge).
 - **Effect: re-check priority only.** The matched entity's employment and title claims move to the

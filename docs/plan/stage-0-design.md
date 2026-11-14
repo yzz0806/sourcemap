@@ -29,3 +29,9 @@ Turn the brief into a design the user agrees with, before any code.
 
 ## On approval
 ADRs 0001–0016 change from *proposed* to *accepted*; after that they are only superseded.
+
+## You need to provide
+Your review of the docs and answers to the trace questions.
+
+## Cost
+$0.

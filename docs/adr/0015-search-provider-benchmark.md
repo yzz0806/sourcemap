@@ -17,11 +17,31 @@ depend on one provider's own ranking.
 - **Hits to candidates.** Each hit is normalised to a source candidate by registrable domain and
   path prefix; duplicates across providers collapse into one candidate that remembers every
   provider, rank and query that found it.
-- **What counts as a good find** (the relevant set, pooled across providers):
+- **Two tasks.**
+  1. **Known-answer task (automatic, the main source of trials).** For each probe unit, fixed
+     query templates whose correct answer is a seeded identifier that passed stage 2's checks:
+     theorg page (`"<company> org chart"`), LinkedIn company page (`"<company> LinkedIn"`), ROR
+     record (`"<institution> ROR"`), people/leadership page (`"<company> leadership team"`,
+     `"<institution> <department> people"`). Each provider's hits are matched to the expected URL
+     after normalisation (scheme, `www`, trailing slash, query string). Metrics: hit rate in the top
+     k (k = `num_results`) and mean reciprocal rank, per provider and segment. About 80 trials per
+     provider per data type; no human review.
+  2. **Open discovery task (blind review).** The fixed query plan below.
+- **What counts as a good find** in the open task (the relevant set, pooled across providers):
   1. **known sources** from the seed (theorg, DART, OpenAlex, ORCID, company and university
      domains) — automatic, no review needed;
   2. candidates the user **keeps at gate B**. Gate B review is **blind**: candidates are shown
-     pooled and deduplicated, without which provider found them.
+     pooled and deduplicated, in random order, without provider, rank or query.
+- **Review without the UI.** `sourcemap review export` writes a CSV (candidate id, domain, example
+  URL, up to 3 titles/snippets, segments; no provider/rank/query); `review import` records the
+  decisions; `sourcemap review` offers the same rows in the terminal.
+- **Review cap.** `sourcemap benchmark plan` shows the expected number of candidates to review and
+  the time it takes. At most **~80 per data type** are reviewed: above that, a seeded random sample
+  of 80 is reviewed, and open-task metrics are computed over reviewed candidates only (stated on
+  the leaderboard). Known sources are labelled automatically and don't count toward the cap.
+- **Execution before the worker exists.** The benchmark run and its jobs are stored in the database
+  as usual and executed inline from the CLI (`--inline`, `resume --inline`) with the same stage
+  code; the worker (stage 5a) runs the same jobs unchanged.
 - **Metrics per provider, per segment and overall:**
   - precision = good finds / candidates it proposed;
   - pooled recall = good finds it found / all good finds by any provider;
@@ -48,3 +68,7 @@ depend on one provider's own ranking.
 - **Score by each provider's own top-k rank** — measures the provider against itself.
 - **Model-judged relevance for every hit** — the judge would become the ground truth for the
   centrepiece; known sources plus blind gate B are stronger and cheap.
+- **Open task only** — too few good finds per segment for intervals narrower than "not enough
+  data"; the known-answer task supplies the trials.
+- **Reviewing every candidate** — could be several hundred; a capped random sample keeps the
+  estimate unbiased at a fixed cost to the user.

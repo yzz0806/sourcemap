@@ -12,8 +12,8 @@ judge's error must be estimated without humans (ADR 0003), which needs a second,
 - **Agents:** Claude Agent SDK, local Claude Code login, default model set in settings.
 - **Judge:** single OpenRouter chat calls with JSON output, batched (several questions per call
   where the prompt allows) and cached in `judge_call` by (model, prompt version, input hash).
-  - Primary judge: a small, cheap model (exact OpenRouter model id chosen and recorded at stage 5
-    from the current OpenRouter list, with its price).
+  - Primary judge: a small, cheap model (exact OpenRouter model id chosen and recorded at stage 4,
+    where first-party extraction first needs the judge, from the current OpenRouter list, with its price).
   - Second judge: a model from a **different family**, used on a sample each run for calibration.
 - Every judge prompt has a version. Changing the model or prompt re-runs the easy-case suite and
   starts a new calibration series; cached answers from the old version are not reused.
