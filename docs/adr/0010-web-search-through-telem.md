@@ -1,6 +1,6 @@
 # 0010 — Web search and page reading go through Telem, behind one module, never for evidence
 
-Status: accepted (stage 0). The user chose Telem over Tavily for this build.
+Status: proposed (stage 0, under review). The user chose Telem over Tavily for this build.
 
 ## Context
 Discovery needs web search and page reading. Telem (telem.ai) routes to many providers (Exa,

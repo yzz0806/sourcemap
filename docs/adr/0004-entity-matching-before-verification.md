@@ -1,6 +1,6 @@
 # 0004 — Match mentions into entities before verifying, by rules first and the judge for borderline pairs
 
-Status: accepted (stage 0)
+Status: proposed (stage 0, under review)
 
 ## Context
 The same person appears as "J. Smith" on theorg and "Jane Smith" on gong.io, or as "박형관" in DART

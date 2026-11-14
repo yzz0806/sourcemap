@@ -1,6 +1,6 @@
 # 0009 — Model providers: Claude Agent SDK for agents, OpenRouter for judge calls
 
-Status: accepted (stage 0)
+Status: proposed (stage 0, under review)
 
 ## Context
 Two kinds of model work: multi-step agent sessions (discovery) and many small, cheap comparisons

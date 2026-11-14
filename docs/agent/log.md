@@ -5,15 +5,39 @@
 **Built:** docs only, no code. `docs/domain.md`, `docs/containers.md`, `docs/data-model.md`,
 `docs/components/` (8 docs + layering), ADRs 0001–0012, README skeleton, `.gitignore`.
 
-**Scope decided with the user** (differs from the reference `DEMO.md`):
-- Both data types (org chart + academic identity) and all 4 org-chart segments incl. Korean listed
-  → DART is in scope.
-- **No human-labelled gold set.** Ground truth from reference sources, cross-lineage lookups and
-  agreement (ADR 0003). Judge error is estimated with an easy-case suite and a second-family judge;
-  the UI says it is not measured against humans.
-- Telem for search (not Tavily) (ADR 0010).
-- Stages follow `PLAN.md` (0–9) adapted to this scope; agents limited to discovery; first-party pages
-  extracted by a judge call (ADR 0006).
+**The user's decisions** (made by the user, not the agent; they differ from the reference
+`DEMO.md`, and the user confirmed them in the stage 0 review):
+- **Both data types**, org chart and academic identity.
+- **All 4 org-chart segments including Korean listed, so DART is in scope.**
+- **No human-labelled gold set.** The user does not want hand-checking. Ground truth comes from
+  reference sources, cross-lineage lookups and agreement (ADR 0003). Judge error is estimated with an
+  easy-case suite and a second-family judge; the UI says it is not measured against humans.
+- **Telem for search**, not Tavily (ADR 0010).
+
+**Agent's design choices** (proposed, for review): stages follow `PLAN.md` (0–9) adapted to this
+scope; agents limited to discovery; first-party pages extracted by a judge call (ADR 0006).
+
+### Stage 0 review fixes (same day)
+1. Decisions above marked as the user's.
+2. A discovered source with no adapter: kept as `approved`, map cells "not probed — no adapter",
+   listed under "needs an adapter" (domain §4 step 2). **Weekly discovery dropped**: on demand only.
+3. Entity ids stable across runs, merges/splits logged, split invalidates cross-entity verdicts
+   (ADR 0013, domain §8, `entity_event`).
+4. Departure simulation: scenario files, run in a database copy, fabricated fetches flagged with
+   their source fetch and patch, UI banner, never exported or mixed into real scores (ADR 0014,
+   domain §4 "Simulated days").
+5. Gate D in one place: end of setup runs only (domain step 8); pipeline diagram fixed.
+- Telem label in `containers.md` fixed (discovery + finding people pages, never evidence).
+- Stage-0 ADRs marked **proposed** until approval and amended in place; accepted on approval.
+
+### Notes for later stages (from the review)
+- **Stage 3/5:** first-party extraction — every extracted value's quote must be found in the visible
+  text of the raw HTML, else the value is dropped and counted; `record.extracted_by_judge_call_id`
+  links record → judge call (column already in the data model).
+- **Stage 1/7:** show **weighted n** (agreement = 0.5) next to raw n (`score.n_weighted` added).
+- **Stage 1:** coverage with partial failure — units whose fetch failed are excluded from the
+  denominator and shown as "k of N failed" (`score.units_failed` added); never counted as uncovered.
+  Rule to be written into domain §6 Coverage and the case table at stage 1.
 
 **Reference material** (read-only, not in this repo): `../../sourcemap/rebuild/{BRIEF,PLAN,DEMO,CLAUDE}.md`.
 

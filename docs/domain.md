@@ -128,7 +128,7 @@ flowchart LR
   M --> V[5 Verify]
   V --> SC[6 Score + map]
   SC --> G[7 Gaps<br/>report only]
-  SC --> A[8 Assemble<br/>gate D]
+  SC --> A[8 Assemble]
 ```
 
 ### Step 1 — Define the data type
@@ -145,6 +145,11 @@ It returns source cards: name, URL, tier/subtype, lineage, access, segments, cla
 verify, why, and which search provider found it. Sources needing a paid contract or forbidding
 automated access are skipped. A person approves which to keep (**gate B**) and can add sources
 by hand. Web search is allowed here, and only to *find* sources.
+
+**A kept source with no adapter** (the demo writes adapters by hand, not with agents): it is saved
+as `approved` with its offers as hypotheses, appears as a column on the map with every offered cell
+in the state **not probed — no adapter** (never 0%), and is listed in the run report under "needs
+an adapter". It is probed only after someone writes its adapter.
 
 ### Step 3 — Adapters
 Hand-written for the demo. Each adapter runs in an isolated child process with a timeout, only
@@ -188,8 +193,11 @@ gap agent and gate C are out of scope.)
 
 ### Step 8 — Assemble
 One entry per entity; each field from the source most accurate *for that claim type in that
-segment*; every alternative value kept with its origin and the reason it lost. A person checks a
-sample (**gate D**). Publishing turns on daily maintenance.
+segment*; every alternative value kept with its origin and the reason it lost.
+
+**Gate D** — the only place it occurs: at the end of a **setup** run, after assembly, a person
+checks a sample of assembled entries and approves or rejects. Approving **publishes** the data type,
+which turns on daily maintenance. Maintenance runs assemble too, but never stop at a gate.
 *Example:* "title: *Vice President of Sales* — from gong.io (title accuracy 0.92 in NA mid-size)
 over theorg *VP Sales* (0.71)".
 
@@ -197,16 +205,26 @@ over theorg *VP Sales* (0.71)".
 
 | Kind | Steps | Gates | Agents |
 |---|---|---|---|
-| **Setup** | all | B, D | discovery |
-| **Maintenance** (daily) | probe → match → verify → score → assemble | none | none |
-| **Discovery** (weekly) | discover, then measure new sources on trial | B | discovery |
+| **Setup** | discover → gate B → probe → match → verify → score → assemble → gate D | B, D | discovery |
+| **Maintenance** (daily, scheduled after publish) | probe → match → verify → score → assemble | none | none |
+| **Discovery** (on demand only; not scheduled in the demo) | discover → gate B → probe and measure sources that have adapters, on trial | B | discovery |
 
 **Test vs real mode** differ only in settings: test uses ~3 units per segment, few lookups and a
 ~$6 budget; real uses the full panel and ~$15. The demo total stays under $20; any single run over
 $5 asks first. Code paths are the same.
 
-**Simulated days.** Every run has an `as_of` date. A simulated maintenance run replays stored raw
-fetches (or a later stored fetch) with time shifted, so drift can be shown without waiting days.
+**Simulated days** (ADR 0014). Every run has an `as_of` date. The drift demo runs **scenarios** —
+a person leaves, a source breaks — in a **copy** of the database (`data/sim/<scenario>.sqlite`),
+never in the real one. Fabricated snapshots are edited copies of real ones, flagged
+`simulated` with the exact edit recorded. Each simulated run is one day later. The UI shows a
+simulation only when explicitly opened, under a permanent "SIMULATION" banner, and never exports it.
+Simulated data never enters the real map, history or assembled dataset.
+
+*Example — a departure:* the scenario says Gong's VP Sales left on 1 Dec. From then on, the
+simulated LinkedIn lookup for her is the stored real response with the Gong position given an end
+date, and the simulated gong.io page is the stored one without her. The next simulated day forces
+her claims into the re-check set; the lookup verdict becomes `stale`; the cell's stale share rises
+and its accuracy moves; the history marks the day.
 
 ---
 
@@ -321,6 +339,14 @@ tokens sorted.
 
 The judge only sees borderline pairs. A pair the judge calls different is **never** merged, even
 through a third mention (cannot-link constraints). Matching quality is measured (§7).
+
+**Entity ids are stable across runs** (ADR 0013). Claim fingerprints contain the entity id, so a new
+run first attaches mentions to existing entities (shared identifier, same source's previous
+mention, same normalised name, then the judge) and creates an entity only when nothing matches.
+Ids are never reused. A merge keeps the older id; a split moves mentions to a new entity and
+invalidates the reference and agreement verdicts that relied on the wrong merge. Both are logged.
+*Example:* theorg returns the same 140 Airtable people tomorrow → same entities → same fingerprints
+→ yesterday's valid verdicts still count, nothing is paid twice.
 
 ---
 

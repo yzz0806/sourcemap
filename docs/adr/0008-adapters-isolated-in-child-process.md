@@ -1,6 +1,6 @@
 # 0008 — Adapter code runs only in an isolated child process with a timeout, its own keys, and a polite fetch helper
 
-Status: accepted (stage 0)
+Status: proposed (stage 0, under review)
 
 ## Context
 Adapters talk to the outside world and may hang, loop, or misbehave. The brief fixes that adapter

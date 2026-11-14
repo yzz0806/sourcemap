@@ -1,6 +1,6 @@
 # 0006 — First-party pages (company leadership, university directories) are fetched raw and extracted by a judge call
 
-Status: accepted (stage 0)
+Status: proposed (stage 0, under review)
 
 ## Context
 Company leadership pages and university directories are the strongest references we have outside

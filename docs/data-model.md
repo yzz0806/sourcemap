@@ -26,6 +26,7 @@ erDiagram
   record }o--|| raw_fetch : converted_from
   record ||--o{ mention : contains
   mention }o--|| entity : resolved_to
+  entity ||--o{ entity_event : changed_by
   match_decision }o--|| mention : pair
   record ||--o{ claim : yields
   claim }o--|| entity : subject
@@ -56,22 +57,23 @@ erDiagram
 
 | Table | Key columns | Notes |
 |---|---|---|
-| `run` | id, data_type_id, kind (`setup`/`maintenance`/`discovery`), mode (`test`/`real`), as_of, budget_usd, spent_usd, status (`queued`/`running`/`waiting_gate`/`done`/`failed`/`cancelled`/`out_of_budget`), settings_json, created_at | `as_of` is the run's clock (real or simulated). |
+| `run` | id, data_type_id, kind (`setup`/`maintenance`/`discovery`), mode (`test`/`real`), as_of, scenario, budget_usd, spent_usd, status (`queued`/`running`/`waiting_gate`/`done`/`failed`/`cancelled`/`out_of_budget`), settings_json, created_at | `as_of` is the run's clock. `scenario` is null in the real database and always set in a simulation database (ADR 0014). |
 | `job` | id, run_id, stage, seq, status (`queued`/`running`/`done`/`failed`), lease_until, attempts, error, started_at, finished_at | The queue. A stage is idempotent; restart re-runs it and skips work already stored. |
 | `gate_decision` | id, run_id, gate (`B`/`D`), decision (`approve`/`reject`), payload_json, note, decided_at | Written by the API. |
 | `run_event` | id, run_id, at, level, stage, message, data_json | The live log. |
 | `spend` | id, run_id, service, units, usd, ref, at | Every paid call; `run.spent_usd` is their sum. |
 | `agent_session` | id, run_id, purpose, cost_usd, turns, status, output_json | Capped by count per run. |
-| `schedule` | id, data_type_id, kind, cron, enabled | Created on publish. |
+| `schedule` | id, data_type_id, kind (`maintenance`), cron, enabled | Created on publish (gate D approved). Discovery is not scheduled in the demo. |
 
 ## Evidence chain
 
 | Table | Key columns | Notes |
 |---|---|---|
-| `raw_fetch` | id, run_id, source_id, probe_unit_id, kind (`probe`/`lookup`), request_json, url, status_code, content_type, sha256, size, fetched_at, error | Bytes in the raw store at `sha256`. Never updated. |
-| `record` | id, raw_fetch_ids_json, source_id, probe_unit_id, run_id, schema_version, payload_json, valid, errors_json | One source's converted answer for one probe unit in one run. |
+| `raw_fetch` | id, run_id, source_id, probe_unit_id, kind (`probe`/`lookup`), request_json, url, status_code, content_type, sha256, size, fetched_at, error, simulated, derived_from_raw_fetch_id, sim_patch_json | Bytes in the raw store at `sha256`. Never updated. `simulated` is 0 in the real database; a fabricated fetch (simulation database only) has 1, the real fetch it was edited from, and the exact edit (ADR 0014). |
+| `record` | id, raw_fetch_ids_json, source_id, probe_unit_id, run_id, schema_version, payload_json, valid, errors_json, extracted_by_judge_call_id | One source's converted answer for one probe unit in one run. `extracted_by_judge_call_id` is set when a judge extracted it from a first-party page (ADR 0006). |
 | `mention` | id, record_id, local_ref, name, name_norm, identifiers_json, attrs_json | One person inside one record. |
-| `entity` | id, data_type_id, probe_unit_id, display_name, created_run_id | |
+| `entity` | id, data_type_id, probe_unit_id, display_name, created_run_id, merged_into_id | Ids are stable across runs and never reused; a merged-away entity points at its survivor (ADR 0013). |
+| `entity_event` | id, run_id, kind (`create`/`merge`/`split`), entity_id, other_entity_id, mention_ids_json, reason, match_decision_id | Audit trail of matching changes. |
 | `mention_entity` | mention_id, entity_id, method (`identifier`/`rule`/`judge`), match_decision_id | |
 | `match_decision` | id, mention_a_id, mention_b_id, decision (`same`/`different`), method, reason, judge_call_id | `different` is a cannot-link constraint. |
 | `claim` | id, data_type_id, source_id, probe_unit_id, claim_type_id, subject_entity_id, object_entity_id, value_json, value_norm, fingerprint, first_record_id, first_seen_run_id, last_seen_run_id | `fingerprint` = (source, unit, subject entity, claim type, value_norm). An unchanged claim keeps its row across runs; a changed value is a new claim. |
@@ -84,7 +86,7 @@ erDiagram
 | Table | Key columns | Notes |
 |---|---|---|
 | `source_health` | run_id, source_id, state (`ok`/`degraded`/`broken`/`shape_changed`/`changed`), details_json | |
-| `score` | id, run_id, source_id, segment_id, claim_type_id, coverage_state (`measured`/`not_probed`/`failed`), units_covered, units_panel, entities, n_correct, n_wrong, n_stale, n_unverifiable, n_decisive, prior_a, prior_b, post_a, post_b, mean, lo90, hi90, accuracy_state (`measured`/`not_enough_data`/`unmeasured`), gate_json, freshness_days | One row per cell per run: the history. |
+| `score` | id, run_id, source_id, segment_id, claim_type_id, coverage_state (`measured`/`not_probed`/`failed`), units_covered, units_panel, entities, units_failed, n_correct, n_wrong, n_stale, n_unverifiable, n_decisive, n_weighted, prior_a, prior_b, post_a, post_b, mean, lo90, hi90, accuracy_state (`measured`/`not_enough_data`/`unmeasured`), gate_json, freshness_days | One row per cell per run: the history. |
 | `map_snapshot` | id, run_id, data_type_id, created_at, combos_json, gaps_json | Best combination of up to 3 sources per segment and gap flags. |
 | `alert` | id, run_id, kind (`drift`/`broken`/`shape_changed`), source_id, segment_id, claim_type_id, details_json | |
 | `score_verification` | score_id, verification_id | The exact verdicts a score used — makes R10 a join, not a re-computation. |

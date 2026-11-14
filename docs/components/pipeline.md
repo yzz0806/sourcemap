@@ -8,26 +8,30 @@ crash resumes from the last stage (ADR 0011).
 ```mermaid
 flowchart LR
   subgraph setup[Setup run]
-    discover --> gateB{{gate B}} --> probe
+    discover --> gateB{{gate B}} --> p1[probe] --> m1[match] --> v1[verify] --> s1[score] --> a1[assemble] --> gateD{{gate D}} --> publish
   end
-  subgraph maintenance[Maintenance run, daily]
-    probe2[probe] --> match --> verify --> score --> assemble --> gateD{{gate D<br/>first time only}}
+  subgraph maintenance[Maintenance run, daily after publish, no gates]
+    p2[probe] --> m2[match] --> v2[verify] --> s2[score] --> a2[assemble]
   end
-  probe --> match
+  publish -.schedules.-> maintenance
 ```
+
+Gate D exists only at the end of a setup run (`docs/domain.md` step 8). Discovery runs are on demand
+only. Simulated runs (ADR 0014) use the same stages against a copy of the database.
 
 | Module | Public functions (one line each) |
 |---|---|
 | `pipeline/runs.py` | `stages_for(kind) -> list[str]`; `advance(run)` — enqueue the next stage or wait at a gate. |
 | `pipeline/discover.py` | `run(ctx)` — discovery agent → proposed sources + offers; then wait at gate B. |
 | `pipeline/probe.py` | `run(ctx)` — for each approved source × offered panel unit: reuse a fresh raw fetch or call the adapter; save raw fetches, records, mentions; claim drafts; health per source. |
-| `pipeline/match.py` | `run(ctx)` — `measure.match_mentions` per probe unit, borderline pairs to the judge, save entities; attach claims to entities (upsert by fingerprint). |
+| `pipeline/match.py` | `run(ctx)` — load existing entities of each probe unit, `measure.match_mentions` new mentions against them (ADR 0013), borderline pairs to the judge, apply merges/splits with `entity_event` rows; attach claims to entities (upsert by fingerprint). |
 | `pipeline/verify.py` | `run(ctx)` — reference and agreement verdicts for all claims; lookups for the claims `measure.sampling` picks within budget; re-checks due by `measure.freshness`; R9 spot-checks of tier-1 sources; second-judge calibration sample. |
 | `pipeline/extract_page.py` | `extract_people(raw_html, unit) -> Record` — judge-based extraction for first-party pages (ADR 0006). |
 | `pipeline/score.py` | `run(ctx)` — compute scores, transfer gate, coverage, combos, gaps, health, drift alerts; save scores, `score_verification` links and the map snapshot. |
-| `pipeline/assemble.py` | `run(ctx)` — `measure.assemble.choose_value` per entity and claim type; gate D sample on first publish. |
+| `pipeline/assemble.py` | `run(ctx)` — `measure.assemble.choose_value` per entity and claim type; in setup runs only, prepare the gate D sample. |
+| `pipeline/simulate.py` | `fork_db(scenario) -> path`; `fabricate(scenario, real_raw_fetch, as_of) -> SimulatedFetch` — edited copy flagged `simulated` with its patch (ADR 0014). |
 | `pipeline/context.py` | `RunContext` — run row, settings, store, services, budget, `as_of` clock, cancellation check. |
-| `pipeline/schedule.py` | `due_runs(schedules, now) -> list` — daily maintenance, weekly discovery. |
+| `pipeline/schedule.py` | `due_runs(schedules, now) -> list` — daily maintenance only. |
 | `worker/main.py` | `serve(settings)` — loop: lease job → run stage → finish/fail; heartbeat; scheduler tick. |
 
 ## CLI
@@ -35,4 +39,5 @@ flowchart LR
 `sourcemap.cli` is the only entry point that reads `.env`. Commands: `seed`, `worker`, `api`,
 `run <kind> <data_type> [--mode test|real] [--as-of DATE] [--replay]`, `status <run>`,
 `approve <run> <gate>`, `map <data_type> [--claim-type]`, `trace <score_id|verification_id>`,
-`adapter <source> <unit>` (dev: run one adapter on one unit).
+`adapter <source> <unit>` (dev: run one adapter on one unit), `sim <scenario> [--days N]`
+(run a scenario in a database copy, ADR 0014).

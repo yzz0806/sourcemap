@@ -1,6 +1,6 @@
 # 0001 — Records of any data type are stored as JSON with versioned schemas
 
-Status: accepted (stage 0)
+Status: proposed (stage 0, under review)
 
 ## Context
 sourcemap must hold org charts, academic identities, and data types users create later. The brief

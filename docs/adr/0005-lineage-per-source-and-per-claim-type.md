@@ -1,6 +1,6 @@
 # 0005 — Lineage is recorded per source, with per-claim-type overrides
 
-Status: accepted (stage 0)
+Status: proposed (stage 0, under review)
 
 ## Context
 R4: same lineage never verifies itself. Usually lineage is a property of a source (ZoomInfo and

@@ -5,7 +5,7 @@ writes only gate decisions and run requests. It works with the worker stopped.
 
 | Module | Public functions (one line each) |
 |---|---|
-| `api/app.py` | `create_app(settings) -> FastAPI` — mount routes and the built UI. |
+| `api/app.py` | `create_app(settings) -> FastAPI` — mount routes and the built UI; opens the real database by default and a simulation copy only with `?db=sim:<scenario>`, adding a `simulation` flag to every response (ADR 0014). |
 | `api/routes_catalog.py` | `GET /api/data-types` — data types with last run and map summary. |
 | `api/routes_map.py` | `GET /api/map/{data_type}?claim_type&run` — cells for one claim type at a run (time slider); `GET /api/cells/{score_id}` — the checks behind a cell; `GET /api/cells/history` — one cell over runs. |
 | `api/routes_trace.py` | `GET /api/verifications/{id}` — claim, verdict, method, reason, quote, links; `GET /api/raw/{raw_fetch_id}` — the raw bytes with their content type. |
@@ -24,3 +24,4 @@ writes only gate decisions and run requests. It works with the worker stopped.
 | Run console | Live events, spend, gate approvals. |
 | Assembled data | One row per entity; each value with origin and "why this source won"; CSV export. |
 | History | Per cell coverage and accuracy over runs, breakages and drift alerts marked. |
+| Any page, simulation open | Permanent "SIMULATION — <scenario>" banner; CSV export disabled. |

@@ -16,3 +16,8 @@ An accepted ADR is not rewritten; a new ADR supersedes it and the old one gets a
 | [0010](0010-web-search-through-telem.md) | Web search through Telem behind one module, never for evidence |
 | [0011](0011-sqlite-and-database-job-queue.md) | SQLite, database job queue, idempotent stages |
 | [0012](0012-drift-health-and-verdict-expiry.md) | Source health, verdict expiry and re-checks, drift alerts |
+| [0013](0013-stable-entity-ids.md) | Entity ids stay stable across runs; merges and splits logged |
+| [0014](0014-simulated-runs-isolated.md) | Simulated runs in a separate database, fabricated fetches flagged |
+
+All stage-0 ADRs are **proposed** until the user approves stage 0, then marked accepted. Until then
+they are amended in place; after acceptance they are only superseded.
