@@ -8,9 +8,14 @@ References are built by pipeline/demo_refs.py into data/seg/refs.json.
 """
 
 SEGMENTS = {
-    "kr_listed": {"name": "Korean listed", "country": "South Korea", "reference": "DART annual report (official filing)"},
-    "us_listed": {"name": "US listed", "country": "United States", "reference": "SEC 10-K executive officers (official filing)"},
-    "eu_listed": {"name": "European listed", "country": "Europe", "reference": "company's own governance page"},
+    # A segment = country × company size: source quality changes with both. Size is given by index
+    # membership (a checkable fact), not by a market cap or headcount that would go stale.
+    "kr_listed": {"name": "Korean large-cap", "country": "South Korea", "size": "KOSPI 200 members",
+                  "reference": "DART annual report (official filing)"},
+    "us_listed": {"name": "US mega-cap", "country": "United States", "size": "the largest S&P 500 companies by market value",
+                  "reference": "SEC 10-K executive officers (official filing)"},
+    "eu_listed": {"name": "European large-cap", "country": "Europe", "size": "Euro Stoxx 50 members",
+                  "reference": "company's own governance page"},
 }
 
 COMPANIES = {

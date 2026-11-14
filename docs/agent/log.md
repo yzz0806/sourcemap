@@ -251,3 +251,8 @@ Checked by headless Chrome render (no JS errors) and screenshots. web/dist is gi
   from their official reference (marketing first, then leadership; long lists grouped by kind of role).
   Direct links: #/type/org_chart?c=<company>. English names for NAVER / SK hynix (romanized*, $0.001).
   Code: dartchart.js `renderRefChart`, app.js `typePage`/`sourceMap`, build_web.py `top_rows` + English names.
+- User: Org chart (from the dashboard) must show only the source map — the per-company graph tabs are removed
+  (renderRefChart stays in dartchart.js, unused). Segments renamed by size, not only country: Korean
+  large-cap (KOSPI 200 members), US mega-cap (largest S&P 500 companies by market value), European large-cap
+  (Euro Stoxx 50 members) — index membership chosen because it is checkable; mid-caps would be separate,
+  unmeasured segments (said on the page). Segment column headers show size, companies and reference.
