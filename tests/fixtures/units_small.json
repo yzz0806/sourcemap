@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-11-14",
+  "org_chart": [
+    {"slug": "airtable", "name": "Airtable", "segment": "na_mid",
+     "identifiers": {"domain": "airtable.com", "theorg": "airtable",
+                     "linkedin": "https://www.linkedin.com/company/airtable/", "people_page": null}},
+    {"slug": "samsung-electronics", "name": "Samsung Electronics", "segment": "kr_listed",
+     "identifiers": {"domain": "samsung.com", "theorg": "samsung-electronics",
+                     "linkedin": "https://www.linkedin.com/company/samsung-electronics/",
+                     "dart_corp_code": "00126380", "people_page": null}}
+  ],
+  "academic_identity": [
+    {"slug": "kaist-cs", "name": "KAIST · School of Computing", "segment": "international",
+     "institution": "KAIST", "department": "School of Computing",
+     "identifiers": {"domain": "cs.kaist.ac.kr", "ror": "05apxxy63", "openalex_institution": "I157485424",
+                     "people_page": "https://cs.kaist.ac.kr/people/faculty"}}
+  ]
+}

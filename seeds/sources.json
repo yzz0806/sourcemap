@@ -1,0 +1,55 @@
+{
+  "_doc": "Known sources, segments and adapters for the two starter data types (docs/domain.md §3, ADR 0005). Loaded by `sourcemap seed`. Units and their identifiers are in units.json.",
+  "segments": {
+    "org_chart": [
+      {"slug": "all", "name": "All companies", "parent": null},
+      {"slug": "na_mid", "name": "North American mid-size (200–5,000 staff)", "parent": "all"},
+      {"slug": "us_large", "name": "US large (5,000+)", "parent": "all"},
+      {"slug": "kr_listed", "name": "Korean listed", "parent": "all"},
+      {"slug": "eu_mid", "name": "European mid-size", "parent": "all"}
+    ],
+    "academic_identity": [
+      {"slug": "all", "name": "All departments", "parent": null},
+      {"slug": "us_r1_cs", "name": "US R1 computer science", "parent": "all"},
+      {"slug": "us_r1_other", "name": "US R1 other fields", "parent": "all"},
+      {"slug": "us_teaching", "name": "US teaching institutions", "parent": "all"},
+      {"slug": "international", "name": "International (Korea, Europe)", "parent": "all"}
+    ]
+  },
+  "sources": {
+    "org_chart": [
+      {"slug": "theorg", "name": "theorg.com", "url": "https://theorg.com", "tier": 3, "subtype": "crowd_edited",
+       "lineage": "theorg", "access": "public web pages", "can_verify": [],
+       "offers": ["na_mid", "us_large", "kr_listed", "eu_mid"],
+       "adapter": {"module": "theorg", "keys": [], "supports_lookup": false}},
+      {"slug": "dart", "name": "Open DART executive tables", "url": "https://opendart.fss.or.kr", "tier": 1,
+       "subtype": "official_filing", "lineage": "dart", "access": "free API with key",
+       "can_verify": ["employment", "title"], "offers": ["kr_listed"],
+       "adapter": {"module": "dart", "keys": ["OPENDART_API_KEY"], "supports_lookup": false}},
+      {"slug": "linkedin_apify", "name": "LinkedIn via Apify", "url": "https://apify.com", "tier": 4,
+       "subtype": "profile_aggregate", "lineage": "linkedin", "access": "paid API (Apify)",
+       "can_verify": ["employment", "title"], "offers": ["na_mid", "us_large", "kr_listed", "eu_mid"],
+       "adapter": {"module": "linkedin_apify", "keys": ["APIFY_TOKEN"], "supports_lookup": true}},
+      {"slug": "company_page", "name": "Company leadership pages", "url": "", "tier": 2, "subtype": "first_party",
+       "lineage": "company:{domain}", "access": "public web pages",
+       "can_verify": ["employment", "title"], "offers": ["na_mid", "us_large", "kr_listed", "eu_mid"],
+       "adapter": {"module": "company_page", "keys": [], "supports_lookup": false}}
+    ],
+    "academic_identity": [
+      {"slug": "openalex", "name": "OpenAlex", "url": "https://openalex.org", "tier": 3, "subtype": "bibliographic",
+       "lineage": "openalex", "lineage_by_claim": {"profile_link": "orcid"}, "access": "free API",
+       "can_verify": ["exists", "affiliation"],
+       "offers": ["us_r1_cs", "us_r1_other", "us_teaching", "international"],
+       "adapter": {"module": "openalex", "keys": ["OPENALEX_EMAIL"], "supports_lookup": true}},
+      {"slug": "orcid", "name": "ORCID", "url": "https://orcid.org", "tier": 3, "subtype": "bibliographic",
+       "lineage": "orcid", "access": "free API", "can_verify": ["exists", "affiliation", "profile_link"],
+       "offers": ["us_r1_cs", "us_r1_other", "us_teaching", "international"],
+       "adapter": {"module": "orcid", "keys": [], "supports_lookup": true}},
+      {"slug": "university_directory", "name": "University department directories", "url": "", "tier": 2,
+       "subtype": "first_party", "lineage": "university:{domain}", "access": "public web pages",
+       "can_verify": ["exists", "role", "affiliation", "email"],
+       "offers": ["us_r1_cs", "us_r1_other", "us_teaching", "international"],
+       "adapter": {"module": "university_directory", "keys": [], "supports_lookup": false}}
+    ]
+  }
+}

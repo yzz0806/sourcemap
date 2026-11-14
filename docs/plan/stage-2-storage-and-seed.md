@@ -1,5 +1,7 @@
 # Stage 2 — Storage, starting content and identifier checks
 
+**Status:** done, awaiting approval. Re-run: `.venv/bin/sourcemap seed --check-ids`, `.venv/bin/sourcemap ids --failed`.
+
 ## Goal
 The database, the raw store, the polite fetch helper, a command that loads the hand-built starting
 content into a fresh database, and **automatic checks that every seeded identifier is real**

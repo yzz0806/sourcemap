@@ -1,7 +1,12 @@
 # Data model
 
-SQLite. This doc is the design; once code exists, the migration files under
-`src/sourcemap/store/migrations/` are authoritative and this doc is kept in step with them.
+SQLite. The migration files under `src/sourcemap/store/migrations/` are authoritative (from
+stage 2); this doc is kept in step with them. Seed content (panels, identifiers, known sources)
+lives as JSON in `seeds/` and is loaded by `sourcemap seed`.
+
+First-party sources are one source per data type (`company_page`, `university_directory`) with
+lineage `company:{domain}` / `university:{domain}`: claims are only ever compared within one probe
+unit, so the per-domain lineage of ADR 0005 is the unit's domain.
 
 Records of every data type share the same tables: the shape of a record lives in a versioned JSON
 schema stored as data, not as columns (ADR 0001).

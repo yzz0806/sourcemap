@@ -24,7 +24,7 @@ sequenceDiagram
 |---|---|
 | `sandbox/runner.py` | `run_adapter(adapter_ref, call, *, timeout_s, env_keys, keys_source) -> AdapterResult` — spawn the child with a clean environment and resource limits, kill at timeout, refuse if the adapter asks for an unlisted key. |
 | `sandbox/child.py` | `main()` — read the call from stdin, import the named adapter, run it with a `Kit`, write raw responses + record to stdout. |
-| `sandbox/kit.py` | `Kit.get(url, **kw)`, `Kit.post(url, **kw) -> RawResponse` — the polite fetch helper: robots.txt check, per-host rate limit, back-off on 429/5xx, generic user agent; returns bytes exactly as served. `Kit.key(name)` — only listed keys. |
+| `sandbox/kit.py` (built in stage 2) | `Kit(transport, clock, sleep, min_interval_s=1.0, max_retries=3, timeout_s=30, keys)`; `get(url, params, headers)`, `post(url, body, headers)`, `kit(url)` → `RawResponse(url, status, headers, body)` — robots.txt per host per RFC 9309 (4xx → allowed, 5xx or unreachable → all disallowed), per-host spacing, back-off 1 s, 2 s, 4 s… or `Retry-After` on 429/5xx, `BlockedByRobots`, `FetchError`; body bytes exactly as served; `key(name)` — only listed keys, else `PermissionError`. Standard library only (`urllib`). |
 | `adapters/theorg.py` | `probe(unit, kit)` — theorg.com org page(s) → people with title and manager. |
 | `adapters/dart.py` | `probe(unit, kit)` — Open DART executive table (임원 현황) from the latest periodic report → executives with title; no `reports_to`. |
 | `adapters/linkedin_apify.py` | `probe(unit, kit)` — company employees list; `lookup(subject, kit)` — profile search by name + company → candidates with current position. |

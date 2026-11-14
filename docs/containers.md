@@ -41,6 +41,10 @@ flowchart TB
 If the worker is down, the API still serves the last map: everything it shows is in the database
 and raw store.
 
+**The CLI** (`sourcemap …`) is an entry point on the worker side, not a fourth process: dev and
+setup commands such as `seed --check-ids` and `run … --inline` execute worker code in the CLI
+process and may use the network through `sandbox.kit`. The API never does.
+
 ## Stores
 
 | Store | What | Rules |

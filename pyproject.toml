@@ -14,8 +14,14 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8", "import-linter>=2"]
 
+[project.scripts]
+sourcemap = "sourcemap.cli:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"sourcemap.store" = ["migrations/*.sql"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -38,6 +44,12 @@ forbidden_modules = [
 ]
 
 [[tool.importlinter.contracts]]
-name = "Layers: measure above domain"
+name = "Layers: cli > pipeline > store | sandbox > measure > domain"
 type = "layers"
-layers = ["sourcemap.measure", "sourcemap.domain"]
+layers = [
+  "sourcemap.cli",
+  "sourcemap.pipeline",
+  "sourcemap.store | sourcemap.sandbox",
+  "sourcemap.measure",
+  "sourcemap.domain",
+]

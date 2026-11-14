@@ -1,0 +1,699 @@
+{
+  "generated_at": "2026-11-14",
+  "org_chart": [
+    {
+      "slug": "airtable",
+      "name": "Airtable",
+      "segment": "na_mid",
+      "identifiers": {
+        "domain": "airtable.com",
+        "theorg": "airtable",
+        "linkedin": "https://www.linkedin.com/company/airtable/",
+        "people_page": "https://www.airtable.com/about"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/airtable",
+        "linkedin": "theorg.com/org/airtable page links linkedin.com/company/airtable",
+        "linkedin_site": "airtable.com homepage links linkedin.com/company/airtable",
+        "people_page": "https://www.airtable.com/about returns 200 and has an 'Our leadership' section"
+      },
+      "unconfirmed": [],
+      "notes": "theorg page lists website airtable.com."
+    },
+    {
+      "slug": "gong",
+      "name": "Gong",
+      "segment": "na_mid",
+      "identifiers": {
+        "domain": "gong.io",
+        "theorg": "gong-io",
+        "linkedin": "https://www.linkedin.com/company/gong-io/",
+        "people_page": "https://www.gong.io/about"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/gong-io",
+        "linkedin": "theorg.com/org/gong-io page links linkedin.com/company/gong-io",
+        "linkedin_site": "gong.io homepage links linkedin.com/company/gong-io",
+        "people_page": "gong.io/company/ redirects to /about; page has 'Our leadership' with Amit Bendov, Eilon Reshef"
+      },
+      "unconfirmed": [],
+      "notes": "theorg.com/org/gong is a different company (gong.hr, Croatia); the correct slug is gong-io."
+    },
+    {
+      "slug": "ramp",
+      "name": "Ramp",
+      "segment": "na_mid",
+      "identifiers": {
+        "domain": "ramp.com",
+        "theorg": "ramp",
+        "linkedin": "https://www.linkedin.com/company/ramp/",
+        "people_page": null
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/ramp",
+        "linkedin": "theorg.com/org/ramp page links linkedin.com/company/ramp",
+        "linkedin_site": "ramp.com homepage links linkedin.com/company/ramp"
+      },
+      "unconfirmed": [
+        "people_page"
+      ],
+      "notes": "No leadership page found on ramp.com; /about-us loads but has no leadership listing."
+    },
+    {
+      "slug": "notion",
+      "name": "Notion",
+      "segment": "na_mid",
+      "identifiers": {
+        "domain": "notion.com",
+        "theorg": "notion",
+        "linkedin": "https://www.linkedin.com/company/notionhq/",
+        "people_page": null
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/notion",
+        "linkedin": "theorg.com/org/notion page links linkedin.com/company/notionhq",
+        "linkedin_site": "notion.com homepage links linkedin.com/company/notionhq"
+      },
+      "unconfirmed": [
+        "people_page"
+      ],
+      "notes": "notion.so redirects to notion.com; theorg lists www.notion.so. /about has no leadership listing."
+    },
+    {
+      "slug": "apple",
+      "name": "Apple",
+      "segment": "us_large",
+      "identifiers": {
+        "domain": "apple.com",
+        "theorg": "apple",
+        "linkedin": "https://www.linkedin.com/company/apple/",
+        "people_page": "https://www.apple.com/leadership/"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/apple",
+        "linkedin": "theorg.com/org/apple page links linkedin.com/company/apple",
+        "linkedin_site": "apple.com homepage links linkedin.com/company/apple",
+        "people_page": "200, contains 'executive team' and 'board of directors'"
+      },
+      "unconfirmed": [],
+      "notes": ""
+    },
+    {
+      "slug": "microsoft",
+      "name": "Microsoft",
+      "segment": "us_large",
+      "identifiers": {
+        "domain": "microsoft.com",
+        "theorg": "microsoft",
+        "linkedin": "https://www.linkedin.com/company/microsoft/",
+        "people_page": "https://news.microsoft.com/source/leadership/"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/microsoft",
+        "linkedin": "theorg.com/org/microsoft page links linkedin.com/company/microsoft",
+        "people_page": "news.microsoft.com/leadership/ redirects here, 200"
+      },
+      "unconfirmed": [],
+      "notes": "Leadership page is on the news.microsoft.com subdomain."
+    },
+    {
+      "slug": "intel",
+      "name": "Intel",
+      "segment": "us_large",
+      "identifiers": {
+        "domain": "intel.com",
+        "theorg": "intel",
+        "linkedin": "https://www.linkedin.com/company/intel-corporation/",
+        "people_page": null
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/intel",
+        "linkedin": "theorg.com/org/intel page links linkedin.com/company/intel-corporation"
+      },
+      "unconfirmed": [
+        "people_page"
+      ],
+      "notes": "An Intel newsroom page 'Intel Corporate Leadership Biographies' appears in search (intel.com/content/www/us/en/newsroom/news/intel-executive-biographies.html), but intel.com returned 403 and a 404 redirect to automated requests, so it is not confirmed."
+    },
+    {
+      "slug": "salesforce",
+      "name": "Salesforce",
+      "segment": "us_large",
+      "identifiers": {
+        "domain": "salesforce.com",
+        "theorg": "salesforce",
+        "linkedin": "https://www.linkedin.com/company/salesforce/",
+        "people_page": "https://www.salesforce.com/company/leadership/"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/salesforce",
+        "linkedin": "theorg.com/org/salesforce page links linkedin.com/company/salesforce",
+        "people_page": "200, contains 'Executive Team' and 'Board of Directors'"
+      },
+      "unconfirmed": [],
+      "notes": ""
+    },
+    {
+      "slug": "samsung-electronics",
+      "name": "Samsung Electronics",
+      "segment": "kr_listed",
+      "identifiers": {
+        "domain": "samsung.com",
+        "theorg": "samsung",
+        "linkedin": "https://www.linkedin.com/company/samsung-electronics/",
+        "people_page": "https://www.samsung.com/global/ir/governance-csr/board-of-directors/",
+        "dart_corp_code": "00126380"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/samsung",
+        "linkedin": "theorg.com/org/samsung page links linkedin.com/company/samsung-electronics",
+        "dart_corp_code": "https://dart.fss.or.kr/dsae001/selectPopup.ax?selectKey=00126380 (stock code 005930) shows matching 회사명",
+        "people_page": "200; IR board of directors page"
+      },
+      "unconfirmed": [],
+      "notes": "theorg slug samsung-electronics redirects to /org/samsung (description: Samsung Electronics). people_page is a board page, not an executive team page."
+    },
+    {
+      "slug": "sk-hynix",
+      "name": "SK hynix",
+      "segment": "kr_listed",
+      "identifiers": {
+        "domain": "skhynix.com",
+        "theorg": "sk-hynix",
+        "linkedin": "https://www.linkedin.com/company/sk-hynix/",
+        "people_page": null,
+        "dart_corp_code": "00164779"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/sk-hynix",
+        "linkedin": "theorg.com/org/sk-hynix page links linkedin.com/company/sk-hynix",
+        "dart_corp_code": "https://dart.fss.or.kr/dsae001/selectPopup.ax?selectKey=00164779 (stock code 000660) shows matching 회사명",
+        "linkedin_site": "skhynix.com homepage links linkedin.com/company/sk-hynix"
+      },
+      "unconfirmed": [
+        "people_page"
+      ],
+      "notes": "No leadership or board page found on skhynix.com."
+    },
+    {
+      "slug": "lg-electronics",
+      "name": "LG Electronics",
+      "segment": "kr_listed",
+      "identifiers": {
+        "domain": "lg.com",
+        "theorg": "lg",
+        "linkedin": "https://www.linkedin.com/company/lg-electronics/",
+        "people_page": "https://www.lg.com/global/investor-relations/corporate-governance/",
+        "dart_corp_code": "00401731"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/lg",
+        "linkedin": "theorg.com/org/lg page links linkedin.com/company/lg-electronics",
+        "dart_corp_code": "https://dart.fss.or.kr/dsae001/selectPopup.ax?selectKey=00401731 (stock code 066570) shows matching 회사명",
+        "linkedin_site": "lg.com/global links linkedin.com/company/lg-electronics",
+        "people_page": "200; contains Board of directors listing"
+      },
+      "unconfirmed": [],
+      "notes": "theorg slug is 'lg' (og:title 'LG Electronics'); /org/lg-electronics is 404. people_page is the IR corporate governance (board) page."
+    },
+    {
+      "slug": "naver",
+      "name": "NAVER",
+      "segment": "kr_listed",
+      "identifiers": {
+        "domain": "navercorp.com",
+        "theorg": "naver",
+        "linkedin": "https://www.linkedin.com/company/naver/",
+        "people_page": "https://www.navercorp.com/en/investment/corporateGovernance",
+        "dart_corp_code": "00266961"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/naver",
+        "linkedin": "theorg.com/org/naver page links linkedin.com/company/naver",
+        "dart_corp_code": "https://dart.fss.or.kr/dsae001/selectPopup.ax?selectKey=00266961 (stock code 035420) shows matching 회사명",
+        "people_page": "200; IR corporate governance page with board of directors"
+      },
+      "unconfirmed": [],
+      "notes": "Corporate domain is navercorp.com; naver.com is the consumer portal. people_page is a board/governance page."
+    },
+    {
+      "slug": "contentsquare",
+      "name": "Contentsquare",
+      "segment": "eu_mid",
+      "identifiers": {
+        "domain": "contentsquare.com",
+        "theorg": "contentsquare",
+        "linkedin": "https://www.linkedin.com/company/contentsquare/",
+        "people_page": "https://contentsquare.com/company/"
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/contentsquare",
+        "linkedin": "theorg.com/org/contentsquare page links linkedin.com/company/contentsquare",
+        "linkedin_site": "contentsquare.com homepage links linkedin.com/company/contentsquare",
+        "people_page": "/about-us/ redirects here; 'Executive Team' with Jonathan Cherki and C-suite"
+      },
+      "unconfirmed": [],
+      "notes": ""
+    },
+    {
+      "slug": "mirakl",
+      "name": "Mirakl",
+      "segment": "eu_mid",
+      "identifiers": {
+        "domain": "mirakl.com",
+        "theorg": "mirakl",
+        "linkedin": "https://www.linkedin.com/company/mirakl/",
+        "people_page": null
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/mirakl",
+        "linkedin": "theorg.com/org/mirakl page links linkedin.com/company/mirakl"
+      },
+      "unconfirmed": [
+        "people_page"
+      ],
+      "notes": "No leadership page found; /about-us and /company are 404. Executive changes appear only in press releases."
+    },
+    {
+      "slug": "personio",
+      "name": "Personio",
+      "segment": "eu_mid",
+      "identifiers": {
+        "domain": "personio.com",
+        "theorg": "personio",
+        "linkedin": "https://www.linkedin.com/company/personio/",
+        "people_page": null
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/personio",
+        "linkedin": "theorg.com/org/personio page links linkedin.com/company/personio"
+      },
+      "unconfirmed": [
+        "people_page"
+      ],
+      "notes": "personio.com/about-personio/ returned HTTP 429 (rate limited), so a leadership section there could not be checked."
+    },
+    {
+      "slug": "pennylane",
+      "name": "Pennylane",
+      "segment": "eu_mid",
+      "identifiers": {
+        "domain": "pennylane.com",
+        "theorg": "pennylane",
+        "linkedin": "https://www.linkedin.com/company/pennylaneaccounting/",
+        "people_page": null
+      },
+      "evidence": {
+        "theorg": "https://theorg.com/org/pennylane",
+        "linkedin": "theorg.com/org/pennylane page links linkedin.com/company/pennylaneaccounting",
+        "linkedin_site": "pennylane.com homepage links linkedin.com/company/pennylaneaccounting"
+      },
+      "unconfirmed": [
+        "people_page"
+      ],
+      "notes": "LinkedIn slug is 'pennylaneaccounting', not 'pennylane'. theorg lists the old domain pennylane.tech. No leadership page found."
+    }
+  ],
+  "academic_identity": [
+    {
+      "slug": "stanford-cs",
+      "name": "Stanford · Computer Science",
+      "segment": "us_r1_cs",
+      "institution": "Stanford University",
+      "department": "Computer Science",
+      "identifiers": {
+        "domain": "cs.stanford.edu",
+        "ror": "00f54p054",
+        "openalex_institution": "I97018004",
+        "people_page": "https://www.cs.stanford.edu/people-cs"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/00f54p054",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:00f54p054",
+        "people_page": "200; people hub linking faculty, lecturers, staff"
+      },
+      "unconfirmed": [],
+      "notes": "No public PhD student directory found; /people redirects to a login page."
+    },
+    {
+      "slug": "mit-cs",
+      "name": "MIT · EECS",
+      "segment": "us_r1_cs",
+      "institution": "Massachusetts Institute of Technology",
+      "department": "Electrical Engineering and Computer Science",
+      "identifiers": {
+        "domain": "eecs.mit.edu",
+        "ror": "042nb2s44",
+        "openalex_institution": "I63966007",
+        "people_page": "https://www.eecs.mit.edu/people/"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/042nb2s44",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:042nb2s44",
+        "people_page": "200; EECS people directory"
+      },
+      "unconfirmed": [],
+      "notes": "CS sits inside EECS; the department is not CS alone.",
+      "aliases": [
+        "MIT"
+      ]
+    },
+    {
+      "slug": "cmu-cs",
+      "name": "CMU · School of Computer Science",
+      "segment": "us_r1_cs",
+      "institution": "Carnegie Mellon University",
+      "department": "School of Computer Science",
+      "identifiers": {
+        "domain": "cs.cmu.edu",
+        "ror": "05x2bcf33",
+        "openalex_institution": "I74973139",
+        "people_page": "https://www.cs.cmu.edu/directory/all"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/05x2bcf33",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:05x2bcf33",
+        "people_page": "200; SCS directory"
+      },
+      "unconfirmed": [],
+      "notes": "",
+      "aliases": [
+        "CMU"
+      ]
+    },
+    {
+      "slug": "uiuc-cs",
+      "name": "UIUC · Computer Science",
+      "segment": "us_r1_cs",
+      "institution": "University of Illinois Urbana-Champaign",
+      "department": "Siebel School of Computing and Data Science",
+      "identifiers": {
+        "domain": "siebelschool.illinois.edu",
+        "ror": "047426m28",
+        "openalex_institution": "I157725225",
+        "people_page": "https://siebelschool.illinois.edu/about/people"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/047426m28",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:047426m28",
+        "people_page": "cs.illinois.edu/about/people redirects here, 200"
+      },
+      "unconfirmed": [],
+      "notes": "cs.illinois.edu now redirects to siebelschool.illinois.edu (department renamed Siebel School of Computing and Data Science).",
+      "aliases": [
+        "UIUC",
+        "Illinois"
+      ]
+    },
+    {
+      "slug": "purdue-cs",
+      "name": "Purdue · Computer Science",
+      "segment": "us_r1_cs",
+      "institution": "Purdue University West Lafayette",
+      "department": "Computer Science",
+      "identifiers": {
+        "domain": "cs.purdue.edu",
+        "ror": "02dqehb95",
+        "openalex_institution": "I219193219",
+        "people_page": "https://www.cs.purdue.edu/people/graduate-students/"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/02dqehb95",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:02dqehb95",
+        "people_page": "200; graduate student listing"
+      },
+      "unconfirmed": [],
+      "notes": "ROR search for 'Purdue University' returns the Purdue University System (05p8z3f47, OpenAlex I2801333002) first; the main campus record 02dqehb95 is used instead.",
+      "aliases": [
+        "Purdue University",
+        "Purdue"
+      ]
+    },
+    {
+      "slug": "stanford-econ",
+      "name": "Stanford · Economics",
+      "segment": "us_r1_other",
+      "institution": "Stanford University",
+      "department": "Economics",
+      "identifiers": {
+        "domain": "economics.stanford.edu",
+        "ror": "00f54p054",
+        "openalex_institution": "I97018004",
+        "people_page": "https://economics.stanford.edu/people/graduate-students"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/00f54p054",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:00f54p054",
+        "people_page": "200"
+      },
+      "unconfirmed": [],
+      "notes": ""
+    },
+    {
+      "slug": "mit-physics",
+      "name": "MIT · Physics",
+      "segment": "us_r1_other",
+      "institution": "Massachusetts Institute of Technology",
+      "department": "Physics",
+      "identifiers": {
+        "domain": "physics.mit.edu",
+        "ror": "042nb2s44",
+        "openalex_institution": "I63966007",
+        "people_page": "https://physics.mit.edu/faculty/"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/042nb2s44",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:042nb2s44",
+        "people_page": "confirmed through WebFetch (title 'Faculty » MIT Physics'); curl gets 403"
+      },
+      "unconfirmed": [],
+      "notes": "Faculty-only directory; no public student directory found. The site blocks plain curl with 403.",
+      "aliases": [
+        "MIT"
+      ]
+    },
+    {
+      "slug": "purdue-me",
+      "name": "Purdue · Mechanical Engineering",
+      "segment": "us_r1_other",
+      "institution": "Purdue University West Lafayette",
+      "department": "Mechanical Engineering",
+      "identifiers": {
+        "domain": "engineering.purdue.edu/ME",
+        "ror": "02dqehb95",
+        "openalex_institution": "I219193219",
+        "people_page": "https://engineering.purdue.edu/ME/People"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/02dqehb95",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:02dqehb95",
+        "people_page": "200; /ME/People/GraduateStudents redirects here"
+      },
+      "unconfirmed": [],
+      "notes": "The department domain is a path on engineering.purdue.edu.",
+      "aliases": [
+        "Purdue University",
+        "Purdue"
+      ]
+    },
+    {
+      "slug": "uiuc-chemistry",
+      "name": "UIUC · Chemistry",
+      "segment": "us_r1_other",
+      "institution": "University of Illinois Urbana-Champaign",
+      "department": "Chemistry",
+      "identifiers": {
+        "domain": "chemistry.illinois.edu",
+        "ror": "047426m28",
+        "openalex_institution": "I157725225",
+        "people_page": "https://chemistry.illinois.edu/directory"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/047426m28",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:047426m28",
+        "people_page": "200; 'Directory: All Staff', 141 profiles"
+      },
+      "unconfirmed": [],
+      "notes": "Directory lists faculty and staff; no separate graduate student directory found.",
+      "aliases": [
+        "UIUC",
+        "Illinois"
+      ]
+    },
+    {
+      "slug": "truman-biology",
+      "name": "Truman State · Biology",
+      "segment": "us_teaching",
+      "institution": "Truman State University",
+      "department": "Biology (Department of Agricultural and Biological Sciences)",
+      "identifiers": {
+        "domain": "truman.edu",
+        "ror": "0396bvs97",
+        "openalex_institution": "I199639920",
+        "people_page": "https://www.truman.edu/academics/school-of-science-and-mathematics/about-the-agricultural-and-biological-sciences/agricultural-biological-sciences-faculty-staff/"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/0396bvs97",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:0396bvs97",
+        "people_page": "200; linked from the biology major page"
+      },
+      "unconfirmed": [],
+      "notes": "biology.truman.edu redirects to truman.edu/majors-programs/majors-minors/biology-major/. Biology is housed in the Agricultural & Biological Sciences department."
+    },
+    {
+      "slug": "williams-econ",
+      "name": "Williams · Economics",
+      "segment": "us_teaching",
+      "institution": "Williams College",
+      "department": "Economics",
+      "identifiers": {
+        "domain": "econ.williams.edu",
+        "ror": "04avkmd49",
+        "openalex_institution": "I22675022",
+        "people_page": null
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/04avkmd49",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:04avkmd49"
+      },
+      "unconfirmed": [
+        "people_page",
+        "domain"
+      ],
+      "notes": "econ.williams.edu returns 403 to curl and WebFetch. Search snippets show the site has a faculty page, but its URL could not be confirmed (candidate: https://econ.williams.edu/faculty/)."
+    },
+    {
+      "slug": "nsu-biology",
+      "name": "NSU · Biology",
+      "segment": "us_teaching",
+      "institution": "Norfolk State University",
+      "department": "Biology",
+      "identifiers": {
+        "domain": "nsu.edu",
+        "ror": "030pydv62",
+        "openalex_institution": "I103087548",
+        "people_page": "https://www.nsu.edu/biology/faculty-staff"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/030pydv62",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:030pydv62",
+        "people_page": "200; linked from nsu.edu/biology"
+      },
+      "unconfirmed": [],
+      "notes": "'NSU' is ambiguous. Chose Norfolk State University (Norfolk, VA; public HBCU, primarily undergraduate) because it owns the nsu.edu domain and has a Biology department. Alternatives considered: Northeastern State University, Tahlequah OK (ROR 01z7kzb45, OpenAlex I192664086, nsuok.edu); Northwestern State University of Louisiana (nsula.edu); Nova Southeastern University, FL (ROR 042bbge36, OpenAlex I203088144; larger and research-oriented, so a weaker fit); Northern State University, SD.",
+      "ambiguous": true
+    },
+    {
+      "slug": "truman-cs",
+      "name": "Truman State · Computer Science",
+      "segment": "us_teaching",
+      "institution": "Truman State University",
+      "department": "Computer Science",
+      "identifiers": {
+        "domain": "truman.edu",
+        "ror": "0396bvs97",
+        "openalex_institution": "I199639920",
+        "people_page": "https://www.truman.edu/majors-programs/majors-minors/computer-science-major/computer-data-sciences-faculty-staff/"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/0396bvs97",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:0396bvs97",
+        "people_page": "200; linked from the CS major page"
+      },
+      "unconfirmed": [],
+      "notes": "cs.truman.edu redirects to the CS major page on truman.edu. The faculty page is titled Computer & Data Sciences."
+    },
+    {
+      "slug": "kaist-cs",
+      "name": "KAIST · School of Computing",
+      "segment": "international",
+      "institution": "Korea Advanced Institute of Science and Technology",
+      "department": "School of Computing",
+      "identifiers": {
+        "domain": "cs.kaist.ac.kr",
+        "ror": "05apxxy63",
+        "openalex_institution": "I157485424",
+        "people_page": "https://cs.kaist.ac.kr/people/faculty"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/05apxxy63",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:05apxxy63",
+        "people_page": "200"
+      },
+      "unconfirmed": [],
+      "notes": "Faculty list only; other /people/ sections cover staff.",
+      "aliases": [
+        "KAIST"
+      ]
+    },
+    {
+      "slug": "snu-econ",
+      "name": "SNU · Economics",
+      "segment": "international",
+      "institution": "Seoul National University",
+      "department": "Economics",
+      "identifiers": {
+        "domain": "econ.snu.ac.kr",
+        "ror": "04h9pn542",
+        "openalex_institution": "I139264467",
+        "people_page": "https://econ.snu.ac.kr/people/faculty"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/04h9pn542",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:04h9pn542",
+        "people_page": "200"
+      },
+      "unconfirmed": [],
+      "notes": "Faculty only; no student directory found.",
+      "aliases": [
+        "SNU"
+      ]
+    },
+    {
+      "slug": "ethz-cs",
+      "name": "ETH Zurich · Computer Science (D-INFK)",
+      "segment": "international",
+      "institution": "ETH Zurich",
+      "department": "Computer Science (D-INFK)",
+      "identifiers": {
+        "domain": "inf.ethz.ch",
+        "ror": "05a28rw58",
+        "openalex_institution": "I35440088",
+        "people_page": "https://inf.ethz.ch/people/people-atoz.html"
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/05a28rw58",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:05a28rw58",
+        "people_page": "200; title 'People A-Z – Department of Computer Science | ETH Zurich'"
+      },
+      "unconfirmed": [],
+      "notes": "",
+      "aliases": [
+        "ETH Zürich",
+        "ETH"
+      ]
+    },
+    {
+      "slug": "sorbonne-physics",
+      "name": "Sorbonne · Physics",
+      "segment": "international",
+      "institution": "Sorbonne Université",
+      "department": "UFR de Physique",
+      "identifiers": {
+        "domain": "sciences.sorbonne-universite.fr",
+        "ror": "02en5vm52",
+        "openalex_institution": "I39804081",
+        "people_page": null
+      },
+      "evidence": {
+        "ror": "https://api.ror.org/v2/organizations/02en5vm52",
+        "openalex_institution": "https://api.openalex.org/institutions/ror:02en5vm52",
+        "domain": "https://sciences.sorbonne-universite.fr/faculte/ufr-instituts-observatoires-ecoles/ufr-de-physique (200)"
+      },
+      "unconfirmed": [
+        "people_page"
+      ],
+      "notes": "The UFR de Physique has no own domain; it is a section of sciences.sorbonne-universite.fr. No public people list found; the 'personnels-physique' page is staff info, and the directory appears to be the university-wide annuaire."
+    }
+  ]
+}

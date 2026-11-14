@@ -1,19 +1,17 @@
 # Store — `sourcemap.store`
 
 The only code that talks to SQLite and the raw store. Used by the API (reads, gate decisions,
-run requests) and the pipeline (everything else). Schema in `docs/data-model.md`.
+run requests) and the pipeline (everything else). Schema: `store/migrations/0001_init.sql`
+(authoritative), described in `docs/data-model.md`. Seed content: `seeds/*.json`.
 
 | Module | Public functions (one line each) |
 |---|---|
-| `db.py` | `connect(path) -> Connection` — WAL mode, foreign keys on; `migrate(conn)` — apply `migrations/NNNN_*.sql` in order. |
-| `rawstore.py` | `put(bytes) -> sha256` — write-once, content-addressed; `get(sha256) -> bytes`; `path_of(sha256)`. |
-| `seed.py` | `seed(conn, specs, sources)` — load data types, segments, panels, sources, offers, adapters; idempotent. |
-| `idcheck.py` | `check_identifiers(conn, fetch) -> list[IdentifierCheck]` — one automatic check per seeded identifier (`docs/plan/stage-2…`), `fetch` passed in (polite kit), results saved to `identifier_check`; `known_answers(conn) -> list` — only passing identifiers. |
-| `queue.py` | `enqueue_run(conn, kind, data_type, mode, as_of, budget) -> run_id`; `lease_job(conn, now) -> Job | None`; `finish_job`, `fail_job`, `heartbeat(job)`. |
-| `events.py` | `log_event(conn, run_id, stage, level, message, data)`; `events_since(conn, run_id, after_id)`. |
-| `spend.py` | `charge(conn, run_id, service, units, usd, ref)`; `remaining(conn, run_id) -> usd`. |
-| `evidence.py` | `save_raw_fetch`, `save_record`, `save_mentions`, `upsert_claim` (by fingerprint), `add_verification`, `save_judge_call`, `cached_judge(model, prompt_version, input_hash)`. |
-| `entities.py` | `save_match_result(conn, unit, result)`; `entities_for(conn, unit)`. |
-| `scores.py` | `save_scores`, `save_map_snapshot`, `save_alerts`, `save_health`, `latest_map(data_type)`, `cell_history(source, segment, claim_type)`. |
-| `trace.py` | `trace_cell(score_id) -> verifications`; `trace_verification(id) -> claim, raw fetches, judge call` (R10). |
-| `gates.py` | `record_gate_decision(run_id, gate, decision, payload)`; `pending_gate(run_id)`. |
+| `db.py` | `connect(path) -> Connection` — WAL, foreign keys on, autocommit with explicit transactions, rows as `sqlite3.Row`; `migrate(conn) -> [versions]` — apply `migrations/NNNN_*.sql` not yet in `schema_migration`. |
+| `rawstore.py` | `RawStore(root)`: `put(bytes) -> sha256` — write-once, content-addressed at `ab/cd/<sha256>`, read-only file; `get(sha256) -> bytes`; `path_of(sha256)`. |
+| `seed.py` | `load_seed_files(seeds_dir, units_file=None) -> dict`; `seed(conn, specs, data)` — upsert data types, claim types, segment tree, units (one leaf segment each), sources, offers, adapters; idempotent. |
+| `queue.py` | `enqueue_run(conn, data_type, kind, mode, as_of, budget_usd, stages, *, now, settings, scenario) -> run_id`; `lease_job(conn, *, now, lease_s=300) -> Job | None` — stages of a run in order, expired leases re-leased; `heartbeat`, `finish_job` (last job → run done), `fail_job` (run failed). |
+| `events.py` | `log_event(conn, run_id, message, *, now, stage, level, data)`; `events_since(conn, run_id, after_id)`. |
+| `spend.py` | `charge(conn, run_id, service, usd, *, now, units, ref)`; `remaining(conn, run_id) -> usd`. |
+
+Planned for later stages: `evidence.py`, `entities.py`, `scores.py`, `trace.py`, `gates.py`
+(see the stage files in `docs/plan/`).

@@ -24,6 +24,7 @@ only. Simulated runs (ADR 0014) use the same stages against a copy of the databa
 
 | Module | Public functions (one line each) |
 |---|---|
+| `pipeline/idcheck.py` (stage 2) | `check_identifier(kind, value, unit_name, *, fetch, dart_key, aliases, others) -> (result, detail)` — theorg page title, LinkedIn URL shape only, DART company API, ROR names, OpenAlex's ROR, people page text; the DART key never enters a detail; `run_checks(conn, fetch, *, now, dart_key) -> rows` — every identifier of every unit into `identifier_check`; `known_answers(conn)` — latest passing (unit, kind, value); `unit_terms(name, identifiers)` — company name, or institution name + acronym. |
 | `pipeline/runs.py` | `stages_for(kind) -> list[str]`; `advance(run)` — enqueue the next stage or wait at a gate. |
 | `pipeline/discover.py` | `run(ctx)` — discovery agent → proposed sources + offers; then wait at gate B. |
 | `pipeline/benchmark.py` | `plan(ctx)` — known-answer queries from passing identifiers + the discovery agent's fixed open query plan; estimated cost and review count; `send(ctx)` — every query to every provider pinned + auto routing, randomised order, cached; `known_answers(ctx)` — score trials automatically; `pool(ctx)` — candidates, review sample (≤ 80), then wait at a **blind** gate B; `score(ctx)` — `measure.benchmark.provider_metrics` → `benchmark_result` (ADR 0015). |

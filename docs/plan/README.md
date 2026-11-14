@@ -6,9 +6,9 @@ and **how you check it**. A stage is done only when every check passes and the u
 | Stage | File | Status |
 |---|---|---|
 | 0 | [Design on paper](stage-0-design.md) | done, approved |
-| 1 | [Measuring rules, offline](stage-1-measuring-rules.md) | done, awaiting approval |
-| 2 | [Storage, starting content and identifier checks](stage-2-storage-and-seed.md) | next |
-| 3 | [Discovery and the search-provider benchmark](stage-3-discovery-and-benchmark.md) — **centrepiece** | — |
+| 1 | [Measuring rules, offline](stage-1-measuring-rules.md) | done, approved |
+| 2 | [Storage, starting content and identifier checks](stage-2-storage-and-seed.md) | done, awaiting approval |
+| 3 | [Discovery and the search-provider benchmark](stage-3-discovery-and-benchmark.md) — **centrepiece** | next |
 | 4 | [Reading sources safely, and the judge](stage-4-reading-sources.md) | — |
 | 5a | [The daily pipeline: run, trace, resume](stage-5a-pipeline.md) | — |
 | 5b | [Drift, simulations, change monitor, calibration](stage-5b-drift-and-monitor.md) | — |

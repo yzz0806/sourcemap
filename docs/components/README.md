@@ -57,3 +57,8 @@ Contracts:
    Adapters may import only `sourcemap.sandbox.kit` and `sourcemap.domain`.
 4. **Layers:** `cli/worker/api` > `pipeline` > `agents/services/sandbox.runner/store` > `measure` > `domain`.
 5. **Environment.** Only `sourcemap.cli` reads `.env`/`os.environ`; it passes settings down.
+   import-linter can't express this, so `tests/test_env_rule.py` searches the source instead.
+
+In `pyproject.toml` today (stage 2): contract 1 ("Pure core") and the layers contract
+`cli > pipeline > store | sandbox > measure > domain` (store and sandbox may not import each other).
+Contracts 2 and 3 are added with the `api` and `adapters` packages.

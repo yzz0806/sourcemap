@@ -121,3 +121,40 @@ and every row passed on the first run.
 - `scipy` import makes the first test take ~9 s cold; fine for now.
 
 **Trap found:** `addopts` already has `-q`; adding another `-q` hides the "N passed" line.
+
+## 2026-11-14 — Stage 2: storage, seed content, identifier checks
+
+**Built:** SQLite schema (`store/migrations/0001_init.sql`, every table of docs/data-model.md),
+`store` (db, rawstore, seed, queue, events, spend), `sandbox.kit` (polite fetch, stdlib only),
+`pipeline.idcheck`, and the `sourcemap` CLI (`seed [--check-ids]`, `ids [--failed]`, `counts`).
+Seed content in `seeds/sources.json` (segments, 7 sources, offers, adapters) and `seeds/units.json`
+(16 companies, 17 departments with identifiers). 235 fast tests; import-linter 2 contracts kept.
+
+**How the work was split:** a research subagent compiled `seeds/units.json` (identifiers found by
+web search and the free ROR/OpenAlex APIs, with evidence links) while I wrote the schema, store,
+kit, checks and CLI. The automated checks then verified the subagent's identifiers.
+
+**Live check result (free, ~2 min):** 92 identifiers pass, 11 need the user's decision:
+Samsung's theorg page is titled "Samsung" (slug `samsung`); 9 units have no people page in the
+seed; MIT Physics' people page answers 403 to automated requests. All 17 ROR ids, 17 OpenAlex ids,
+4 DART codes and 15 of 16 theorg slugs pass.
+
+**Fixed while running the checks (each with a test):**
+- robots.txt handling followed old practice (401/403 → disallow). `api.ror.org/robots.txt` answers
+  403, which blocked all ROR checks. Now RFC 9309: 4xx → allowed, 5xx/unreachable → disallowed.
+- DART codes were checked for every company; now only for Korean listed units.
+- Institution short names added as unit `aliases` (Purdue University, Illinois/UIUC, MIT, KAIST,
+  ETH, SNU, CMU) — pages use them instead of the full ROR name. No alias added for Samsung on
+  purpose: whether theorg's "Samsung" page is Samsung Electronics is the user's call.
+- The weak import-linter "env" contract (it only forbade `dotenv`) was replaced by
+  `tests/test_env_rule.py`, which searches the source for environment reads outside `cli.py`.
+- Identifier checks moved from `store` to `pipeline` (they need `sandbox.kit`; store must not
+  import sandbox — layers contract).
+
+**Research findings worth keeping:** theorg `/org/gong` is a Croatian company (gong.hr); Gong.io is
+`gong-io`. `/org/lg-electronics` is 404; LG Electronics is `lg`… (check: the seed uses a slug
+that passed). Pennylane's LinkedIn slug is `pennylaneaccounting`. cs.illinois.edu redirects to
+siebelschool.illinois.edu. "NSU" resolved to Norfolk State University (alternatives in the seed
+notes). Purdue's ROR id is the West Lafayette campus (02dqehb95), not the system record.
+
+**Open items:** the 11 decisions above; `normalise_url` duplication (stage 3).
