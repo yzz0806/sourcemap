@@ -152,8 +152,7 @@ seed; MIT Physics' people page answers 403 to automated requests. All 17 ROR ids
   import sandbox — layers contract).
 
 **Research findings worth keeping:** theorg `/org/gong` is a Croatian company (gong.hr); Gong.io is
-`gong-io`. `/org/lg-electronics` is 404; LG Electronics is `lg`… (check: the seed uses a slug
-that passed). Pennylane's LinkedIn slug is `pennylaneaccounting`. cs.illinois.edu redirects to
+`gong-io`. `/org/lg-electronics` is 404; the seed's LG slug passed with the page titled "LG Electronics | The Org". Pennylane's LinkedIn slug is `pennylaneaccounting`. cs.illinois.edu redirects to
 siebelschool.illinois.edu. "NSU" resolved to Norfolk State University (alternatives in the seed
 notes). Purdue's ROR id is the West Lafayette campus (02dqehb95), not the system record.
 
