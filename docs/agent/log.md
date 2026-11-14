@@ -30,6 +30,11 @@ scope; agents limited to discovery; first-party pages extracted by a judge call 
 - Telem label in `containers.md` fixed (discovery + finding people pages, never evidence).
 - Stage-0 ADRs marked **proposed** until approval and amended in place; accepted on approval.
 
+### Plan written down
+`docs/plan/` added at the user's request: an index with the per-stage working order and the checks
+for every stage, and one file per stage (0–9) with goal, what gets built, order of work and checks.
+Keep each stage file's status line current.
+
 ### Notes for later stages (from the review)
 - **Stage 3/5:** first-party extraction — every extracted value's quote must be found in the visible
   text of the raw HTML, else the value is dropped and counted; `record.extracted_by_judge_call_id`

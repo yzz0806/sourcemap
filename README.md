@@ -18,7 +18,8 @@ it, and every check to a saved copy of what the source returned.
 3. `docs/data-model.md` — the database.
 4. `docs/components/` — one doc per part of the system.
 5. `docs/adr/` — the decisions and why.
-6. `docs/agent/log.md` — what happened in each session and what is open.
+6. `docs/plan/` — the stages: goal, what gets built, and how each is checked.
+7. `docs/agent/log.md` — what happened in each session and what is open.
 
 ## Demo scope
 
