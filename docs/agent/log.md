@@ -235,3 +235,8 @@ Checked by headless Chrome render (no JS errors) and screenshots. web/dist is gi
   search, not verified". Shown honestly as few.
 - Shared files (build_web.py, app.js, style.css, index.html) also hold another session's uncommitted
   provider-library rework; not committed here to avoid committing its unfinished work.
+- User: "I don't need the chart from Tavily" — replaced it with `web/dartchart.js`: the org chart drawn
+  from DART alone (93 marketing executives): Samsung → DX / DS → unit → center → people, structure
+  parsed from each executive's 담당업무 (heads = titles ending in 장, members = 담당임원); English names
+  (source spelling or romanized*), Korean name, rank, LinkedIn where reliable. The plain list is folded
+  under "Show as a list". The Tavily tree (orgchart.js, samsung_tree.py) is no longer shown.
