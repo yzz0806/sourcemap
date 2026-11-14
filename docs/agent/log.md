@@ -178,3 +178,12 @@ no tests were written for the demo modules (time).
 
 **Open:** blind review of 40 candidates (user); a `sourcemap demo run` command and tests for the
 demo modules; parse DART's registered-director table; `normalise_url` duplication.
+
+## 2026-11-14 — Demo extension: multi-segment source benchmark (Samsung, Nvidia, Airbus)
+
+User's decisions: one company per segment (Korean listed, US large, European), Airbus for Europe,
+references = DART for Korea and the company's own page for the US/EU (weaker, stated on the page),
+no LinkedIn, <2 h. Results and costs: `docs/experiments/0002-multi-segment-source-benchmark.md`.
+Bugs found and fixed during the run: Samsung reference lacked board directors; Wikipedia URL for
+Airbus was an unrelated page (now URLs must name the company). Deviations as for the first demo
+(JSON files, kit from the CLI, no tests for demo modules). Open: tests and a single command.

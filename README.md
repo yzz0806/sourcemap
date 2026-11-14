@@ -9,7 +9,8 @@ cell with coverage and an honest accuracy interval. Every number opens up to the
 it, and every check to a saved copy of what the source returned.
 
 > Status: **demo built** — Samsung Electronics marketing org chart: sources found through Telem, measured
-> against DART. See `docs/experiments/0001-samsung-marketing-demo.md`. See `docs/plan/` and `docs/agent/log.md`.
+> against DART (`docs/experiments/0001-…`), and a multi-segment source benchmark for Samsung, Nvidia and
+> Airbus (`docs/experiments/0002-…`, page `data/multi/sourcemap_benchmark.html`). See `docs/plan/` and `docs/agent/log.md`.
 
 ## Read in this order
 
@@ -67,3 +68,10 @@ Open `data/demo/sourcemap_demo.html` (rebuild it with `.venv/bin/python scripts/
 7. **Honest limits.**
 
 The data in `data/demo/` comes from live calls (Telem, OpenRouter, DART, theorg); it is not committed.
+
+### Multi-segment benchmark
+
+```
+.venv/bin/python scripts/demo_multi.py refs|plan|search|read|verify   # each step cached in data/multi/
+.venv/bin/python scripts/demo_multi_page.py                             # → data/multi/sourcemap_benchmark.html
+```
