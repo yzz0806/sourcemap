@@ -157,3 +157,24 @@ siebelschool.illinois.edu. "NSU" resolved to Norfolk State University (alternati
 notes). Purdue's ROR id is the West Lafayette campus (02dqehb95), not the system record.
 
 **Open items:** the 11 decisions above; `normalise_url` duplication (stage 3).
+
+## 2026-11-14 — Demo: Samsung Electronics marketing org chart (replaces stages 3–9 today)
+
+**Scope decided with the user** (≈2 h left): org chart only, Korean company only, no daily runs.
+Question: "Where can I get Samsung Electronics' marketing department org chart?" Plan in
+`docs/plan/demo-samsung-marketing.md`; results in `docs/experiments/0001-samsung-marketing-demo.md`.
+
+**Built:** `services/websearch.py` (Telem), `services/llm.py` (OpenRouter, disk cache),
+`agents/prompts/plan_sources.md`, `pipeline/demo_search.py` (search, pool, blind review CSV,
+leaderboard via `measure.benchmark`), `pipeline/demo_measure.py` (judge match + verdicts + stage 1
+accuracy), `scripts/demo_page.py` (the one-page demo). Total spend ≈ $1.25.
+
+**Deviations (honest list):** planner is one model call, not an Agent SDK session (ADR 0007);
+demo results are JSON files in `data/demo/` instead of the database tables; DART and theorg were
+fetched with the polite kit from the CLI, not through the sandboxed adapter child (ADR 0008); every
+name pair went to the judge (cross-script), with the DART row quoted; the demo steps 2–6 were run as
+inline scripts — `pipeline/demo_*` hold the logic, but there is no single `demo run` command yet;
+no tests were written for the demo modules (time).
+
+**Open:** blind review of 40 candidates (user); a `sourcemap demo run` command and tests for the
+demo modules; parse DART's registered-director table; `normalise_url` duplication.

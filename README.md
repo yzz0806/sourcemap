@@ -8,7 +8,8 @@ them, checks their statements against other sources, and draws a **map**: segmen
 cell with coverage and an honest accuracy interval. Every number opens up to the checks behind
 it, and every check to a saved copy of what the source returned.
 
-> Status: **stage 2 done** — measuring rules, database, seed content and identifier checks. See `docs/plan/` and `docs/agent/log.md`.
+> Status: **demo built** — Samsung Electronics marketing org chart: sources found through Telem, measured
+> against DART. See `docs/experiments/0001-samsung-marketing-demo.md`. See `docs/plan/` and `docs/agent/log.md`.
 
 ## Read in this order
 
@@ -48,3 +49,21 @@ sourcemap map org_chart            # print the map in the terminal
 Keys go in `.env` (never committed): `TELEM_API_KEY`, `OPENROUTER_API_KEY`, `APIFY_TOKEN`,
 `OPENDART_API_KEY` (optional), `OPENALEX_EMAIL` (optional, polite pool). Agents use the local
 Claude Code login.
+
+## 5-minute demo
+
+Open `data/demo/sourcemap_demo.html` (rebuild it with `.venv/bin/python scripts/demo_page.py`).
+
+1. **The question** at the top, and the flow.
+2. **Section 1:** the planner thinks in publisher *categories*: point at "Korean regulatory filings"
+   and its Korean queries; this is how DART is found without anyone typing its URL.
+3. **Section 2:** the same queries through every search provider behind Telem; the known-answer
+   leaderboard with 90% intervals; who found DART, theorg and samsung.com.
+4. **Section 3:** the source map: DART is the reference (1,119 executives, 93 in marketing); theorg's
+   employment and title accuracy with intervals, and its marketing coverage of 2/93.
+5. **Section 4:** open the checks behind a number: Seong H. Cho ↔ 조성혁, the DART quote, the verdict;
+   and the one disagreement (Won-Jin Lee).
+6. **Section 5:** Samsung's marketing org chart by unit, from the official filing.
+7. **Honest limits.**
+
+The data in `data/demo/` comes from live calls (Telem, OpenRouter, DART, theorg); it is not committed.
