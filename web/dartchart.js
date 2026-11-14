@@ -152,5 +152,59 @@
     box.style.height = y + "px";
   }
 
+  /* Generic chart for any company: root → columns of people from its official reference.
+     company = {name, ref_kind, ref_url, top_rows, marketing_rows}. Marketing first, then leadership in
+     columns of at most 12 people, so a long list (Airbus: 46) stays readable. */
+  function renderRef(el, co) {
+    const groups = [];
+    if (co.marketing_rows && co.marketing_rows.length) groups.push({ title: "Marketing", ko: "", mk: true, people: co.marketing_rows });
+    const top = (co.top_rows || []).filter((r) => !(co.marketing_rows || []).some((m) => m.name === r.name));
+    if (top.length <= 12) { if (top.length) groups.push({ title: "Leadership", ko: "", mk: false, people: top }); }
+    else {  // a long list: group by kind of role rather than by arbitrary chunks
+      const kinds = [["Chief executives & presidents", (t) => /chief|ceo|chairman|president|사장|회장|대표/i.test(t) && !/vice[- ]president/i.test(t)],
+        ["Executive & senior vice presidents", (t) => /vice[- ]president|부사장/i.test(t)], ["Heads of functions", (t) => /head|director|counsel|secretary|이사/i.test(t)],
+        ["Other", () => true]];
+      const used = new Set();
+      kinds.forEach(([title, f]) => { const ppl = top.filter((p) => !used.has(p) && f(p.title || "")); ppl.forEach((p) => used.add(p)); if (ppl.length) groups.push({ title, ko: "", mk: false, people: ppl }); });
+    }
+    el.innerHTML = `<div class="oc-legend"><span class="lg"><span class="pill confirmed">✓ Reference</span> every person is from ${esc(co.ref_kind)}</span>
+      <span class="lg"><span class="mk-sq"></span>marketing</span></div><div class="oc-scroll"><div class="oc dc" role="tree" aria-label="${esc(co.name)} org chart"></div></div>`;
+    const box = el.querySelector(".oc");
+    if (!groups.length) { box.innerHTML = `<p class="small" style="padding:12px 0">No reference people${co.ref_failed ? ": " + esc(co.ref_failed) : "."}</p>`; return; }
+    const W = Math.max(el.clientWidth || 1200, 1100), perRow = Math.max(1, Math.floor((W - IND + GAP) / (COLW + GAP)));
+    box.style.width = IND + Math.min(perRow, groups.length) * (COLW + GAP) - GAP + "px";
+    const L = [];
+    const add = (cls, x, w, html) => { const d = document.createElement("div"); d.className = "oc-card " + cls; d.setAttribute("role", "treeitem");
+      Object.assign(d.style, { left: x + "px", top: "0px", width: w + "px" }); d.innerHTML = html; box.appendChild(d); return d; };
+    const place = (d, y) => { d.style.top = y + "px"; return y + d.offsetHeight; };
+    const root = add("root dc-root", 0, 420, `<span class="pill confirmed">✓ ${esc(co.ref_kind)}</span><div class="dc-title">${esc(co.name)}</div>
+      <div class="oc-role">${groups.reduce((n, g) => n + g.people.length, 0)} people in the official reference</div>`);
+    const rb = place(root, 0);
+    let rowY = rb + 42, last = rb;
+    for (let i = 0; i < groups.length; i += perRow) {
+      const row = groups.slice(i, i + perRow), busY = rowY - 16;
+      const centers = row.map((_, j) => IND + j * (COLW + GAP) + COLW / 2);
+      L.push([TRUNK, last, 2, busY - last + 2], [TRUNK, busY, centers[centers.length - 1] - TRUNK + 2, 2]);
+      let bottom = rowY;
+      row.forEach((g, j) => {
+        const x = IND + j * (COLW + GAP);
+        L.push([centers[j], busY, 2, rowY - busY]);
+        const ppl = g.people.map((p) => { const en = p.en || (/[a-z]/i.test(p.name) ? p.name : ""), roman = p.en_from && p.en_from.startsWith("romanized");
+          return `<div class="dc-p"><div class="av confirmed" aria-hidden="true">${esc(initials(en) || "?")}</div><div>
+          <div class="oc-name">${esc(en || p.name)}${roman ? '<span class="dc-star" title="romanized">*</span>' : ""}</div>${p.en ? `<div class="oc-pko" lang="ko">${esc(p.name)}</div>` : ""}
+          <div class="oc-role">${esc(p.title)}${p.role && p.role !== p.title ? ` · <span lang="ko">${esc(p.role)}</span>` : ""}</div></div></div>`; }).join("");
+        const c = add(g.mk ? "confirmed" : "dc-unit confirmed", x, COLW, `<div class="dc-title">${g.mk ? '<span class="mk-sq"></span>' : ""}${esc(g.title)}</div>
+          <div class="oc-ko">${g.people.length} people</div>${ppl}`);
+        bottom = Math.max(bottom, place(c, rowY));
+      });
+      last = busY;
+      rowY = bottom + 46;
+    }
+    L.forEach(([x, y, w, h]) => { const d = document.createElement("div"); d.className = "oc-line"; d.setAttribute("aria-hidden", "true");
+      Object.assign(d.style, { left: x + "px", top: y + "px", width: Math.max(w, 2) + "px", height: Math.max(h, 2) + "px" }); box.insertBefore(d, box.firstChild); });
+    box.style.height = rowY - 30 + "px";
+  }
+
   window.renderDartChart = render;
+  window.renderRefChart = renderRef;
 })();

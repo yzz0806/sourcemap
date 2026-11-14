@@ -246,3 +246,8 @@ Checked by headless Chrome render (no JS errors) and screenshots. web/dist is gi
   90% bracket), cost (finding + reading + checking, and per confirmed person) — best per column in blue,
   a "Best at" column, a one-line verdict and four KPIs. Code in app.js `benchmark()`; styles in
   web/dartchart.css. app.js is still uncommitted because another session's provider-page work is in it.
+- Org chart moved off the top nav (user). Dashboard → Org chart now opens "Org chart — graphs": one tab per
+  company grouped by segment + a "Source map" tab; Samsung = the full DART marketing chart, others = a chart
+  from their official reference (marketing first, then leadership; long lists grouped by kind of role).
+  Direct links: #/type/org_chart?c=<company>. English names for NAVER / SK hynix (romanized*, $0.001).
+  Code: dartchart.js `renderRefChart`, app.js `typePage`/`sourceMap`, build_web.py `top_rows` + English names.

@@ -38,3 +38,7 @@
 .bv { font: 700 13px ui-monospace, Menlo, monospace; }
 .bv.best, b.blue { color: #1f4fd8; }
 tr.refrow td { background: #f6f6f8; }
+/* org chart page tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 14px 26px; margin: 14px 0 26px; }
+.tabgroup .mono { display: block; font: 700 10px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: #5f6170; margin-bottom: 6px; }
+.tabs .segpick { margin: 0; }
