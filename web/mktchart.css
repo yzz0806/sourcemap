@@ -43,12 +43,3 @@
 .mc-src a { color: var(--grey); border-bottom: 1px solid var(--line); }
 .mc-outside { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 14px; }
 .mc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-top: 10px; }
-
-/* dashboard examples */
-.examples { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0; border-top: 1px solid var(--ink); margin-top: 6px; }
-.example { display: flex; flex-direction: column; gap: 6px; padding: 16px 22px 18px 0; border-bottom: 1px solid var(--line); color: var(--ink); }
-.example:hover { text-decoration: none; background: var(--soft); }
-.example .q { font: 400 21px/1.25 Georgia, serif; }
-.example .what { font-size: 13.5px; color: #33333b; }
-.example .go { font-size: 13px; color: var(--blue); font-weight: 700; margin-top: auto; }
-.example .kind { font: 700 9.5px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }
