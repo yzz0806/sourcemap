@@ -30,7 +30,8 @@ COMPANIES = {
 }
 PROVIDERS = ["exa", "you", "parallel", "brave"]
 NOT_SOURCES = {"linkedin.com", "youtube.com", "facebook.com", "x.com", "twitter.com", "instagram.com",
-               "reddit.com", "fss.or.kr", "google.com", "bing.com"}
+               "reddit.com", "fss.or.kr", "google.com", "bing.com",
+               "sec.gov"}  # sec.gov is the US reference, not a source under test
 TIER3 = {"theorg.com", "wikipedia.org", "crunchbase.com", "bloomberg.com", "reuters.com", "forbes.com"}
 
 PLAN_PROMPT = """You plan where to search for the sources that publish a company's leadership / org chart
@@ -90,13 +91,13 @@ def tier_of(key: str, company: dict) -> Tier:
     return Tier.AGGREGATE  # unknown aggregators: weakest prior until measured
 
 
-def pick_sources(search: dict, min_companies: int = 2, top: int = 6) -> list[dict]:
+def pick_sources(search: dict, min_companies: int = 2, top: int = 6, companies: dict | None = None) -> list[dict]:
     """Domains that came up for at least `min_companies` companies, minus each company's own domains
     (they are, or stand in for, the reference) and social/login sites. Per company, the URL that
     was returned most often (best rank as tie-break)."""
     seen = defaultdict(lambda: defaultdict(list))  # key -> company -> [(rank, url)]
     for row in search["rows"]:
-        own = COMPANIES[row["company"]]["own_domains"]
+        own = (companies or COMPANIES)[row["company"]]["own_domains"]
         for run in row["runs"]:
             for h in run["hits"]:
                 k = source_key(h["url"])
@@ -111,7 +112,7 @@ def pick_sources(search: dict, min_companies: int = 2, top: int = 6) -> list[dic
         urls = {}
         for c, hits in per.items():
             # Prefer URLs that name the company (a Wikipedia hit for "Hercules" is not Airbus's page).
-            token = c.split("-")[0]
+            token = (companies or COMPANIES)[c].get("url_token", c.split("-")[0])
             hits = [(r, u) for r, u in hits if token in u.lower()]
             if not hits:
                 continue  # only unrelated pages from this source: not found for this company

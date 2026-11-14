@@ -88,7 +88,9 @@ class Telem:
 
     def _post(self, path: str, body: bytes, retries: int = 3) -> dict:
         req = urllib.request.Request(self._base + path, data=body, method="POST", headers={
-            "Authorization": f"Bearer {self._key}", "Content-Type": "application/json"})
+            "Authorization": f"Bearer {self._key}", "Content-Type": "application/json",
+            # Cloudflare in front of Telem refuses Python's default urllib User-Agent (error 1010).
+            "User-Agent": "sourcemap/0.1 (+research prototype)", "Accept": "application/json"})
         for attempt in range(retries):
             try:
                 with urllib.request.urlopen(req, timeout=self._timeout) as r:

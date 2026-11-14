@@ -187,3 +187,13 @@ no LinkedIn, <2 h. Results and costs: `docs/experiments/0002-multi-segment-sourc
 Bugs found and fixed during the run: Samsung reference lacked board directors; Wikipedia URL for
 Airbus was an unrelated page (now URLs must name the company). Deviations as for the first demo
 (JSON files, kit from the CLI, no tests for demo modules). Open: tests and a single command.
+
+## 2026-11-14 — Marketing org charts by segment (experiment 0003)
+
+User's decisions: reference per segment, not per company; panels Samsung/SK hynix/NAVER (DART),
+Nvidia/Apple/Microsoft (SEC, contact User-Agent from `.env` — given by the user for SEC only),
+Airbus/SAP/Siemens (own pages). Technographics ("what tools each company uses") discussed as the next
+data type; design: verify web-facing tech by our own fingerprint scan of the company site (saved raw),
+report recall and confirmed share (absence of detection ≠ wrong). Not built yet.
+A subagent built the references (`demo_refs.py`) while I built plan/search/read/verify/page.
+Open: shared DART parser bug (layouts), tests for demo modules, SAP reference.
