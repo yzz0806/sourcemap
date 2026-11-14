@@ -85,3 +85,39 @@ Keep each stage file's status line current.
 
 **Traps noted for later:** empty `allowed_tools` doesn't disable SDK built-ins; failed agent session
 may report $0; Telem default routing fans out to all providers; Telem fetch is not evidence.
+
+## 2026-11-14 — Stage 1: measuring rules, offline
+
+**Built:** `pyproject.toml` (pytest, import-linter contracts "pure core" and "layers"), domain types
+(`vocab`, `model`, `specs`), and 15 pure modules in `sourcemap.measure` (see
+`docs/components/measure.md`). 195 fast tests, no network or keys. `scripts/stage1_checks.py`
+prints the plan's checks.
+
+**How the work was split:** I wrote the foundation (project setup, domain types, names, accuracy,
+verdicts, and the accuracy case table) and committed it; then three parallel subagents each owned
+separate files: (A) compare, claims, match; (B) coverage, combos, transfer gate, assemble;
+(C) benchmark, monitor, freshness, sampling, health, drift. Each wrote its case tables before its
+code. I integrated, ran the full suite and the linter, and updated the docs.
+
+**Honest note on order:** for `accuracy.py` and `verdicts.py` I wrote the code a few minutes before
+the case table rather than after; the table was written from the domain rules, not from the code,
+and every row passed on the first run.
+
+**Decisions taken while building (recorded in docs/domain.md):**
+- Not-fetched units leave the coverage denominator like failed ones ("k of N not fetched").
+- A fetched-but-empty answer is a measured "not covered".
+- Two different values of the same identifier block a merge; only pairs with a new mention are
+  matched; existing wrong merges are reported for a split.
+- The monitor matches only names of ≥ 2 tokens (or Hangul ≥ 2 syllables).
+- Health: a source whose every unit fails to parse is `broken` (broken outranks shape_changed).
+- Benchmark metrics with a zero denominator are `not_enough_data` with no interval; MRR, exclusive
+  finds, cost and latency are plain values.
+
+**Open items:**
+- `normalise_url` exists twice (`compare.py` keeps the port, `benchmark.py` drops it). Merge into one
+  when the benchmark is wired in stage 3, with a test for the port case.
+- Known-source recall per segment: the pipeline must pass the segment's own seed list as
+  `known_keys` (stage 3).
+- `scipy` import makes the first test take ~9 s cold; fine for now.
+
+**Trap found:** `addopts` already has `-q`; adding another `-q` hides the "N passed" line.

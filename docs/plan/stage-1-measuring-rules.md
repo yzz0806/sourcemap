@@ -1,6 +1,6 @@
 # Stage 1 — Measuring rules, offline
 
-**Status:** next.
+**Status:** done, awaiting approval. Re-run the checks: `.venv/bin/python scripts/stage1_checks.py`.
 
 ## Goal
 The pure logic that turns records, claims and verdicts into scores — every rule of

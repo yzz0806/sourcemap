@@ -1,6 +1,6 @@
 # Stage 0 — Design on paper
 
-**Status:** done (commits `08dd90b`, `b1c3a78`), awaiting approval.
+**Status:** done and approved.
 
 ## Goal
 Turn the brief into a design the user agrees with, before any code.

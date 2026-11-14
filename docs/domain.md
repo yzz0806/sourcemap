@@ -305,6 +305,10 @@ a raw fetch takes at most 3 clicks.
 - **Partial failure:** when some panel units' fetches failed and others succeeded, the failed units
   are **left out of the denominator** and shown next to the number: "3/3 covered, 1 of 4 failed".
   A failed unit is never counted as "not covered". If every unit failed, the state is *failed*.
+  Units that were **not fetched** this run (e.g. test mode probes ~3 units per segment) leave the
+  denominator the same way and are shown as "k of N not fetched".
+- A unit counts as covered when the source returned at least one person for it. A fetch that
+  succeeded but returned nobody is a valid, measured "not covered".
   *Example:* theorg on NA mid-size: Airtable, Gong, Ramp return people, Notion times out →
   coverage 3/3 = 100%, "1 of 4 failed" — not 3/4 = 75%.
 - A combination of sources counts **unique entities** (after matching), so two sources returning
@@ -345,6 +349,16 @@ tokens sorted.
 
 The judge only sees borderline pairs. A pair the judge calls different is **never** merged, even
 through a third mention (cannot-link constraints). Matching quality is measured (§7).
+
+Refinements fixed in stage 1 (tests/cases/match_cases.py):
+- Two **different values of the same identifier** (two different LinkedIn URLs) are a cannot-link,
+  like a judge's "different".
+- Borderline means: one name's full tokens are a subset of the other's and its initials fit the
+  extra tokens ("J. Smith" / "Jane Smith", "Jane A. Smith" / "Jane Smith"), or the scripts differ.
+  Two different Hangul names are different.
+- Only pairs involving a **new** mention are linked or asked about; pairs of mentions already in
+  entities are not re-examined. An existing entity that turns out to hold a cannot-link pair is
+  reported for a split (ADR 0013).
 
 **Entity ids are stable across runs** (ADR 0013). Claim fingerprints contain the entity id, so a new
 run first attaches mentions to existing entities (shared identifier, same source's previous
@@ -417,6 +431,10 @@ news hit".
 
 *Example:* a hit "Gong's VP Sales Jane Smith steps down" → her claims are re-checked that day → the
 LinkedIn lookup shows the position ended → `stale`.
+
+A hit matches a person only when **all** full tokens of one of their names appear in it, and only
+for names of at least 2 tokens (or a Hangul name of at least 2 syllables) — otherwise "J. Smith"
+would match any news about any Smith.
 
 In the demo this is shown as **how it works plus any real case caught** — not as a measured hit
 rate. Counts stay raw with "too few to measure" until triggered and random re-checks can be compared.

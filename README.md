@@ -8,7 +8,7 @@ them, checks their statements against other sources, and draws a **map**: segmen
 cell with coverage and an honest accuracy interval. Every number opens up to the checks behind
 it, and every check to a saved copy of what the source returned.
 
-> Status: **stage 0, design only.** There is no code yet. See `docs/agent/log.md`.
+> Status: **stage 1 done** — the measuring rules, tested offline. See `docs/plan/` and `docs/agent/log.md`.
 
 ## Read in this order
 
