@@ -1,0 +1,27 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# data (database, raw fetches, judge cache) — never committed
+data/
+*.sqlite
+*.sqlite-journal
+*.db
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.import_linter_cache/
+*.egg-info/
+
+# web
+node_modules/
+web/dist/
+
+# os / editors
+.DS_Store
+.idea/
+.vscode/
