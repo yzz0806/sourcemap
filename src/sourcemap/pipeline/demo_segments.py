@@ -16,6 +16,11 @@ SEGMENTS = {
                   "reference": "SEC 10-K executive officers (official filing)"},
     "eu_listed": {"name": "European large-cap", "country": "Europe", "size": "Euro Stoxx 50 members",
                   "reference": "company's own governance page"},
+    # Mid-size companies, asked about PRODUCT leadership (scripts/demo_add_companies.py).
+    "us_mid": {"name": "US mid-cap", "country": "United States", "size": "US-listed, outside the S&P 500",
+               "reference": "SEC proxy statement, executive officers (official filing)"},
+    "eu_mid": {"name": "European mid-size", "country": "Europe", "size": "private, a few hundred employees",
+               "reference": "company's own leadership page"},
 }
 
 COMPANIES = {
@@ -36,6 +41,10 @@ COMPANIES = {
     "sap": {"name": "SAP", "name_local": "SAP", "segment": "eu_listed", "own_domains": ["sap.com"], "url_token": "sap"},
     "siemens": {"name": "Siemens", "name_local": "Siemens", "segment": "eu_listed", "own_domains": ["siemens.com"],
                 "url_token": "siemens"},
+    "sprinklr": {"name": "Sprinklr", "name_local": "Sprinklr", "segment": "us_mid", "own_domains": ["sprinklr.com"],
+                 "url_token": "sprinklr", "department": "product"},
+    "typeform": {"name": "Typeform", "name_local": "Typeform", "segment": "eu_mid", "own_domains": ["typeform.com"],
+                 "url_token": "typeform", "department": "product"},
 }
 
 PLAN_PROMPT = """You plan where to search for sources that publish the MARKETING department org chart of
@@ -49,6 +58,11 @@ websites. Skip paid or login-only sources and say why.
 Answer one JSON object only:
 {"categories": [{"name": "...", "lineage": "...", "queries": ["... {company} ...", "..."]}],
  "skipped": [{"name": "...", "why": "..."}]}"""
+
+PLAN_PROMPT_PRODUCT = PLAN_PROMPT.replace(
+    "MARKETING department org chart of\ncompanies in one segment (who leads marketing, brand, communications-with-marketing; their titles;\nreporting lines)",
+    "PRODUCT department org chart of\ncompanies in one segment (who leads product management, product, design-with-product; their titles;\nreporting lines)")
+assert PLAN_PROMPT_PRODUCT != PLAN_PROMPT
 
 MARKETING_WORDS = ("marketing", "마케팅", "brand", "cmo", "chief marketing")
 

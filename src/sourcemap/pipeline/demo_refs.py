@@ -23,6 +23,13 @@ def is_marketing(row: dict) -> bool:
     return bool(MARKETING.search(text))
 
 
+PRODUCT = re.compile(r"\bproduct\b|\bCPO\b|프로덕트|제품기획", re.I)
+
+
+def product_idx(rows: list[dict]) -> list[int]:
+    return [i for i, r in enumerate(rows) if PRODUCT.search(f"{r.get('title', '')} {r.get('responsibility', '')}")]
+
+
 def marketing_idx(rows: list[dict]) -> list[int]:
     return [i for i, r in enumerate(rows) if is_marketing(r)]
 
