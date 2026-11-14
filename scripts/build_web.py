@@ -51,7 +51,10 @@ def build():
         companies[slug] = {"name": c["name"], "segment": c["segment"], "ref_kind": r.get("kind", "none"),
                            "ref_tier": r.get("tier"), "ref_url": r.get("url", ""), "ref_failed": r.get("failed", ""),
                            "ref_size": len(r.get("rows", [])), "ref_marketing": len(r.get("marketing_idx", [])),
-                           "ref_located_by_telem": slug in ("sap", "siemens", "airbus")}
+                           "ref_located_by_telem": slug in ("sap", "siemens", "airbus"),
+                           "marketing_rows": [{"name": r.get("rows", [])[i]["name"], "title": r["rows"][i].get("title", ""),
+                                               "role": r["rows"][i].get("responsibility", "")}
+                                              for i in r.get("marketing_idx", [])] if slug != "samsung-electronics" else []}
 
     # --- source library: source × segment ---------------------------------------------------------------
     cells = defaultdict(lambda: {"checks": [], "usd": 0.0, "reads": defaultdict(int), "top_found": set(),
@@ -75,7 +78,9 @@ def build():
                 x["top_found"].add((slug, ch["ref_index"]))
             if ch["ref_index"] in mks:
                 x["mk_found"].add((slug, ch["ref_index"]))
+        pair_usd = scost.get((k, slug), 0) + e.get("extract_usd", 0) + e.get("verify_usd", 0)
         x["pairs"].append({"company": slug, "status": e["status"], "url": e.get("url"), "sha": e.get("sha256", "")[:16],
+                           "usd": pair_usd, "n_people": len(e.get("people", [])),
                            "checks": [{"name": ch["person"]["name"], "title": ch["person"]["title"],
                                        "quote": ch["person"].get("quote", "")[:180], "ref": ch["ref_quote"],
                                        "employment": ch["employment"], "verdict": ch["title"], "reason": ch["reason"][:200]}
@@ -146,7 +151,21 @@ def build():
                                 for u, p in sorted(units.items(), key=lambda kv: -len(kv[1]))]}
     old_search = load(DEMO / "search.json")
 
+    data_types = [
+        {"slug": "org_chart", "name": "Org chart", "status": "measured",
+         "what": "Who holds which role, with which title, reporting to whom.",
+         "claims": ["employment", "title", "reports_to"]},
+        {"slug": "technographics", "name": "Technographics", "status": "designed",
+         "what": "Which tools and products a company uses.",
+         "claims": ["uses tool", "since"], "plan": "Reference: our own fingerprint scan of the company's site, saved raw; "
+         "metrics: recall of verified tools, confirmed share, cost. Absence of detection is never 'wrong'."},
+        {"slug": "leadership_signals", "name": "Leadership-change signals", "status": "designed",
+         "what": "Appointments and departures, and how late each source reports them.",
+         "claims": ["appointed", "departed", "date"], "plan": "References: SEC 8-K Item 5.02, DART executive-change "
+         "disclosures; metrics: accuracy, coverage and freshness (days late)."},
+    ]
     return {
+        "measured_on": "2026-11-14", "data_types": data_types,
         "segments": S.SEGMENTS, "companies": companies, "library": library, "providers": provider_lib,
         "plans": {g: [{"name": c["name"], "queries": c["queries"][:2]} for c in plans[g]["categories"]] for g in S.SEGMENTS},
         "samsung_answer": samsung_answer,

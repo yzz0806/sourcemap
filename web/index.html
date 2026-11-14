@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>sourcemap — which sources to cite</title>
+<title>sourcemap</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -11,73 +11,15 @@
 <body>
 <header class="top">
   <div class="wrap bar">
-    <a class="brand" href="#">sourcemap</a>
+    <a class="brand" href="#/">sourcemap</a>
     <nav>
-      <a href="#ask">Ask</a><a href="#library">Source library</a><a href="#providers">Provider library</a><a href="#method">Method</a>
+      <a href="#/">Dashboard</a><a href="#/type/org_chart">Org chart</a><a href="#/providers">Provider library</a><a href="#/method">Method</a>
     </nav>
     <span class="legend"><span class="telem">TELEM</span> = a step that uses Telem</span>
   </div>
 </header>
-
-<main class="wrap">
-  <section class="hero">
-    <p class="label">THE MISSING LAYER</p>
-    <h1>Web search ranks pages by popularity.<br>sourcemap routes a question to the sources measured to be right.</h1>
-    <p class="lede">Ask an agent for Samsung Electronics' marketing org chart and web search returns news and company
-      pages — about ten people, unverified. The full answer, 93 marketing executives with official titles, sits in
-      Korea's DART filings, which search barely ranks. Between the agent and web search sits a library: for each
-      <b>data type</b> and <b>segment</b>, which sources to cite, how accurate they are, and which search provider reaches them.</p>
-    <div id="diagram"></div>
-    <div id="stats" class="stats"></div>
-  </section>
-
-  <section id="ask">
-    <p class="label">01 · ASK</p>
-    <h2>A question, routed</h2>
-    <div id="presets" class="presets"></div>
-    <div id="route"></div>
-    <div id="answer"></div>
-  </section>
-
-  <section id="library">
-    <p class="label">02 · SOURCE LIBRARY</p>
-    <h2>Which sources to trust — by segment</h2>
-    <p class="note">Every cell is measured against the segment's reference. <span class="key"><svg width="54" height="10"><rect x="0" y="3" width="54" height="4" fill="#e6e6ea"/><rect x="0" y="3" width="30" height="4" fill="#14141a"/></svg> coverage</span>
-      <span class="key"><svg width="12" height="12"><rect width="12" height="12" fill="#1f4fd8"/></svg> title accuracy (darker = higher)</span>
-      <span class="key"><svg width="54" height="12"><line x1="4" y1="6" x2="50" y2="6" stroke="#14141a"/><line x1="4" y1="2" x2="4" y2="10" stroke="#14141a"/><line x1="50" y1="2" x2="50" y2="10" stroke="#14141a"/></svg> 90% interval</span>
-      Click a cell to open its checks.</p>
-    <div id="library-table" class="scroll"></div>
-    <div id="drill"></div>
-  </section>
-
-  <section id="providers">
-    <p class="label">03 · PROVIDER LIBRARY <span class="telem">TELEM</span></p>
-    <h2>Which search provider reaches those sources</h2>
-    <p class="note">The same planner queries sent through every provider behind Telem. <b>Reference found</b>: share of
-      calls that returned the segment's official reference (DART · SEC · the company's own site). This is how the router
-      picks a provider to <i>locate</i> a source's page at question time.</p>
-    <div id="provider-table" class="scroll"></div>
-  </section>
-
-  <section id="method">
-    <p class="label">04 · METHOD</p>
-    <h2>How the library is built and kept honest</h2>
-    <div id="steps" class="steps"></div>
-    <div id="refs" class="scroll"></div>
-    <div id="plans"></div>
-    <div class="limits">
-      <p class="label">HONEST LIMITS</p>
-      <ul>
-        <li>Three companies per segment: intervals are wide; numbers describe these panels.</li>
-        <li>Outside Korea, official filings list only top officers, so most marketing claims are <i>unverifiable</i> — never counted as wrong.</li>
-        <li>Employment can only be confirmed with these references; title accuracy is the number that exposes errors.</li>
-        <li>Extraction and matching are model calls that must quote the page and the reference; the judge's own error rate is not measured against humans.</li>
-        <li>SAP has no reference: its site forbids automated reading. Sources that block reading are shown as blocked, never 0%.</li>
-      </ul>
-    </div>
-  </section>
-</main>
-<footer class="wrap foot">sourcemap · hackathon build · data from DART, SEC EDGAR, company pages and Telem search</footer>
+<main class="wrap" id="view"></main>
+<footer class="wrap foot" id="foot"></footer>
 <script src="data.js"></script>
 <script src="app.js"></script>
 </body>

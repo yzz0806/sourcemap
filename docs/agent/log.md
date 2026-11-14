@@ -213,3 +213,11 @@ interval bracket; Poppins brand mark). `scripts/build_web.py` turns data/seg + d
 Sections: hero + diagram, Ask (routed answer for Samsung / Nvidia / Airbus), Source library (click a
 cell for its checks), Provider library (TELEM), Method (TELEM marks on discover, route, keep current).
 Checked by headless Chrome render (no JS errors) and screenshots. web/dist is git-ignored (built).
+- Interactive replay site (user's request): dashboard with a search box and the data-type index
+  (org chart measured; technographics and leadership-change signals designed); search route plays the
+  routing as six animated steps (understand → segment → cite → locate via TELEM → verify → answer),
+  then the answer and a per-question benchmark; segment pages with click-through checks; provider
+  library; method. Query parsing is rule-based in the browser; everything replays results measured
+  on 2026-11-14 (stated on every page). Unknown companies show "not in the library — would run
+  discovery"; unbuilt data types say so. Checked: nine routes rendered headless with no JS errors.
+  Next: live mode (small server: model classifies the query, Telem locates pages per question).

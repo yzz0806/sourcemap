@@ -103,3 +103,55 @@ td.cell.sel { background: var(--soft); box-shadow: inset 2px 0 0 var(--blue); }
   .srcrow > :nth-child(n+3) { grid-column: 2; }
   .stat { border-right: 0; }
 }
+
+/* ---------- interactive site ---------- */
+.searchbox { display: flex; border: 1px solid var(--ink); max-width: 980px; margin: 18px 0 10px; background: #fff; }
+.searchbox input { flex: 1; border: 0; padding: 18px 20px; font: 400 22px/1.2 Georgia, serif; color: var(--ink); outline: none; min-width: 0; }
+.searchbox button { border: 0; border-left: 1px solid var(--ink); background: var(--ink); color: #fff; padding: 0 26px;
+  font: 700 11px ui-monospace, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
+.suggest { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13.5px; margin-bottom: 8px; }
+.suggest a { color: var(--grey); border-bottom: 1px solid var(--line); }
+.suggest a:hover { color: var(--blue); text-decoration: none; border-color: var(--blue); }
+.replay { font-size: 12px; color: var(--grey); }
+
+/* index */
+.types { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); border-top: 1px solid var(--ink); margin-top: 8px; }
+.type { padding: 18px 22px 22px 0; border-right: 1px solid var(--line); margin-right: 22px; }
+.type:last-child { border-right: 0; }
+.type h3 { margin: 6px 0 6px; font-size: 26px; }
+.type.off h3, .type.off p { color: var(--grey); }
+.status { font: 700 10px ui-monospace, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; padding: 3px 6px 2px; border: 1px solid var(--ink); }
+.status.designed { border-color: var(--grey); color: var(--grey); }
+.seglist { margin-top: 12px; }
+.segrow { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 10px 0; border-top: 1px solid var(--line); color: var(--ink); }
+.segrow:hover { background: var(--soft); text-decoration: none; }
+.crumbs { font-size: 13px; color: var(--grey); margin: 24px 0 6px; }
+.crumbs a { color: var(--grey); }
+
+/* animated steps */
+.steps-live { border-top: 1px solid var(--ink); margin: 18px 0 8px; }
+.sl { display: grid; grid-template-columns: 34px 200px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line);
+  opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease; }
+.sl.show { opacity: 1; transform: none; }
+.dot { width: 14px; height: 14px; border: 1px solid var(--ink); border-radius: 50%; margin-top: 3px; position: relative; }
+.sl.run .dot { border-color: var(--blue); animation: pulse 0.9s ease-in-out infinite; }
+.sl.done .dot { background: var(--ink); }
+.sl.done .dot::after { content: ""; position: absolute; left: 4px; top: 1px; width: 3px; height: 7px; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+@keyframes pulse { 50% { box-shadow: 0 0 0 5px rgba(31, 79, 216, .15); } }
+.chips { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--line); width: fit-content; }
+.chip { padding: 7px 12px; border-right: 1px solid var(--line); font-size: 13.5px; color: var(--grey); transition: all .4s ease; }
+.chip:last-child { border-right: 0; }
+.chip.hit { background: var(--ink); color: #fff; }
+.line { padding: 3px 0; font-size: 14px; opacity: 0; transition: opacity .3s ease; }
+.line.show { opacity: 1; }
+.ok { color: var(--ink); font-weight: 700; }
+.bad { color: var(--blue); }
+.fade { opacity: 0; transition: opacity .5s ease; }
+.fade.show { opacity: 1; }
+.skip { background: none; border: 1px solid var(--line); padding: 6px 10px; font-size: 12px; cursor: pointer; color: var(--grey); }
+.kpis { display: flex; flex-wrap: wrap; border-top: 1px solid var(--ink); margin: 18px 0; }
+.kpi { padding: 14px 28px 10px 0; margin-right: 28px; border-right: 1px solid var(--line); }
+.kpi:last-child { border-right: 0; }
+.kpi b { display: block; font: 400 30px/1.1 Georgia, serif; }
+.notfound { border-top: 1px solid var(--ink); padding: 18px 0; max-width: 900px; }
+@media (max-width: 760px) { .sl { grid-template-columns: 24px 1fr; } .sl > :nth-child(3) { grid-column: 2; } .searchbox input { font-size: 18px; } }
