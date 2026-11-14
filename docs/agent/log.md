@@ -256,3 +256,22 @@ Checked by headless Chrome render (no JS errors) and screenshots. web/dist is gi
   large-cap (KOSPI 200 members), US mega-cap (largest S&P 500 companies by market value), European large-cap
   (Euro Stoxx 50 members) — index membership chosen because it is checkable; mid-caps would be separate,
   unmeasured segments (said on the page). Segment column headers show size, companies and reference.
+
+## 2026-11-14 — Leadership-change signals (US mega-cap only)
+
+User: build leadership-change signals now, US mega-cap only; technographics later; leadership signals placed
+before technographics on the dashboard; use subagents.
+- Subagent A (`pipeline/sig_refs.py`, `scripts/sig_refs.py`): every SEC 8-K with Item 5.02 for Nvidia, Apple,
+  Microsoft, 2024-11-01 → 2026-11-14: 22 filings, 40 events, quotes verified against the filing ($0.009).
+- Subagent B (`pipeline/sig_sources.py`, `scripts/sig_sources.py`): planner + 120 Telem calls + 92 pages read
+  with publication dates, 242 reported changes, 53 dropped by the quote check ($1.07).
+- `pipeline/sig_measure.py`: de-duplicate filed changes (person, change, month; compensation-only excluded) →
+  30; match each report to a filed change; accuracy (Beta), coverage, freshness (publication − filing date),
+  cost. Matching bugs found and fixed while checking the output: (1) person-only matching linked old role
+  changes (Kress as CFO, years earlier) to new filings → require a date window (−30…+365 days) and compatible
+  roles; (2) recently updated bio pages produced false "wrong" → use the report's stated effective date first,
+  and an unreadable stated date makes a contradiction unverifiable; (3) legal vs used first names (Jen-Hsun /
+  Jensen Huang) → same surname + same specific role in the window. Result: 40 correct, 0 wrong, 202
+  unverifiable; 13 of 30 filed changes reported by any web source; median lag 1 day.
+- UI in `web/signals.js` (dashboard card, source map with coverage / accuracy / freshness dots / cost, the
+  per-company answer timeline); hooks in app.js; styles in web/dartchart.css.

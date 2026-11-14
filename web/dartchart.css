@@ -43,3 +43,12 @@ tr.refrow td { background: #f6f6f8; }
 .tabgroup .mono { display: block; font: 700 10px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: #5f6170; margin-bottom: 6px; }
 .tabs .segpick { margin: 0; }
 .seghead { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; font: 400 12px/1.4 Arial, sans-serif; letter-spacing: 0; text-transform: none; color: #5f6170; }
+/* leadership-change signals */
+.sig-tl { border-top: 1px solid #14141a; }
+.tl-row.sig { grid-template-columns: 104px 1fr; }
+.sig-rep { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px; }
+.chip-s { border: 1px solid #e6e6ea; padding: 2px 8px; font-size: 12.5px; }
+.chip-s .mono { font-size: 10px; color: #5f6170; margin-left: 4px; }
+.tl-row { display: grid; grid-template-columns: 104px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e6e6ea; font-size: 14px; }
+.tl-row .d { font: 700 11px ui-monospace, Menlo, monospace; letter-spacing: .04em; padding-top: 2px; }
+.sig-tl .quote { color: #5f6170; font-style: italic; font-size: 12.5px; margin-top: 2px; }
