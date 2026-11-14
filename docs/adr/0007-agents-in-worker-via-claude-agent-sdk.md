@@ -1,6 +1,6 @@
 # 0007 — Agents run in the worker through the Claude Agent SDK, with explicit tools and structured output
 
-Status: proposed (stage 0, under review)
+Status: accepted (stage 0, approved by the user 2026-11-14)
 
 ## Context
 Discovery needs an agent that plans and searches. The brief fixes the Claude Agent SDK on the

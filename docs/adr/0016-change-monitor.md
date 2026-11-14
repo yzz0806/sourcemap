@@ -1,6 +1,6 @@
 # 0016 — Change monitor: daily news searches reorder re-checks; they never decide verdicts
 
-Status: proposed (stage 0, under review)
+Status: accepted (stage 0, approved by the user 2026-11-14)
 
 ## Context
 People leave companies between verdict re-checks (ADR 0012). Random or oldest-first re-checks find

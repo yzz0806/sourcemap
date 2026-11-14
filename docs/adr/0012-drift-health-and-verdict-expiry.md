@@ -1,6 +1,6 @@
 # 0012 — Drift: source health per run, verdicts expire and are re-checked, drift alerts on non-overlapping intervals
 
-Status: proposed (stage 0, under review)
+Status: accepted (stage 0, approved by the user 2026-11-14)
 
 ## Context
 The map must follow the internet. Sources break or change shape without notice, and people leave

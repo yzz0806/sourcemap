@@ -1,6 +1,6 @@
 # 0003 — How claims are verified: reference, lookup + judge, agreement; never web search; no human gold set
 
-Status: proposed (stage 0, under review)
+Status: accepted (stage 0, approved by the user 2026-11-14)
 
 ## Context
 Accuracy needs something to compare against. Options were a human-labelled gold set, reference

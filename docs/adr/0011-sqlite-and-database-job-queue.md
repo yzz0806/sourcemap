@@ -1,6 +1,6 @@
 # 0011 — SQLite for all state; the job queue lives in the database; stages are idempotent
 
-Status: proposed (stage 0, under review)
+Status: accepted (stage 0, approved by the user 2026-11-14)
 
 ## Context
 Two processes (API, worker) must share state and talk only through the database. A worker crash in

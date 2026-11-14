@@ -1,6 +1,6 @@
 # 0014 — Simulated runs (departures, breakages) run in a separate database and are always flagged
 
-Status: proposed (stage 0, under review)
+Status: accepted (stage 0, approved by the user 2026-11-14)
 
 ## Context
 The drift demo must show a person leaving a company and the claim turning `stale`, and a source

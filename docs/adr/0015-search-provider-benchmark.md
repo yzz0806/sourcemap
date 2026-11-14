@@ -1,6 +1,6 @@
 # 0015 — Search-provider benchmark: the same fixed queries through each Telem provider, scored with the product's own honesty rules
 
-Status: proposed (stage 0, under review). The user chose this as the demo's centrepiece.
+Status: accepted (stage 0, approved by the user 2026-11-14). The user chose this as the demo's centrepiece.
 
 ## Context
 Telem routes queries to many search providers (Exa, Brave, Tavily, Perplexity…). sourcemap measures

@@ -1,6 +1,6 @@
 # 0002 — Accuracy standard: weighted Beta posterior, three display states
 
-Status: proposed (stage 0, under review)
+Status: accepted (stage 0, approved by the user 2026-11-14)
 
 ## Context
 The product's value is its accuracy numbers (BRIEF §1, §4). Small samples must not look certain:

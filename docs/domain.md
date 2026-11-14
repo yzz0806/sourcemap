@@ -301,7 +301,12 @@ a raw fetch takes at most 3 clicks.
 - Per (source, segment): the share of panel units for which the source returned at least one
   valid record. Per claim type: the share of units with at least one claim of that type.
 - **States:** *measured* (a percentage), *not probed* (no adapter, not offered, or never fetched),
-  *failed* (the fetch broke this run). Untested is never shown as 0%.
+  *failed* (every fetch broke this run). Untested is never shown as 0%.
+- **Partial failure:** when some panel units' fetches failed and others succeeded, the failed units
+  are **left out of the denominator** and shown next to the number: "3/3 covered, 1 of 4 failed".
+  A failed unit is never counted as "not covered". If every unit failed, the state is *failed*.
+  *Example:* theorg on NA mid-size: Airtable, Gong, Ramp return people, Notion times out →
+  coverage 3/3 = 100%, "1 of 4 failed" — not 3/4 = 75%.
 - A combination of sources counts **unique entities** (after matching), so two sources returning
   the same 30 people do not add up to 60.
 - An empty segment is a valid result and is shown.

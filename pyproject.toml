@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sourcemap"
+version = "0.1.0"
+description = "Which public source to trust for which kind of entity and fact, with evidence."
+requires-python = ">=3.12"
+dependencies = [
+  "scipy>=1.11",   # Beta quantiles for accuracy intervals (ADR 0002)
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "import-linter>=2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not slow' -q"
+markers = ["slow: calls real outside services (keys, network, money); run only on request"]
+
+# Layering contracts — docs/components/README.md. Never loosen a contract to make an import work;
+# move the code instead. Contracts for packages that don't exist yet are added with those packages.
+[tool.importlinter]
+root_package = "sourcemap"
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "Pure core: domain and measure do no I/O"
+type = "forbidden"
+source_modules = ["sourcemap.domain", "sourcemap.measure"]
+forbidden_modules = [
+  "sqlite3", "socket", "subprocess", "urllib", "http", "ssl", "asyncio",
+  "requests", "httpx", "openai", "claude_agent_sdk", "fastapi",
+]
+
+[[tool.importlinter.contracts]]
+name = "Layers: measure above domain"
+type = "layers"
+layers = ["sourcemap.measure", "sourcemap.domain"]
