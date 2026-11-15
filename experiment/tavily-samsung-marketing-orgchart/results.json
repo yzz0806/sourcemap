@@ -1,0 +1,402 @@
+{
+ "provider": "tavily",
+ "num_results": 10,
+ "spent_usd": 0.025,
+ "results": [
+  {
+   "query": "Samsung Electronics marketing department org chart",
+   "provider": "tavily",
+   "status": "ok",
+   "latency_ms": 912,
+   "usd": 0.005,
+   "hits": [
+    {
+     "provider": "tavily",
+     "rank": 1,
+     "url": "https://www.bizkonnect.ai/companies/samsung-electronics-america",
+     "title": "Samsung Electronics America Org Chart & Company Structure | Bizkonnect",
+     "snippet": "Since 2025\n\nOlga SuvorovaOS\n\nOlga Suvorova\n\nChief Marketing Officer, Mobile Experience Business\n\nLeader of the 100+ Marketing organization across Strategy and Insights, Product and Brand Marketing, Creative, Media and Growth, Partner Marketing, Social, Influencers, PR and Communications. Driving the Samsung brand transformation and market share growth of the Mobile Experience business in the US (P"
+    },
+    {
+     "provider": "tavily",
+     "rank": 2,
+     "url": "https://theorg.com/org/samsung",
+     "title": "Samsung | The Org",
+     "snippet": "1,764 people · 0 jobs\n\n### Engineering and Technical Roles\n\n1,357 people · 0 jobs\n\n### Key Account Management\n\n573 people · 0 jobs\n\n### Engineering Services\n\n438 people · 0 jobs\n\n### Marketing and Product Management\n\n401 people · 0 jobs\n\n### Commercial Operations\n\n372 people · 0 jobs\n\nExpand (107)\n\n## Offices\n\nSao Paulo\n\n729 people · 0 jobs\n\nBengaluru\n\n701 people · 0 jobs\n\nSingapore\n\n169 people · "
+    },
+    {
+     "provider": "tavily",
+     "rank": 3,
+     "url": "https://www.researchgate.net/figure/Samsung-Organization-Chart-10_fig3_319585333",
+     "title": "Samsung Organization Chart [10] - ResearchGate",
+     "snippet": "This paper examines Samsung Electronics successful marketing strategy in the mobile phone business. The smartphone industry consists of all companies that"
+    },
+    {
+     "provider": "tavily",
+     "rank": 4,
+     "url": "https://x.com/riizepage_idn/status/2007693919820370055",
+     "title": "RIIZE PAGE on X: \"Based on the organizational chart, Samsung Electronics operates as a core company under Samsung Group, overseeing multiple divisions such as Device eXperience (DX) and Device Solutions (DS). Within the DX Division, there is a Mobile eXperience (MX) unit that manages specific produ… / X",
+     "snippet": "RIIZE’s Brand Ambassador role spans multiple product categories and campaigns, rather than being limited to one line in the organizational structure. In summary, when linked to the organizational chart: ▪︎ Galaxy = product brand located inside the MX division ▪︎ RIIZE = Brand Ambassador representing Samsung Electronics as a whole, positioned above individual product lines in the structure.\" [...] "
+    },
+    {
+     "provider": "tavily",
+     "rank": 5,
+     "url": "https://edrawmind.wondershare.com/company-management/organizational-structure-of-samsung-company.html",
+     "title": "Organizational Structure of Samsung: A Detailed Analysis",
+     "snippet": "That divisional split is the key to understanding the Samsung organizational structure. The chart also needs to account for business units, regional organizations and corporate leadership, so readers can see how product specialization, regional execution, engineering, supply chain, sales and shared management functions connect.\n\n## Organizational Chart of Samsung\n\nThe organizational structure of S"
+    },
+    {
+     "provider": "tavily",
+     "rank": 6,
+     "url": "https://www.theofficialboard.com/org-chart/samsung-electronics-1",
+     "title": "Samsung Electronics Org Chart + Executive Team - The Official Board",
+     "snippet": "See the executive team of Samsung Electronics and its org chart, featuring 729 leaders like Young Hyun Jun, Kevin Lee and Andrew Hong."
+    },
+    {
+     "provider": "tavily",
+     "rank": 7,
+     "url": "https://www.slideshare.net/slideshow/samsung-electronics-organization-management/55169660",
+     "title": "Samsung electronics Organization Management | PPTX",
+     "snippet": "Presentation.samsung.ppt\nSAMSUNG-4P-SALES COMPARISON(2015)-SWOT -(MARKETING MANAGEMENT)\nSamsung electronics\nSamsung \nSamsung chapter 11\nSamsung electronics [...]  Price wars\n Declining margins on hardware production\n Saturated smartphone markets in developed\ncountries\n \nStructure and Model type:\nCentralized Structure\nPlanning Model, Late stage companies\nBoard of Directors: (Total members: 9)\nVi"
+    },
+    {
+     "provider": "tavily",
+     "rank": 8,
+     "url": "https://www.scribd.com/document/483693623/SAMSUNG",
+     "title": "Samsung's Product-Type Divisional Structure | PDF | Organizational Structure | Samsung Electronics",
+     "snippet": "Samsung has a product-type divisional organizational structure with three main characteristics: 1) product-type divisions such as Consumer Electronics and Device Solutions that focus on specific product categories, 2) a centralized corporate hierarchy with strategic direction set by headquarters in Seoul, and 3) some geographical groupings within the product divisions for region-specific strategie"
+    },
+    {
+     "provider": "tavily",
+     "rank": 9,
+     "url": "https://www.samsung.com/us/about-us/leadership-and-mission",
+     "title": "Leadership & Mission | About Us | Samsung US",
+     "snippet": "## TM Roh\n\n ㆍPresident & CEO [2025~Present]\n ㆍHead, Device eXperience (DX) Division [2025~Present]\n ㆍHead, Mobile eXperience (MX) Business [2021~Present]\n ㆍHead, Corporate Design Center [2022~2025]\n ㆍHead, Mobile Communications Business [2020~2021]\n ㆍHead of R&D, Mobile Communications Business [2017~2020]\n\nTM Roh\nTM Roh\n\n## History\n\n### Fortune global top company, Samsung.\n\n###### 2024\n\n• Retained"
+    },
+    {
+     "provider": "tavily",
+     "rank": 10,
+     "url": "https://tavily.com/knowledge/company/lEiOPSHCpP9r",
+     "title": "Samsung Electronics",
+     "snippet": "# Samsung Electronics\nID: lEiOPSHCpP9r\nWebsite: www.samsung.com\nLegal name: Samsung Electronics Co., Ltd\nHeadquarters: Suwon-Si, Gyeonggi-Do, South Korea\nLinkedIn: www.linkedin.com/company/samsung-electronics · 5,114,585 followers\nIndustry: Computers and Electronics Manufacturing\nCompany type: Public Company\nBusiness model: B2C\nSaaS: no [...] ## Headcount\n- Now: 189,967 · +27,297 yearly (16.8%) · "
+    }
+   ]
+  },
+  {
+   "query": "Samsung Electronics marketing leadership team CMO",
+   "provider": "tavily",
+   "status": "ok",
+   "latency_ms": 1051,
+   "usd": 0.005,
+   "hits": [
+    {
+     "provider": "tavily",
+     "rank": 1,
+     "url": "https://about.me/marcmathieu",
+     "title": "Marc Mathieu - New York, Samsung America | about.me",
+     "snippet": "# Marc Mathieu\n\n## CMO, Samsung Electronics America in New York\n\nRead my blog\n\nMarc Mathieu is the Chief Marketing Officer of SAMSUNG Electronics USA. He has held various leadership roles in Marketing divisions of Fortune 100 & Global companies such as Coca-Cola, Unilever, and now, Samsung. [...] Marc is veteran in the Marketing world with a proven track record of success. Named CMO of Samsung Ele"
+    },
+    {
+     "provider": "tavily",
+     "rank": 2,
+     "url": "https://www.marketersthatmatter.com/innovators/allison-stransky",
+     "title": "Allison Stransky | Marketers That Matter®",
+     "snippet": "Allison Stransky is the Chief Marketing Officer at Samsung Electronics America, overseeing U.S. corporate marketing and communications focused on driving profitable revenue growth and strengthening the Samsung brand. In this role, she spearheads the “One Samsung: Better Together and Enhanced by AI” strategy, bringing it to life through impactful partnerships and campaigns that highlight Samsung’s "
+    },
+    {
+     "provider": "tavily",
+     "rank": 3,
+     "url": "https://event.adweek.com/awh-austin-2026/speaker/2153632/allison-stransky",
+     "title": "Speaker Details: ADWEEK House: Austin 2026",
+     "snippet": "Allison Stransky is the Chief Marketing Officer at Samsung Electronics America, overseeing U.S. corporate marketing and communications, Big Data, AI-led transformation, sustainability, and citizenship across the brand. Her role spans Samsung’s connected ecosystem, focused on driving profitable revenue growth, deepening brand love, and bringing AI to life through high-impact partnerships and campai"
+    },
+    {
+     "provider": "tavily",
+     "rank": 4,
+     "url": "https://mmaglobal.com/speakers/marc-mathieu",
+     "title": "Marc Mathieu | MMA / Marketing + Media Alliance",
+     "snippet": "Marketing + Media Alliance\n\nCome for the alliance. Stay for the impact.\n\n# Marc Mathieu\n\nFormer CMO\n\nSamsung\n\nMarc Mathieu, Chief Marketing Officer at Samsung Electronics America (SEA), is a storied marketing veteran known for digital innovation and humanizing large global brands. [...] Under his leadership, the SEA marketing team created Samsung 837, the brand’s experiential flagship and marketin"
+    },
+    {
+     "provider": "tavily",
+     "rank": 5,
+     "url": "https://www.linkedin.com/in/cathyoh",
+     "title": "Cathy Oh - Chief Marketer CMO of the Year",
+     "snippet": "# Cathy Oh\n\nHeadline: Marketing Officer at Samsung Electronics | TV & Mobile Services and Advertising\nLocation: New York City Metropolitan Area United States\nExperience: 20 years 10 months\nLinkedIn:  · 6,379 followers\nDescription: Cathy Oh is a global marketing executive and revenue growth catalyst with over two…\n\n## Education\n- Carnegie Mellon University - Tepper School of Business, BS, Business "
+    },
+    {
+     "provider": "tavily",
+     "rank": 6,
+     "url": "https://www.instagram.com/p/DdMP9IeAVDO",
+     "title": "Instagram",
+     "snippet": "Allison Stransky to Leave Samsung for CMO Role at Boston Beer  \n  \nAllison Stransky, the Vice President and Chief Marketing Officer of Samsung Electronics America, is set to take on a new career chapter as Chief Marketing Officer of The Boston Beer Company, effective October 12, 2026. [...] Stransky brings more than 20 years of experience spanning technology and consumer brands. At Samsung, where "
+    },
+    {
+     "provider": "tavily",
+     "rank": 7,
+     "url": "https://www.linkedin.com/in/allisonroblstransky",
+     "title": "Allison Robl Stransky - The Boston Beer Company",
+     "snippet": "## Experience\n- Vice President / CMO at Samsung Electronics America (May 2023 to present)\n- Board Member at Helen Keller Services (HKS) (Feb 2023 to present) [...] ## Recent Activity\n- Shared: It's the annual event that builds excitement for the upcoming school year: back to school shopping! Target continues to be our retailer of...\n- Shared: It's an exciting day at Samsung Electronics America wit"
+    },
+    {
+     "provider": "tavily",
+     "rank": 8,
+     "url": "https://news.samsung.com/us/about/executive-bios",
+     "title": "Executive Bios",
+     "snippet": "Over the past 30+ years, Yoonie has held significant leadership roles across Samsung, most recently serving as Head of the Global Strategic Marketing Office. Previously, Yoonie led a number of businesses around the world, including Head of Samsung Electronics America’s Mobile Division, President of Samsung Brazil and President of Samsung Turkey. [...] Michael McDermott is the Executive Vice Presid"
+    },
+    {
+     "provider": "tavily",
+     "rank": 9,
+     "url": "https://tavily.com/knowledge/company/lEiOPSHCpP9r",
+     "title": "Samsung Electronics",
+     "snippet": "# Samsung Electronics\nID: lEiOPSHCpP9r\nWebsite: www.samsung.com\nLegal name: Samsung Electronics Co., Ltd\nHeadquarters: Suwon-Si, Gyeonggi-Do, South Korea\nLinkedIn: www.linkedin.com/company/samsung-electronics · 5,114,585 followers\nIndustry: Computers and Electronics Manufacturing\nCompany type: Public Company\nBusiness model: B2C\nSaaS: no [...] SaaS: no\nSocial profiles: www.facebook.com/samsunggloba"
+    },
+    {
+     "provider": "tavily",
+     "rank": 10,
+     "url": "https://schedule.sxsw.com/2026/contributors/2214671",
+     "title": "SXSW 2026 Schedule | Allison Stransky",
+     "snippet": "March 15–21, 2027 | AUSTIN, TX\n\nBadges on sale now Lock in big savings\n\nSchedule Buy   Login\n\nMarch 15–21, 2027 | AUSTIN, TX\n\nBadges on sale now Lock in big savings\n\nLogin\n\n##### You are viewing events from 2026\n\nGo to 2027 events\n\n##### Sign In\n\nSign In to start building your Schedule\n\nSign In"
+    }
+   ]
+  },
+  {
+   "query": "Samsung Electronics Global Marketing Office head",
+   "provider": "tavily",
+   "status": "ok",
+   "latency_ms": 1188,
+   "usd": 0.005,
+   "hits": [
+    {
+     "provider": "tavily",
+     "rank": 1,
+     "url": "https://www.crunchbase.com/person/younghee-lee",
+     "title": "YoungHee Lee - President & Head of Global marketing ...",
+     "snippet": "Young-hee is based out of LeeSeoul, Seoul-t'ukpyolsi and is the President & Head of Global marketing of Samsung Electronics."
+    },
+    {
+     "provider": "tavily",
+     "rank": 2,
+     "url": "https://www.mk.co.kr/en/business/12034800",
+     "title": "\"We Must Not Become a Semiconductor Sidekick\"... Samsung Replaces TV Division Head and Abolishes Global Marketing Office - MK",
+     "snippet": "On the 4th, Samsung Electronics Co., Ltd. said it had appointed current Visual Display Business Division head Yong Seok-woo, president, as an aide to the head of the DX Division, and named Global Marketing Office head Won-Jin Lee, president, as the new head of the Visual Display Business Division. Lee will also serve as head of the Service Business Team in the Visual Display Business Division. [.."
+    },
+    {
+     "provider": "tavily",
+     "rank": 3,
+     "url": "https://news.samsung.com/global/samsung-electronics-announces-new-leadership-3",
+     "title": "Samsung Electronics Announces New Leadership – Samsung Global Newsroom",
+     "snippet": "Yong Kwan Kim, named President of Management Strategy at DS Division; previously Executive Vice President of Business Support TF\n\n Wonjin Lee, named President and Head of Global Marketing Office; previously executive advisor for Samsung Electronics\n\n President Hark Kyu Park will move to the Business Support TF; previously Chief Financial Officer\n\n Device Solutions\n DS\n Leadership\n Memory Business\n"
+    },
+    {
+     "provider": "tavily",
+     "rank": 4,
+     "url": "https://news.samsung.com/us/about/executive-bios",
+     "title": "Executive Bios",
+     "snippet": "Over the past 30+ years, Yoonie has held significant leadership roles across Samsung, most recently serving as Head of the Global Strategic Marketing Office. Previously, Yoonie led a number of businesses around the world, including Head of Samsung Electronics America’s Mobile Division, President of Samsung Brazil and President of Samsung Turkey. [...] Michael McDermott is the Executive Vice Presid"
+    },
+    {
+     "provider": "tavily",
+     "rank": 5,
+     "url": "https://qz.com/samsung-tv-chief-replaced-marketing-executive-chinese-competition-050426",
+     "title": "Samsung replaces TV chief amid Chinese competition",
+     "snippet": "Monday's announcement named Won-Jin Lee as the incoming head of the Visual Display business; Lee had most recently led Samsung's Global Marketing Office. Lee joined Samsung in 2014, having previously worked at Google$GOOGL. Outgoing chief Yong Seok-woo will shift to the Device eXperience division in an advisory capacity, with AI and robotics listed as his areas of focus going forward. [...] Quartz"
+    },
+    {
+     "provider": "tavily",
+     "rank": 6,
+     "url": "https://www.linkedin.com/in/yoonie-joung-%EC%A0%95%EC%9C%A4",
+     "title": "Yoonie Joung (정윤) - President & CEO, Samsung Electronics North America",
+     "snippet": "Yoonie Joung is the President and CEO of Samsung Electronics North America, responsible for leading the region, driving growth and increasing customer loyalty to Samsung’s innovative products, technologies and AI-solutions that enhance people’s lives. Over the past 30+ years, Yoonie has held significant leadership roles across Samsung, most recently serving as Head of the Global Strategic Marketin"
+    },
+    {
+     "provider": "tavily",
+     "rank": 7,
+     "url": "https://www.linkedin.com/in/rebecca-gonzales-2bba87151",
+     "title": "Rebecca Gonzales - Director of Marketing at Samsung ...",
+     "snippet": "Headline: Director of Marketing at Samsung Electronics\nCurrent role: Director Of Marketing\nSeniority: Director, Marketing\nLocation: Boca Raton, Florida, United States\nExperience: 12 years 6 months\nLinkedIn:  · 69 followers [...] Description: Rebecca Gonzales is the Director of Marketing at Samsung Electronics where she manages overall strategy for everything from brand awareness to lead generation"
+    },
+    {
+     "provider": "tavily",
+     "rank": 8,
+     "url": "https://pages.samsung.com/us/solvefortomorrow/judges_fb.html",
+     "title": "Samsung :: Solve for Tomorrow",
+     "snippet": "Dr. Steel joined NAHQ in the summer of 2008 after ten years at Samsung Electronics in Korea. He began his time at Samsung in the Global Strategy Group, where he managed strategy and business development projects for numerous companies within the Samsung Group. From 2002 to 2007, he served as Vice President and head of marketing for the Digital Media business, where he established the role of marke"
+    },
+    {
+     "provider": "tavily",
+     "rank": 9,
+     "url": "https://www.samsung.com/global/ir/governance-csr/board-of-directors",
+     "title": "Board of Director │ Corporate Governance │ Investor Relations │ Samsung Global |",
+     "snippet": "President & Head of Mobile eXperience Tae-Moon Roh [...] Dr. Young-Hyun Jun is Vice Chairman & CEO and Head of the Device Solutions (DS) Division at Samsung Electronics. Since assuming the position of the Device Solutions (DS) Division Head in May 2024, he has been leading efforts to strengthen the competitiveness of the semiconductor business, leveraging his business acumen and deep insights in m"
+    },
+    {
+     "provider": "tavily",
+     "rank": 10,
+     "url": "https://tavily.com/knowledge/company/lEiOPSHCpP9r",
+     "title": "Samsung Electronics",
+     "snippet": "# Samsung Electronics\nID: lEiOPSHCpP9r\nWebsite: www.samsung.com\nLegal name: Samsung Electronics Co., Ltd\nHeadquarters: Suwon-Si, Gyeonggi-Do, South Korea\nLinkedIn: www.linkedin.com/company/samsung-electronics · 5,114,585 followers\nIndustry: Computers and Electronics Manufacturing\nCompany type: Public Company\nBusiness model: B2C\nSaaS: no [...] ## Headcount\n- Now: 189,967 · +27,297 yearly (16.8%) · "
+    }
+   ]
+  },
+  {
+   "query": "삼성전자 마케팅 조직도 임원",
+   "provider": "tavily",
+   "status": "ok",
+   "latency_ms": 946,
+   "usd": 0.005,
+   "hits": [
+    {
+     "provider": "tavily",
+     "rank": 1,
+     "url": "https://m.blog.naver.com/dealsite/224426100564",
+     "title": "[삼성전자 부사장단 해부] VD 부사장 반년 새 3명↓…실적 부진에 조직 슬림화 예고 : 네이버 블로그",
+     "snippet": "​\n\nVD사업부는 외부 인사뿐 아니라 다른 세트 사업에서 경험을 쌓은 임원도 전략마케팅 조직에 배치해왔습니다. 현재 전략마케팅팀장을 맡고 있는 이헌 부사장은 MX사업부 전략마케팅실 담당임원을 거쳐 2024년 VD사업부로 이동했습니다. 이 부사장에 앞서 영상전략마케팅팀장을 맡았던 김철기 생활가전사업부장 부사장과 영상전략마케팅팀 담당임원을 맡았던 최병희 CIS총괄 부사장 역시 MX 전략마케팅실 출신입니다. 스마트폰 사업에서 쌓은 마케팅 경험을 TV 사업으로 옮기는 인사 흐름이 이어진 것입니다.\n\n​\n\n보수적인 인사 기조는 지난해 11월 발표된 2026년 정기 임원 인사에서도 나타났습니다. 당시 디바이스경험(DX)부문 전체 승진자는 92명으로 전년 86명보다 늘었습니다. 다만 업계에 따르면 VD사업부 승진자는 9"
+    },
+    {
+     "provider": "tavily",
+     "rank": 2,
+     "url": "https://news.samsungsemiconductor.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2025%EB%85%84-%EC%A0%95%EA%B8%B0-%EC%9E%84%EC%9B%90-%EC%9D%B8%EC%82%AC",
+     "title": "삼성전자 2025년 정기 임원 인사 - 삼성전자 반도체 뉴스룸",
+     "snippet": "▲ DX부문 VD사업부 영업전략그룹장 노경래 부사장 (48세)  \n·마케팅, 해외영업 등 풍부한 경험을 보유한 VD 제품 영업 전문가로서 프리미엄 제품군의 시장 점유율 확대, 신제품 셀아웃 확판 등에 기여\n\n▲ DX부문 DA사업부 회로개발그룹장 홍주선 부사장 (53세)  \n·생활가전 제품군에 탑재되는 회로/인버터/센서 전문성을 기반으로 AI 가전의 기능 고도화, 차세대 제품군의 센서 개발 등 성과를 창출\n\n▲ DX부문 MX사업부 Advanced디자인그룹장 부민혁 부사장 (51세)  \n·VD, DA 제품군의 디자인 경험을 보유한 스마트폰 선행 디자인 전문가로 신규 폼팩터 컨셉 발굴, Bar-Type 차별화 디자인 제안 등 변화를 주도\n\n▲ DX부문 한국총괄 마케팅팀 부팀장 장소연 부사장 (53세)  \n·브랜드"
+    },
+    {
+     "provider": "tavily",
+     "rank": 3,
+     "url": "https://www.inoutsisanews.com/19470",
+     "title": "삼성전자 2026년 정기 임원인사.. 부사장 51명, 상무 93명 승진:내외시사뉴스 inoutsisanews.com",
+     "snippet": "정인희 부사장(51세)  정인희 부사장은 ESG 분야 전문성과 국제기구 네트워크 등 폭넓은 업계 경험을 바탕으로 지속가능경영 관련 전략을 제시하고 주요 이해관계자와의 협력을 주도하고 있다.    · DX부문 DA사업부 전략구매그룹장 이인실 상무(46세)  이인실 상무는 DA사업부 여성 최초로 생산법인 구매 주재를 역임한 구매 전문가로서, 원자재 공급망 다변화를 통해 가전사업의 구매 경쟁력 확보에 이바지하고 있다.    · DX부문 글로벌마케팅실 브랜드마케팅그룹장 최보람 상무(48세)  최보람 상무는 마케팅 경험이 풍부한 브랜드 전문가로서, 마케팅 콘텐츠 수준을 제고하고 데이터 기반 개인화 마케팅의 토대를 마련해 브랜드 경쟁력을 강화하고 있다.    · DX부문 경영지원실 Corporate Developmen"
+    },
+    {
+     "provider": "tavily",
+     "rank": 4,
+     "url": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2026%EB%85%84-%EC%A0%95%EA%B8%B0-%EC%9E%84%EC%9B%90-%EC%9D%B8%EC%82%AC",
+     "title": "삼성전자 2026년 정기 임원 인사 – Samsung Newsroom Korea",
+     "snippet": "## 성별이나 국적을 불문하고 성과를 창출하고 성장 잠재력을 갖춘 인재 발탁을 지속해 다양성과 포용성에 기반한 글로벌 인적경쟁력을 제고했다.\n\n▲ DX부문 지속가능경영추진센터 ESG전략그룹장 정인희 부사장 (51세)\n\n· ESG 분야 전문성과 국제기구 네트워크 등 폭넓은 업계 경험을 바탕으로 지속가능경영 관련 전략을 제시하고 주요 이해관계자와의 협력을 주도\n\n▲ DX부문 DA사업부 전략구매그룹장 이인실 상무 (46세)\n\n· DA사업부 여성 최초로 생산법인 구매 주재를 역임한 구매 전문가로 원자재 공급망 다변화를 통해 가전사업의 구매경쟁력 확보에 기여\n\n▲ DX부문 글로벌마케팅실 브랜드마케팅그룹장 최보람 상무 (48세)\n\n· 마케팅 경험이 풍부한 브랜드 전문가로 마케팅 컨텐츠 수준을 제고하고 데이터 기반 개인"
+    },
+    {
+     "provider": "tavily",
+     "rank": 5,
+     "url": "https://www.newswire.co.kr/newsRead.php?no=1023853",
+     "title": "삼성전자 2026년 정기 임원인사 - 뉴스와이어",
+     "snippet": "· DX부문 DA사업부 전략구매그룹장 이인실 상무(46세)  \n이인실 상무는 DA사업부 여성 최초로 생산법인 구매 주재를 역임한 구매 전문가로서, 원자재 공급망 다변화를 통해 가전사업의 구매 경쟁력 확보에 이바지하고 있다.  \n  \n · DX부문 글로벌마케팅실 브랜드마케팅그룹장 최보람 상무(48세)  \n최보람 상무는 마케팅 경험이 풍부한 브랜드 전문가로서, 마케팅 콘텐츠 수준을 제고하고 데이터 기반 개인화 마케팅의 토대를 마련해 브랜드 경쟁력을 강화하고 있다.  \n  \n · DX부문 경영지원실 Corporate Development그룹 이성심 상무(48세)  \n이성심 상무는 회계 전문성과 Deal 경험을 보유한 M&A 전문가로서 AI, 로봇, 공조 등 주요 분야의 M&A 및 투자 실행을 통해 사업 성장의 토"
+    },
+    {
+     "provider": "tavily",
+     "rank": 6,
+     "url": "https://www.thelec.kr/news/articleView.html?idxno=44306",
+     "title": "삼성전자 2026년 정기 임원 인사...승진자 24명 증가 < 최신뉴스 < 기사본문 - 디일렉(THE ELEC)",
+     "snippet": "삼성전자는 \"성별·국적 관계없이 성과를 창출한 인재도 8명 발탁했다\"며 \"다양성과 포용성 기반 인적 경쟁력을 높였다\"고 강조했다. DX부문 지속가능경영추진센터 정인희 ESG전략그룹장 부사장과 DX부문 이인실 DA사업부 전략구매그룹장 상무, DX부문 최보람 글로벌마케팅실 브랜드마케팅그룹장 상무, DX부문 이성심 경영지원실 기업 개발(코퍼레이트 디벨롭먼트) 그룹 상무, DS부문 제이콥주 디지털솔루션센터(DSC) 화남영업팀장 부사장, DS부문 김경아 글로벌 제조·인프라총괄 환경보전그룹장 상무, DS부문 전하영 CTO 반도체연구소 파운드리 공정개발팀 마스터, 노숙영 삼성종합기술원(SAIT) 포토닉스 기술유닛(TU) 마스터 등이 선임·승진했다.\n\n삼성전자는 \"2026년 정기 임원 인사로 경영진 인사를 마무리했다\"며 "
+    },
+    {
+     "provider": "tavily",
+     "rank": 7,
+     "url": "https://www.joongangenews.com/news/articleView.html?idxno=468637",
+     "title": "삼성전자, 2026년 정기 임원 인사 단행...총 161명 승진 < IT·통신 < 산업 < 기사본문 - 중앙이코노미뉴스",
+     "snippet": "다양성과 포용성 강화도 이번 인사의 핵심 축이다. ESG 전략, 글로벌 마케팅, 구매·환경·M&A 등 비기술 분야에서도 여성 리더의 발탁이 늘었고, 중국 영업 전문가 제이콥 주 부사장 등 외국인 임원도 승진 명단에 포함됐다. 반도체 연구·광학 설계 등 전문기술 영역의 Master 승진자 중에서도 여성 비중이 확대됐다.\n\n삼성전자는 이번 인사를 통해 경영진 구성을 마무리했으며, 조만간 조직개편 및 보직 인사도 확정해 발표할 예정이다.\n\n[전자(DX), 승진자 명단]\n\n□ 부사장 승진\n\n강민석     강상용     구자천     권정현     김문수\n\n노성원     서치영     설지윤     설  훈     송인강\n\n유종민     유한종     이민철     이성진     이윤수\n\n이종규     이종포    "
+    },
+    {
+     "provider": "tavily",
+     "rank": 8,
+     "url": "https://semiconductor.samsung.com/kr/about-us/executive",
+     "title": "삼성전자 반도체의 경영진 | 회사 소개 | 삼성반도체",
+     "snippet": "한진만 사장은 1989년 삼성전자 입사 이후, DRAM/Flash 설계, 제품/솔루션 개발 등의 부서에서 근무하며 제품에 대한 폭넓은 경험을 쌓았습니다. SSD개발팀장, 상품기획팀장, 마케팅팀장, 전략마케팅실장 등 다양한 리더십을 역임하며 뛰어난 전문성과 통찰력을 바탕으로 삼성전자가 메모리 시장에서의 리더십 확보를 주도하였습니다.  \n   \n 2022년에는 DSA 총괄로 부임하여 기술 전문성과 비즈니스 감각을 바탕으로 미국 최전선에서 반도체 사업을 진두지휘하며, 풍부한 글로벌 고객대응 경험과 네트워크를 쌓았습니다. [...] dd\n\n한진만 사장은 1989년 삼성전자 입사 이후, DRAM/Flash 설계, 제품/솔루션 개발 등의 부서에서 근무하며 제품에 대한 폭넓은 경험을 쌓았습니다. SSD개발팀장, 상품기획"
+    },
+    {
+     "provider": "tavily",
+     "rank": 9,
+     "url": "https://thetracker.co.kr/View.aspx?No=3867128",
+     "title": "삼성전자, 임원인사 단행...부사장 51명 승진 | 더트래커",
+     "snippet": "# 더트래커 더트래커\n\n더트래커\n\n## 전체 메뉴\n\n# 더트래커 더트래커\n\n더트래커\n\n#### 삼성전자, 임원인사 단행...부사장 51명 승진\n\n페이스북\nX\n네이버\n클립보드 복사\n인쇄하기\n삼성전자, 임원인사 단행...부사장 51명 승진\n\n더트래커 = 김태호 기자\n\n삼성전자는 25일 부사장, 상무, 펠로우, 마스터에 대한 2026년 정기 임원인사를 실시했다고 밝혔다.\n\n삼성전자는 부사장 51명, 상무 93명, 펠로우 1명, 마스터 16명 등 총 161명을 승진 발령했다.\n\n삼성전자는 산업 패러다임의 급속한 변화에 선제적으로 대응하며 주도권을 확보하기 위해 AI, 로봇, 반도체 등의 분야에서 미래 기술을 이끌 리더들을 중용했다.\n\n불확실한 경영 환경 속에서도 주요 사업분야에서 경영성과를 창출한 인재들을 승진시키"
+    },
+    {
+     "provider": "tavily",
+     "rank": 10,
+     "url": "https://blog.naver.com/for_my_blog/223483808644",
+     "title": "포마블의 지식탐구 : 네이버 블로그",
+     "snippet": "|\n|  |\n\n|  |  |  |\n --- \n| 이 블로그  인사.정보 카테고리 글전체글 보기  인사.정보글 목록      | 글 제목 | 작성일 |  화면 최상단으로 이동 |\n\n|\n|  |\n\n[{\"title\":\"삼성전자 임원 명단 (회장 ~ 부사장 프로필) 24.3월 현재\",\"source\":\" ..\",\"domainIdOrBlogId\":\"for\\_my\\_blog\",\"nicknameOrBlogId\":\"포마블\",\"logNo\":223483808644,\"smartEditorVersion\":4,\"outsideDisplay\":true,\"cafeDisplay\":true,\"blogDisplay\":true,\"lineDisplay\":true,\"meDisplay\":true}]\n\nRSS 2.0 RSS 1.0 ATOM 0.3\n\n-"
+    }
+   ]
+  },
+  {
+   "query": "삼성전자 글로벌마케팅실 전략마케팅실 임원",
+   "provider": "tavily",
+   "status": "ok",
+   "latency_ms": 1020,
+   "usd": 0.005,
+   "hits": [
+    {
+     "provider": "tavily",
+     "rank": 1,
+     "url": "https://m.blog.naver.com/for_my_blog/222792732796",
+     "title": "삼성전자 임원 몇명? 인사 명단 프로필 (부회장-사장-부사장급) : 네이버 블로그",
+     "snippet": "최기환 부사장 1970.01 글로벌 제조&인프라총괄 TP센터 담당임원 Univ. of Southern California(박사)\n\n최길현 부사장 1966.1 글로벌 제조&인프라총괄 Foundry제조기술센터장 한양대(석사)\n\n최방섭 부사장 1963.04 Mobile eXperience 전략마케팅실장 서울대\n\n최성현 부사장 1970.05 Samsung Research 차세대통신연구센터장 Univ. of Michigan, Ann Arbor(박사)\n\n최수영 부사장 1965.11 동남아총괄 지원팀장 고려대\n\n최승걸 부사장 1968.12 글로벌 제조&인프라총괄 인프라기술센터장 서울시립대\n\n최승범 부사장 1964.12 Samsung Research 기술전략팀장 한국과학기술원(석사)\n\n최승식 부사장 1966.01 중국총괄"
+    },
+    {
+     "provider": "tavily",
+     "rank": 2,
+     "url": "https://www.mk.co.kr/news/business/12034800",
+     "title": "“반도체 들러리 안돼”…삼성, TV사업부장 교체·글로벌마케팅실 폐지 - 매일경제",
+     "snippet": "4일 삼성전자는 현 용석우 VD사업부장(사장)을 DX부문 보좌역으로 선임하고 이원진 글로벌마케팅실장(사장)을 신임 VD사업부장으로 임명했다고 밝혔다. 이 사장은 VD사업부 Service Business(서비스비즈니스)팀장도 겸직한다.\n\n이와 함께 이 사장이 맡아오던 글로벌마케팅실은 별도 사장급 조직에서 DX부문 직속으로 이관되어서 운영되는 등 조직 슬림화도 단행한다고 밝혔다.\n\n삼성전자의 이러한 조치는 반도체를 담당하는 DS부문과 스마트폰, TV, 가전을 만드는 DX부문 간 실적 양극화가 심화하는 상황에서 DX부문의 효율성을 높이기 위한 조치로 풀이된다. DS부문은 역대급 성과급을 요구하면서 파업에 들어가는 가운데 DX부문은 반도체 원가 부담이 커진 것을 계기로 조직 체질개선을 가속화하고 있다. [...] "
+    },
+    {
+     "provider": "tavily",
+     "rank": 3,
+     "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=122092",
+     "title": "삼성전자, 임원인사 단행…검증된 인재, 세대교체 속도 < 산업/기업 < 경제 < 기사본문 - 투데이신문",
+     "snippet": "승진자 평균 연령은 47.7세다. 지난해 47.6세와 비슷한 수준을 유지하면서 글로벌 인적경쟁력을 제고했다. 성별이나 국적을 불문하고 성과 창출 및 성장 잠재력을 갖춘 인재 발탁을 지속해 다양성과 포용성을 강조했다.\n\nDX부문에선 ▲지속가능경영추진센터 ESG전략그룹장 정인희 부사장(51세) ▲DA사업부 전략구매그룹장 이인실 상무(46세) ▲글로벌마케팅실 브랜드마케팅그룹장 최보람 상무(48세) ▲경영지원실 Corporate Development그룹 이성심 상무(48세)가 승진했다.\n\nDS부문에선 ▲DSC 화남영업팀장 제이콥주 부사장(47세) ▲글로벌 제조&인프라총괄 환경보전그룹장 김경아 상무(47세) ▲CTO 반도체연구소 Foundry공정개발팀 전하영 Master(46세)가 승진했다. 아울러 삼성종합기술원(S"
+    },
+    {
+     "provider": "tavily",
+     "rank": 4,
+     "url": "https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2026%EB%85%84-%EC%A0%95%EA%B8%B0-%EC%9E%84%EC%9B%90-%EC%9D%B8%EC%82%AC",
+     "title": "삼성전자 2026년 정기 임원 인사 – Samsung Newsroom Korea",
+     "snippet": "## 성별이나 국적을 불문하고 성과를 창출하고 성장 잠재력을 갖춘 인재 발탁을 지속해 다양성과 포용성에 기반한 글로벌 인적경쟁력을 제고했다.\n\n▲ DX부문 지속가능경영추진센터 ESG전략그룹장 정인희 부사장 (51세)\n\n· ESG 분야 전문성과 국제기구 네트워크 등 폭넓은 업계 경험을 바탕으로 지속가능경영 관련 전략을 제시하고 주요 이해관계자와의 협력을 주도\n\n▲ DX부문 DA사업부 전략구매그룹장 이인실 상무 (46세)\n\n· DA사업부 여성 최초로 생산법인 구매 주재를 역임한 구매 전문가로 원자재 공급망 다변화를 통해 가전사업의 구매경쟁력 확보에 기여\n\n▲ DX부문 글로벌마케팅실 브랜드마케팅그룹장 최보람 상무 (48세)\n\n· 마케팅 경험이 풍부한 브랜드 전문가로 마케팅 컨텐츠 수준을 제고하고 데이터 기반 개인"
+    },
+    {
+     "provider": "tavily",
+     "rank": 5,
+     "url": "https://www.samsung-dxrecruit.com/dept/detail/C0010",
+     "title": "Recruiting | 삼성전자 DX부문 채용",
+     "snippet": "# 삼성DX\n\nGlobal Marketing Office 글로벌마케팅실\n\n글로벌마케팅실 글로벌마케팅실\n\n모든 고객들이 행복해지고 편리해지도록,   \n 소비자들의 삶의 가치를 높여주는 브랜드 달성을 위해, 전사 마케팅 역량을 확보하며,   \n 글로벌 브랜드 이미지 제고를 리드하고 있습니다.\n\n### 팀 소개\n\n#### History\n\n99년 전사 마케팅 역량 확보와, 브랜드 인지도 및 선호도 제고를 위해 출범한 글로벌마케팅실은, 고객의 삶에 대한 의미있는 변화를 전달하고자 지속적인 노력을 진행하여 왔으며, 최근에는 브랜드 전략을 담당하는 「글로벌브랜드센터」, 온/오프 직영 영업 마케팅 강화를 위한 「D2C센터」, 고객 제품 경험 강화를 위한 「CX-MDE센터」 3개 조직으로 확대 재편되어 고객과 시장을 향한 "
+    },
+    {
+     "provider": "tavily",
+     "rank": 6,
+     "url": "http://www.kcnews.org/news/articleView.html?idxno=12706",
+     "title": "삼성전자 2026년 정기 임원인사 - 한국관세신문",
+     "snippet": "· DX부문 DA사업부 전략구매그룹장 이인실 상무(46세)  \n 이인실 상무는 DA사업부 여성 최초로 생산법인 구매 주재를 역임한 구매 전문가로서, 원자재 공급망 다변화를 통해 가전사업의 구매 경쟁력 확보에 이바지하고 있다.  \n   \n · DX부문 글로벌마케팅실 브랜드마케팅그룹장 최보람 상무(48세)  \n 최보람 상무는 마케팅 경험이 풍부한 브랜드 전문가로서, 마케팅 콘텐츠 수준을 제고하고 데이터 기반 개인화 마케팅의 토대를 마련해 브랜드 경쟁력을 강화하고 있다.  \n   \n · DX부문 경영지원실 Corporate Development그룹 이성심 상무(48세)  \n 이성심 상무는 회계 전문성과 Deal 경험을 보유한 M&A 전문가로서 AI, 로봇, 공조 등 주요 분야의 M&A 및 투자 실행을 통해 사업 "
+    },
+    {
+     "provider": "tavily",
+     "rank": 7,
+     "url": "https://m.thebell.co.kr/m/newsview.asp?newskey=202605071710169760109115",
+     "title": "'이원진 나비효과' 최승은 삼성전자 부사장, 입지확대 '시동'",
+     "snippet": "대표적으로 이 사장이 맡던 글로벌마케팅실의 후신으로 볼 수 있는 조직에 최승은 부사장이 임명됐다. 최 부사장은 삼성전자가 외부에서 영입한 전문가다."
+    },
+    {
+     "provider": "tavily",
+     "rank": 8,
+     "url": "https://it.chosun.com/news/articleView.html?idxno=2023092128356",
+     "title": "삼성전자, 미래먹거리·글로벌마케팅 쇄신에 힘줬다 - IT조선",
+     "snippet": "삼성전자가 그룹 전체의 미래 먹거리를 찾는 미래사업기획단과 제품 마케팅 전략을 총괄하는 글로벌마케팅실 수장을 교체하며 사업 쇄신에 힘을 실"
+    },
+    {
+     "provider": "tavily",
+     "rank": 9,
+     "url": "https://linkareer.com/activity/221881",
+     "title": "[삼성전자] DX부문 경력사원 채용(기획팀, 글로벌마케팅실) ...",
+     "snippet": "[삼성전자] DX부문 경력사원 채용(기획팀, 글로벌마케팅실) 채용. [모집분야]. [기획팀] 핀테크 전략수립. [글로벌마케팅실] 제품 연결 경험 고객 인사이트 발굴."
+    },
+    {
+     "provider": "tavily",
+     "rank": 10,
+     "url": "https://news.samsungsemiconductor.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2025%EB%85%84-%EC%A0%95%EA%B8%B0-%EC%9E%84%EC%9B%90-%EC%9D%B8%EC%82%AC",
+     "title": "삼성전자 2025년 정기 임원 인사 - 삼성전자 반도체 뉴스룸",
+     "snippet": "▲ DX부문 VD사업부 영업전략그룹장 노경래 부사장 (48세)  \n·마케팅, 해외영업 등 풍부한 경험을 보유한 VD 제품 영업 전문가로서 프리미엄 제품군의 시장 점유율 확대, 신제품 셀아웃 확판 등에 기여\n\n▲ DX부문 DA사업부 회로개발그룹장 홍주선 부사장 (53세)  \n·생활가전 제품군에 탑재되는 회로/인버터/센서 전문성을 기반으로 AI 가전의 기능 고도화, 차세대 제품군의 센서 개발 등 성과를 창출\n\n▲ DX부문 MX사업부 Advanced디자인그룹장 부민혁 부사장 (51세)  \n·VD, DA 제품군의 디자인 경험을 보유한 스마트폰 선행 디자인 전문가로 신규 폼팩터 컨셉 발굴, Bar-Type 차별화 디자인 제안 등 변화를 주도\n\n▲ DX부문 한국총괄 마케팅팀 부팀장 장소연 부사장 (53세)  \n·브랜드"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,238 @@
+<meta charset="utf-8">
+<title>Samsung Marketing Org Chart</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+<style>
+/* Editorial report: ink on white, one blue accent, serif headlines, mono data labels, hairlines not boxes.
+   Single light look by design (printed report), colours set explicitly. */
+:root {
+  --ink: #14141a; --grey: #5f6170; --faint: #9a9caa; --hair: #e3e4ea; --paper: #ffffff;
+  --blue: #1f4fd8; --blue-wash: #eef2fd;
+  --f-head: Georgia, "Times New Roman", "AppleMyungjo", "Batang", serif;
+  --f-body: Arial, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --f-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Apple SD Gothic Neo", monospace;
+  --f-brand: Poppins, Arial, sans-serif;
+  --side: 48px; --head-h: 56px;
+  color-scheme: light;
+}
+@media (max-width: 640px) { :root { --side: 20px; } }
+html, body { background: var(--paper); color: var(--ink); }
+body { font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(255,255,255,0.86); }
+.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(255,255,255,0.86);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--hair); }
+.site-in { max-width: 1440px; margin: 0 auto; min-height: var(--head-h); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px;
+  padding-left: max(var(--side), env(safe-area-inset-left, 0px)); padding-right: max(var(--side), env(safe-area-inset-right, 0px)); }
+.brand { font-family: var(--f-brand); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--ink); }
+.site nav { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-left: auto; }
+.site nav a { font-family: var(--f-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--grey); padding-block: 6px; }
+.site nav a[aria-current="page"] { color: var(--ink); border-bottom: 1px solid var(--ink); }
+
+.wrap { max-width: 1440px; margin: 0 auto; padding-block: 48px 72px;
+  padding-left: max(var(--side), env(safe-area-inset-left, 0px)); padding-right: max(var(--side), env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 36px; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--grey); }
+h1 { font-family: var(--f-head); font-weight: 400; font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.05; letter-spacing: -0.025em; margin: 10px 0 0; max-width: 22ch; text-wrap: balance; }
+h2 { font-family: var(--f-head); font-weight: 400; font-size: 1.5rem; letter-spacing: -0.015em; margin: 0; }
+.lede { color: var(--grey); font-size: 1.05rem; margin: 14px 0 0; max-width: 66ch; }
+footer { font-size: 0.82rem; color: var(--grey); border-top: 1px solid var(--hair); padding-top: 16px; }
+code { font-family: var(--f-mono); font-size: 0.85em; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 0.85rem; color: var(--grey); align-items: center; padding-block: 14px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.badge { display: inline-block; font-family: var(--f-mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 1px 6px; white-space: nowrap; border: 1px solid currentColor; }
+.b-ok { color: var(--blue); }
+.b-warn { color: var(--grey); border-style: dashed; }
+.b-off { color: var(--faint); border-color: var(--hair); }
+
+.callout { border-left: 2px solid var(--blue); padding: 4px 0 4px 18px; font-family: var(--f-head); font-size: 1.2rem; line-height: 1.45; max-width: 62ch; }
+.callout b { font-weight: 400; color: var(--blue); }
+
+.tree-box { overflow-x: auto; }
+.tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+.tree ul { margin-left: 10px; padding-left: 28px; border-left: 1px solid var(--hair); display: flex; flex-direction: column; }
+.tree li { position: relative; }
+.tree ul > li::before { content: ""; position: absolute; left: -28px; top: 26px; width: 22px; border-top: 1px solid var(--hair); }
+.tree ul > li:last-child::after { content: ""; position: absolute; left: -29px; top: 27px; bottom: 0; width: 3px; background: var(--paper); }
+.node { padding-block: 14px; display: flex; flex-direction: column; gap: 4px; max-width: 720px; min-width: 0; border-bottom: 1px solid var(--hair); }
+.node.root { border-bottom: 1px solid var(--ink); padding-bottom: 18px; }
+.node.root .unit .en { font-size: 1.6rem; }
+.node.gone .unit .en { color: var(--grey); text-decoration: line-through; text-decoration-color: var(--faint); text-decoration-thickness: 1px; }
+.unit { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.unit .en { font-family: var(--f-head); font-size: 1.22rem; letter-spacing: -0.01em; }
+.node.mk .unit .en::before { content: ""; display: inline-block; width: 7px; height: 7px; background: var(--blue); margin-right: 9px; vertical-align: 0.12em; }
+.unit .kr { color: var(--grey); font-size: 0.9rem; }
+.head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; font-size: 0.95rem; }
+.head .who { font-weight: 700; }
+.note { font-size: 0.86rem; color: var(--grey); margin: 0; max-width: 70ch; }
+.src { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.04em; margin: 2px 0 0; color: var(--faint); }
+.src a { color: var(--grey); }
+
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px 56px; border-top: 1px solid var(--ink); padding-top: 24px; }
+.panel { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.panel ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 8px; font-size: 0.92rem; }
+.timeline { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); font-size: 0.92rem; }
+.timeline > * { padding-block: 9px; border-bottom: 1px solid var(--hair); }
+.timeline .d { font-family: var(--f-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--grey); font-variant-numeric: tabular-nums; padding-top: 11px; }
+</style>
+<header class="site"><div class="site-in"><span class="brand">sourcemap</span><nav aria-label="Experiment pages"><a href="https://claude.ai/artifact/11FS45Ai7Y4x5izjg5xRYf" target="_blank" rel="noopener" aria-current="page">Org chart</a><a href="https://claude.ai/artifact/HxX7oQmrcjeHZMAdsMFyyk" target="_blank" rel="noopener">Tavily results</a></nav></div></header>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">sourcemap experiment · as of 2026-11-14</div>
+    <h1>Samsung Electronics marketing org chart</h1>
+    <p class="lede">Marketing units of the DX division (phones, TVs, appliances) and who leads them, pieced together from Tavily search results and the source pages they pointed to. Samsung does not publish this chart.</p>
+  </header>
+
+  <div class="legend" aria-label="Legend">
+    <span><span class="badge b-ok">Confirmed</span> read on the source page</span>
+    <span><span class="badge b-warn">Snippet only</span> seen in a search snippet, page not read</span>
+    <span><span class="badge b-off">Unknown</span> unit exists, head not found</span>
+  </div>
+
+  <div class="callout"><b>Biggest change:</b> on 4 May 2026 the Global Marketing Office stopped being a separate president-level organisation. Its head, Wonjin Lee, became head of the TV business (VD), and some marketing functions moved to the business units. The <b>Global Brand Center</b>, led by VP Choi Seung-eun, is now its de facto successor.</div>
+
+  <section aria-labelledby="t-h" style="display:flex;flex-direction:column;gap:12px">
+    <h2 id="t-h">Chart</h2>
+    <div class="tree-box">
+    <ul class="tree">
+      <li><div class="node root">
+          <div class="unit"><span class="en">Samsung Electronics · DX Division</span><span class="kr">디바이스경험(DX)부문</span></div>
+          <div class="head"><span class="who">TM Roh (노태문)</span><span>President &amp; CEO, Head of DX</span><span class="badge b-ok">Confirmed</span></div>
+          <p class="src"><a href="https://www.samsung.com/us/about-us/leadership-and-mission" target="_blank" rel="noopener">samsung.com/us</a> · <a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202605071710169760109115" target="_blank" rel="noopener">thebell</a></p>
+        </div>
+        <ul>
+          <li><div class="node mk gone">
+              <div class="unit"><span class="en">Global Marketing Office</span><span class="kr">글로벌마케팅실</span><span class="badge b-off">Downsized May 2026</span></div>
+              <div class="head"><span>Last head: <span class="who">Wonjin Lee (이원진)</span>, President, until 2026-05-04</span><span class="badge b-ok">Confirmed</span></div>
+              <p class="note">Founded 1999. Moved directly under the DX division; some functions moved to business units. Before that it ran three centers (below).</p>
+              <p class="src"><a href="https://www.mk.co.kr/news/business/12034800" target="_blank" rel="noopener">mk.co.kr 2026-05-04</a> · <a href="https://www.samsung-dxrecruit.com/dept/detail/C0010" target="_blank" rel="noopener">DX recruit page</a></p>
+            </div>
+            <ul>
+              <li><div class="node mk">
+                  <div class="unit"><span class="en">Global Brand Center</span><span class="kr">글로벌브랜드센터</span></div>
+                  <div class="head"><span class="who">Choi Seung-eun (최승은)</span><span>VP, Center head since May 2026</span><span class="badge b-ok">Confirmed</span></div>
+                  <p class="note">Brand strategy. Described as the Global Marketing Office's successor. She also still heads MX's Mobile Marketing Center.</p>
+                  <p class="src"><a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202605071710169760109115" target="_blank" rel="noopener">thebell 2026-05-08</a></p>
+                </div>
+                <ul>
+                  <li><div class="node mk">
+                      <div class="unit"><span class="en">Brand Marketing Group</span><span class="kr">브랜드마케팅그룹</span></div>
+                      <div class="head"><span class="who">Choi Bo-ram (최보람)</span><span>Managing Director (상무)</span><span class="badge b-ok">Confirmed</span></div>
+                      <p class="note">Listed under the Global Marketing Office in the Nov 2025 promotions. Placement under the Brand Center after May 2026 is our assumption.</p>
+                      <p class="src"><a href="https://www.newswire.co.kr/newsRead.php?no=1023853" target="_blank" rel="noopener">2026 executive promotions</a></p>
+                    </div></li>
+                </ul></li>
+              <li><div class="node mk">
+                  <div class="unit"><span class="en">D2C Center</span><span class="kr">D2C센터</span></div>
+                  <div class="head"><span>Head not found</span><span class="badge b-off">Unknown</span></div>
+                  <p class="note">Sales and marketing for Samsung's own online and offline stores.</p>
+                  <p class="src"><a href="https://www.samsung-dxrecruit.com/dept/detail/C0010" target="_blank" rel="noopener">DX recruit page</a></p>
+                </div></li>
+              <li><div class="node mk">
+                  <div class="unit"><span class="en">CX-MDE Center</span><span class="kr">CX-MDE센터</span></div>
+                  <div class="head"><span>Head not found</span><span class="badge b-off">Unknown</span></div>
+                  <p class="note">Connected-device customer experience and market insight.</p>
+                  <p class="src"><a href="https://www.samsung-dxrecruit.com/dept/detail/C0010" target="_blank" rel="noopener">DX recruit page</a></p>
+                </div></li>
+            </ul></li>
+
+          <li><div class="node">
+              <div class="unit"><span class="en">MX Business (Mobile)</span><span class="kr">MX사업부</span></div>
+              <p class="note">Smartphones and tablets.</p>
+            </div>
+            <ul>
+              <li><div class="node mk">
+                  <div class="unit"><span class="en">Mobile Marketing Center</span><span class="kr">모바일마케팅센터</span></div>
+                  <div class="head"><span class="who">Choi Seung-eun (최승은)</span><span>VP, concurrent with Global Brand Center</span><span class="badge b-ok">Confirmed</span></div>
+                  <p class="src"><a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202605071710169760109115" target="_blank" rel="noopener">thebell</a></p>
+                </div></li>
+              <li><div class="node mk">
+                  <div class="unit"><span class="en">Strategic Marketing Office</span><span class="kr">전략마케팅실</span></div>
+                  <div class="head"><span class="who">Choi Bang-seop (최방섭)</span><span>VP, Head (older blog list)</span><span class="badge b-warn">Snippet only</span></div>
+                  <p class="note">The earlier multi-provider search (Exa) found Seong H. Cho, EVP, listed as head on LinkedIn. Which is current was not checked.</p>
+                  <p class="src">LinkedIn · <a href="https://m.blog.naver.com/for_my_blog/222792732796" target="_blank" rel="noopener">Naver blog list</a></p>
+                </div></li>
+            </ul></li>
+
+          <li><div class="node">
+              <div class="unit"><span class="en">VD Business (TVs, displays)</span><span class="kr">VD사업부</span></div>
+              <div class="head"><span class="who">Wonjin Lee (이원진)</span><span>President, since 2026-05-04; also heads Service Business team</span><span class="badge b-ok">Confirmed</span></div>
+              <p class="src"><a href="https://www.mk.co.kr/news/business/12034800" target="_blank" rel="noopener">mk.co.kr</a> · <a href="https://m.blog.naver.com/dealsite/224426100564" target="_blank" rel="noopener">dealsite 2026-09-30</a></p>
+            </div>
+            <ul>
+              <li><div class="node mk">
+                  <div class="unit"><span class="en">Strategic Marketing Team</span><span class="kr">전략마케팅팀</span></div>
+                  <div class="head"><span class="who">Lee Heon (이헌)</span><span>VP, Team head (moved from MX in 2024)</span><span class="badge b-ok">Confirmed</span></div>
+                  <p class="src"><a href="https://m.blog.naver.com/dealsite/224426100564" target="_blank" rel="noopener">dealsite 2026-09-30</a></p>
+                </div></li>
+              <li><div class="node mk gone">
+                  <div class="unit"><span class="en">Custom Marketing Team</span><span class="kr">커스텀마케팅팀</span></div>
+                  <div class="head"><span>Former head Park Chul-woo left in 2026; not refilled</span><span class="badge b-ok">Confirmed</span></div>
+                  <p class="src"><a href="https://m.blog.naver.com/dealsite/224426100564" target="_blank" rel="noopener">dealsite</a></p>
+                </div></li>
+            </ul></li>
+
+          <li><div class="node">
+              <div class="unit"><span class="en">DA Business (Appliances)</span><span class="kr">생활가전(DA)사업부</span></div>
+              <div class="head"><span class="who">Kim Cheol-gi (김철기)</span><span>VP, Business head (ex-VD strategic marketing)</span><span class="badge b-ok">Confirmed</span></div>
+              <p class="src"><a href="https://m.blog.naver.com/dealsite/224426100564" target="_blank" rel="noopener">dealsite</a></p>
+            </div>
+            <ul>
+              <li><div class="node">
+                  <div class="unit"><span class="en">Sales Strategy Group</span><span class="kr">영업전략그룹</span></div>
+                  <div class="head"><span class="who">Han Eui-taek (한의택)</span><span>VP</span><span class="badge b-ok">Confirmed</span></div>
+                  <p class="note">Sales, next to marketing: runs the unified product-launch process.</p>
+                  <p class="src"><a href="https://www.newswire.co.kr/newsRead.php?no=1023853" target="_blank" rel="noopener">2026 executive promotions</a></p>
+                </div></li>
+            </ul></li>
+
+          <li><div class="node">
+              <div class="unit"><span class="en">Regional: Samsung Electronics America</span><span class="kr">미주</span></div>
+              <div class="head"><span class="who">Yoonie Joung (정윤)</span><span>President &amp; CEO North America; former Head of Global Strategic Marketing Office</span><span class="badge b-warn">Snippet only</span></div>
+              <p class="src"><a href="https://news.samsung.com/us/about/executive-bios" target="_blank" rel="noopener">Samsung US executive bios</a></p>
+            </div>
+            <ul>
+              <li><div class="node mk">
+                  <div class="unit"><span class="en">Corporate Marketing (CMO)</span></div>
+                  <div class="head"><span class="who">Allison Stransky</span><span>CMO, reported leaving for Boston Beer</span><span class="badge b-warn">Snippet only</span></div>
+                  <p class="note">Her LinkedIn now shows The Boston Beer Company. Successor not found.</p>
+                </div></li>
+              <li><div class="node mk">
+                  <div class="unit"><span class="en">MX Marketing, US</span></div>
+                  <div class="head"><span class="who">Olga Suvorova</span><span>CMO, Mobile Experience (BizKonnect)</span><span class="badge b-warn">Snippet only</span></div>
+                  <p class="note">The earlier Exa search found Keena Grigsby as CMO, US MX, on LinkedIn. Not resolved.</p>
+                </div></li>
+            </ul></li>
+        </ul></li>
+    </ul>
+    </div>
+  </section>
+
+  <div class="cols">
+    <section class="panel" aria-labelledby="h-h">
+      <h2 id="h-h">Who led global marketing</h2>
+      <div class="timeline">
+        <span class="d">to 2024-11</span><span>Lee Young-hee (이영희), President, Head of Global Marketing Office</span>
+        <span class="d">2024-11</span><span>Wonjin Lee (이원진), President, returns from retirement to head the office</span>
+        <span class="d">2026-05-04</span><span>Wonjin Lee moves to VD. Office downsized, placed directly under DX</span>
+        <span class="d">2026-05</span><span>Choi Seung-eun (최승은) named head of Global Brand Center</span>
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="g-h">
+      <h2 id="g-h">Gaps</h2>
+      <ul>
+        <li>Heads of the D2C Center and the CX-MDE Center.</li>
+        <li>Whether D2C and CX-MDE survived the May 2026 change, or moved to business units.</li>
+        <li>Current head of MX Strategic Marketing (two names).</li>
+        <li>Marketing in the semiconductor (DS) division and in Korea and other regions. Out of scope here.</li>
+        <li>Samsung's year-end 2026 reshuffle, usually late November, may change all of this.</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>Search: Tavily through Telem (5 queries, 50 results). Six key pages were then opened to confirm names; badges show which. Raw results: <code>experiment/tavily-samsung-marketing-orgchart/results.json</code>.</footer>
+</div>

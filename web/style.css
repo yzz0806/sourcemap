@@ -155,3 +155,56 @@ td.cell.sel { background: var(--soft); box-shadow: inset 2px 0 0 var(--blue); }
 .kpi b { display: block; font: 400 30px/1.1 Georgia, serif; }
 .notfound { border-top: 1px solid var(--ink); padding: 18px 0; max-width: 900px; }
 @media (max-width: 760px) { .sl { grid-template-columns: 24px 1fr; } .sl > :nth-child(3) { grid-column: 2; } .searchbox input { font-size: 18px; } }
+
+/* provider library */
+.segpick { display: flex; flex-wrap: wrap; border: 1px solid var(--ink); width: fit-content; margin: 14px 0 22px; }
+.segpick button { font: 14px Arial, sans-serif; background: none; border: 0; border-right: 1px solid var(--ink); padding: 9px 16px; cursor: pointer; color: var(--ink); }
+.segpick button:last-child { border-right: 0; }
+.segpick button.on { background: var(--ink); color: #fff; }
+.bcard { display: block; border: 1px solid var(--ink); border-radius: 18px; padding: 34px 36px 28px; margin: 0 0 28px; background: #fff; }
+.label.blue, .blue { color: var(--blue); }
+.bh { font-size: 40px; margin: 6px 0 8px; }
+.bmeta { font: 12px/1.5 ui-monospace, Menlo, monospace; color: var(--grey); margin: 0 0 22px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.bgrid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.bgrid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+.bpanel { min-width: 0; }
+.bpanel h3 { margin: 4px 0 14px; font-size: 21px; }
+.bpanel .small { margin: 10px 0 6px; line-height: 1.5; }
+.bpanel svg text { font-family: Arial, Helvetica, sans-serif; }
+.astable summary, .allnums summary { cursor: pointer; font-size: 13px; color: var(--blue); font-weight: 700; }
+.astable summary::marker, .allnums summary::marker { color: var(--blue); }
+table.mini { margin-top: 8px; font-size: 12.5px; }
+table.mini th, table.mini td { padding: 5px 8px 5px 0; }
+.lgrow { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12.5px; color: var(--grey); margin-bottom: 6px; }
+.lg { display: inline-flex; align-items: center; gap: 6px; }
+.bfoot { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--line); }
+.allnums { padding: 22px 36px; }
+.allnums summary .label { display: inline; margin-right: 10px; }
+.allnums[open] summary { margin-bottom: 14px; }
+@media (max-width: 1100px) { .bgrid3 { grid-template-columns: 1fr; } .bgrid2 { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .bcard { padding: 22px 18px; border-radius: 12px; } .bh { font-size: 28px; } }
+
+/* leadership changes: the big change, and a clear tag per change */
+.sig-head { border-top: 2px solid var(--ink); margin: 18px 0 8px; padding-top: 12px; }
+.sig-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.sig-card { border: 1px solid var(--line); border-top: 4px solid var(--ink); padding: 16px 18px; background: #fff; }
+.sig-card.sig-departed { border-top-color: var(--ink); background: var(--soft); }
+.sig-card.sig-appointed { border-top-color: var(--blue); }
+.sig-card h3 { margin: 10px 0 2px; font-size: 30px; }
+.sig-role { font-size: 15px; margin: 0 0 10px; }
+.sig-tag { display: inline-block; font: 700 10px/1.4 ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase;
+  padding: 2px 7px; border: 1px solid var(--ink); vertical-align: 2px; }
+.sig-tag.big { font-size: 12px; padding: 4px 10px; }
+.sig-tag.sig-departed { background: var(--ink); color: #fff; }
+.sig-tag.sig-appointed { background: var(--blue); border-color: var(--blue); color: #fff; }
+.sig-tag.sig-role_change { color: var(--ink); background: #fff; }
+.sig-person { font-size: 16px; }
+
+/* org chart page tabs: sources | search providers */
+.otabs { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--ink); margin: 6px 0 26px; }
+.otab { display: flex; flex-direction: column; gap: 2px; padding: 12px 22px 12px 0; margin-right: 22px; color: var(--grey);
+  border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.otab b { font: 400 22px/1.2 Georgia, serif; color: var(--grey); }
+.otab span { font-size: 12.5px; }
+.otab:hover { text-decoration: none; } .otab:hover b { color: var(--ink); }
+.otab.on { border-bottom-color: var(--ink); } .otab.on b { color: var(--ink); }

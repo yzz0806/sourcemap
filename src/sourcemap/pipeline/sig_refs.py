@@ -10,6 +10,31 @@ import re
 COMPANIES = {"nvidia": 1045810, "apple": 320193, "microsoft": 789019}
 WINDOW = ("2024-11-01", "2026-11-14")
 
+# Expanded reference (data/sig2): ten US mega-caps over five years.
+WINDOW2 = ("2021-11-14", "2026-11-14")
+COMPANIES2 = {
+    "nvidia": {"cik": 1045810, "name": "Nvidia", "ticker": "NVDA", "domain": "nvidia.com",
+               "newsroom": "https://nvidianews.nvidia.com/", "wikipedia": "Nvidia"},
+    "apple": {"cik": 320193, "name": "Apple", "ticker": "AAPL", "domain": "apple.com",
+              "newsroom": "https://www.apple.com/newsroom/", "wikipedia": "Apple Inc."},
+    "microsoft": {"cik": 789019, "name": "Microsoft", "ticker": "MSFT", "domain": "microsoft.com",
+                  "newsroom": "https://news.microsoft.com/", "wikipedia": "Microsoft"},
+    "alphabet": {"cik": 1652044, "name": "Alphabet", "ticker": "GOOGL", "domain": "abc.xyz",
+                 "newsroom": "https://abc.xyz/investor/", "wikipedia": "Alphabet Inc."},
+    "amazon": {"cik": 1018724, "name": "Amazon", "ticker": "AMZN", "domain": "amazon.com",
+               "newsroom": "https://press.aboutamazon.com/", "wikipedia": "Amazon (company)"},
+    "meta": {"cik": 1326801, "name": "Meta Platforms", "ticker": "META", "domain": "meta.com",
+             "newsroom": "https://about.fb.com/news/", "wikipedia": "Meta Platforms"},
+    "tesla": {"cik": 1318605, "name": "Tesla", "ticker": "TSLA", "domain": "tesla.com",
+              "newsroom": "https://ir.tesla.com/", "wikipedia": "Tesla, Inc."},
+    "broadcom": {"cik": 1730168, "name": "Broadcom", "ticker": "AVGO", "domain": "broadcom.com",
+                 "newsroom": "https://investors.broadcom.com/", "wikipedia": "Broadcom"},
+    "jpmorgan": {"cik": 19617, "name": "JPMorgan Chase", "ticker": "JPM", "domain": "jpmorganchase.com",
+                 "newsroom": "https://www.jpmorganchase.com/newsroom", "wikipedia": "JPMorgan Chase"},
+    "eli-lilly": {"cik": 59478, "name": "Eli Lilly", "ticker": "LLY", "domain": "lilly.com",
+                  "newsroom": "https://investor.lilly.com/", "wikipedia": "Eli Lilly and Company"},
+}
+
 EXTRACT_PROMPT = """From this Item 5.02 section of an SEC Form 8-K, list every change it reports.
 For each change give:
 - person: the full name as written
@@ -43,18 +68,35 @@ def doc_url(cik: int, accession: str, primary: str) -> str:
 
 
 def cut_502(text: str, limit: int = 12000) -> str:
-    """The Item 5.02 section: from 'Item 5.02' to the next 'Item N.NN' heading or the signature block."""
-    m = re.search(r"item\s*5\.02", text, re.I)
-    if not m:
-        return text[:limit]
-    rest = text[m.start():]
-    end = re.search(r"\bitem\s*\d{1,2}\.\d{2}\b|\bsignatures?\b", rest[12:], re.I)
-    section = rest[: 12 + end.start()] if end else rest
-    return section[:limit]
+    """The Item 5.02 section: from 'Item 5.02' to the next 'Item N.NN' heading or the signature block.
+    Some filings (Amazon) open with a table of contents that also says 'Item 5.02 … 3', so every
+    occurrence is cut and the longest section wins."""
+    best = ""
+    for m in re.finditer(r"item\s*5\.02", text, re.I):
+        rest = text[m.start():]
+        end = re.search(r"\bitem\s*\d{1,2}\.\d{2}\b|\bsignatures?\b", rest[12:], re.I)
+        section = rest[: 12 + end.start()] if end else rest
+        if len(section) > len(best):
+            best = section
+    return best[:limit] if best else text[:limit]
 
 
 def _norm(s: str) -> str:
     return re.sub(r"\s+", " ", (s or "").replace("’", "'").replace("“", '"').replace("”", '"')).strip().casefold()
+
+
+def dedupe_events(events: list[dict], norm_key) -> list[dict]:
+    """One event per (normalised person, change, filing month); compensation-only items dropped.
+    `norm_key(name)` gives a comparable person key (measure.names.normalise_name(...).key)."""
+    seen, out = set(), []
+    for e in sorted(events, key=lambda e: (e["filing_date"], e["id"])):
+        if e.get("kind") == "compensation_only":
+            continue
+        k = (e["company"], norm_key(e["person"]), e["change"], e["filing_date"][:7])
+        if k not in seen:
+            seen.add(k)
+            out.append(e)
+    return out
 
 
 def valid_event(ev: dict, section: str) -> bool:

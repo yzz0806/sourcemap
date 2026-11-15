@@ -22,7 +22,8 @@ from sourcemap.measure.names import normalise_name
 from sourcemap.pipeline import demo_multi as M
 
 T0 = date(2026, 11, 14)
-COMPAT = {"appointed": {"appointed", "role_change"}, "role_change": {"appointed", "role_change"}, "departed": {"departed"}}
+# A role change that ends in leaving (8-K: "transition, then retire") and a report of "retiring" are the same change.
+COMPAT = {"appointed": {"appointed", "role_change"}, "role_change": {"appointed", "role_change", "departed"}, "departed": {"departed", "role_change"}}
 
 
 def _d(s):

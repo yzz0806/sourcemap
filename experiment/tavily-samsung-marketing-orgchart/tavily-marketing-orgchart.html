@@ -1,0 +1,139 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=1680">
+<title>Tavily Samsung Marketing Chart</title><style>
+:root {
+  --ink: #14141a; --grey: #5f6170; --hair: #dcdee6; --paper: #ffffff; --wire: #8a8da0;
+  --blue: #1f4fd8; --wash: #eef2fd; --org: #b45309; --org-bg: #fff3e2; --unk: #6b6e80; --unk-bg: #eceef3;
+  --serif: Georgia, "Times New Roman", "AppleMyungjo", "Batang", serif;
+  --sans: Arial, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Apple SD Gothic Neo", "Malgun Gothic", monospace;
+  --colw: 272px; --gap: 48px; --drop: 24px; --line: 2px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); }
+body { font-family: var(--sans); font-size: 15px; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: calc(5 * var(--colw) + 4 * var(--gap)); margin: 0 auto; padding: 48px 0 56px; display: flex; flex-direction: column; gap: 32px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Header */
+.top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: end; border-bottom: 1px solid var(--ink); padding-bottom: 24px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); margin: 0; }
+h1 { font-family: var(--serif); font-weight: 400; font-size: 44px; line-height: 1.08; letter-spacing: -0.02em; margin: 10px 0 0; }
+.lede { color: var(--grey); margin: 12px 0 0; max-width: 92ch; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: auto auto; gap: 8px 22px; font-size: 12px; color: var(--grey); align-items: center; }
+.legend li { display: flex; gap: 8px; align-items: center; }
+.sw { display: inline-block; width: 26px; height: 16px; border-radius: 3px; flex: none; }
+.sw.ok { background: #fff; border: 1.5px solid var(--blue); }
+.sw.snip { background: var(--org-bg); border: 1.5px dashed var(--org); }
+.sw.unk { background: var(--unk-bg); border: 1.5px dotted var(--unk); }
+.lg-mk::before { content: ""; width: 8px; height: 8px; background: var(--blue); display: inline-block; }
+.lg-struck { text-decoration: line-through; color: var(--ink); }
+
+.callout { background: var(--wash); padding: 16px 22px; font-family: var(--serif); font-size: 17px; line-height: 1.5; margin: 0; }
+.callout b { font-weight: 700; }
+
+/* Chart */
+.chart { position: relative; }
+.root-wrap { display: flex; justify-content: center; position: relative; padding-bottom: var(--drop); }
+.root-wrap::after { content: ""; position: absolute; left: calc(50% - var(--line) / 2); bottom: 0; width: var(--line); height: var(--drop); background: var(--wire); }
+.root-wrap .card { width: 340px; }
+.l2row { list-style: none; margin: 0; padding: var(--drop) 0 0; display: grid; grid-template-columns: repeat(5, var(--colw)); gap: var(--gap); position: relative; align-items: start; }
+.l2row::before { content: ""; position: absolute; top: 0; height: var(--line); background: var(--wire);
+  left: calc(var(--colw) / 2 - var(--line) / 2); right: calc(var(--colw) / 2 - var(--line) / 2); }
+.col { position: relative; min-width: 0; }
+.col::before { content: ""; position: absolute; top: calc(-1 * var(--drop)); left: calc(var(--colw) / 2 - var(--line) / 2); width: var(--line); height: var(--drop); background: var(--wire); }
+
+/* Vertical child stacks with a left spine. --ind: indent of child cards; --sx: spine x */
+.kids { --ind: 36px; --sx: 18px; --stub: 30px; --vg: 14px; list-style: none; margin: 0; padding: var(--vg) 0 0 var(--ind); display: flex; flex-direction: column; gap: var(--vg); }
+.kids.sub { --ind: 32px; --sx: 16px; }
+.kids > li { position: relative; }
+.kids > li::before { content: ""; position: absolute; left: calc(var(--sx) - var(--ind) - var(--line) / 2); top: var(--stub); width: calc(var(--ind) - var(--sx) + var(--line) / 2); height: var(--line); background: var(--wire); }
+.kids > li::after { content: ""; position: absolute; left: calc(var(--sx) - var(--ind) - var(--line) / 2); width: var(--line); background: var(--wire); top: calc(-1 * var(--vg)); bottom: calc(-1 * var(--vg)); }
+.kids > li:last-child::after { bottom: auto; height: calc(var(--vg) + var(--stub) + var(--line)); }
+.kids > li > .card { width: calc(var(--colw) - 36px); }
+.kids.sub > li > .card { width: calc(var(--colw) - 36px - 32px); }
+
+/* Cards */
+.card { position: relative; background: #fff; border: 1px solid var(--hair); border-radius: 6px; padding: 12px 14px 13px; display: flex; flex-direction: column; gap: 3px; break-inside: avoid; }
+.c-ok { border: 1.5px solid var(--blue); }
+.c-snip { background: var(--org-bg); border: 1.5px dashed var(--org); }
+.c-unk { background: var(--unk-bg); border: 1.5px dotted var(--unk); }
+.c-root { background: var(--ink); color: #fff; border: 1.5px solid var(--ink); }
+.c-root .uk, .c-root .kr, .c-root .role { color: #c9cbd6; }
+.c-root .ut { font-size: 16px; }
+.pill { align-self: flex-start; font-family: var(--mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; border-radius: 999px; padding: 2px 9px; margin-bottom: 6px; white-space: nowrap; line-height: 1.5; }
+.p-ok { background: var(--blue); color: #fff; border: 1px solid var(--blue); }
+.p-snip { background: #fff; color: var(--org); border: 1px solid var(--org); }
+.p-unk { background: #fff; color: var(--grey); border: 1px solid var(--unk); }
+.c-root .p-ok { border-color: #fff; }
+.ut { font-size: 14px; font-weight: 700; margin: 0; line-height: 1.3; }
+.ut.mk::before { content: ""; display: inline-block; width: 8px; height: 8px; background: var(--blue); margin-right: 7px; vertical-align: 1px; }
+.c-root .ut.mk::before { background: #fff; }
+.ut.struck { text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.uk { font-size: 12px; color: var(--grey); }
+.person { display: flex; gap: 10px; align-items: flex-start; margin-top: 9px; }
+.pp { display: flex; flex-direction: column; min-width: 0; }
+.nm { font-weight: 700; font-size: 14px; line-height: 1.3; }
+.kr { font-size: 12px; color: var(--grey); }
+.role { font-size: 12px; line-height: 1.35; }
+.c-snip .nm { font-style: italic; text-decoration: underline dotted; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.c-unk .nm { font-weight: 400; color: var(--grey); }
+.av { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .02em; }
+.av-ok { background: var(--blue); color: #fff; }
+.av-root { background: var(--blue); color: #fff; box-shadow: 0 0 0 1.5px #fff; }
+.av-snip { background: #fff; color: var(--org); border: 1.5px dashed var(--org); }
+.av-unk { background: #c9ccd6; color: var(--ink); font-size: 15px; }
+.av-vac { background: #fff; color: var(--grey); border: 1.5px dotted var(--unk); font-size: 15px; }
+.note { font-size: 12px; color: var(--grey); margin: 7px 0 0; line-height: 1.4; }
+
+/* Panels */
+.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; border-top: 1px solid var(--ink); padding-top: 22px; }
+h2 { font-family: var(--serif); font-weight: 400; font-size: 24px; letter-spacing: -0.01em; margin: 0 0 12px; }
+.tl { margin: 0; display: grid; grid-template-columns: 110px minmax(0, 1fr); }
+.tl dt, .tl dd { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.tl dt { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--grey); padding-top: 12px; }
+.gaps { list-style: none; margin: 0; padding: 0; }
+.gaps li { padding: 10px 0 10px 18px; border-bottom: 1px solid var(--hair); position: relative; }
+.gaps li::before { content: ""; position: absolute; left: 2px; top: 18px; width: 6px; height: 6px; background: var(--ink); border-radius: 50%; }
+footer { font-size: 12px; color: var(--grey); border-top: 1px solid var(--hair); padding-top: 14px; }
+
+@media screen and (max-width: 1640px) { body { overflow-x: auto; } .page { margin: 0 32px; } }
+@media print { @page { size: 1680px 2200px; margin: 24px; } .page { padding-top: 0; } }
+
+.c-own { border: 1.5px solid var(--blue); }
+.c-other { background: var(--org-bg); border: 1.5px dashed var(--org); }
+.plain { background: #fff; border: 1px solid var(--hair); }
+.p-own { background: var(--blue); color: #fff; border: 1px solid var(--blue); }
+.p-other { background: #fff; color: var(--org); border: 1px solid var(--org); }
+.av-own { background: var(--blue); color: #fff; }
+.av-other { background: #fff; color: var(--org); border: 1.5px dashed var(--org); }
+.c-other .nm { font-style: italic; text-decoration: underline dotted; text-underline-offset: 3px; }
+.ut.mk::before { content: ""; display: inline-block; width: 8px; height: 8px; background: var(--blue); margin-right: 7px; vertical-align: 1px; }
+.srcs { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.src { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--hair); padding: 1px 6px; color: var(--grey); background: #fff; text-decoration: none; }
+.src.own { border-color: var(--blue); color: var(--blue); }
+.former { border-top: 1px solid var(--ink); padding-top: 20px; }
+.former .row { display: grid; grid-template-columns: repeat(3, 272px); gap: 48px; margin-top: 12px; }
+.kpis { display: flex; gap: 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.kpis div { padding: 12px 32px 12px 0; margin-right: 32px; border-right: 1px solid var(--hair); }
+.kpis div:last-child { border-right: 0; }
+.kpis b { display: block; font: 400 30px Georgia, serif; }
+.kpis span { font: 700 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--grey); }
+</style></head><body><div class="page">
+<header class="top"><div>
+  <p class="eyebrow">Sourcemap experiment · Tavily search only · 2026-11-14</p>
+  <h1>Samsung Electronics marketing people Tavily found</h1>
+  <p class="lede">The 13 marketing people named in Tavily's 50 results, placed where their titles put them. Who sits under whom is inferred from titles; every card lists the websites Tavily found the person on.</p>
+</div>
+<ul class="legend"><li><span class="pill p-own" style="margin:0">✓ Samsung site</span></li><li>Named on a Samsung website</li>
+<li><span class="pill p-other" style="margin:0">◐ Other sites</span></li><li>Named only by other websites</li>
+<li class="lg-mk">Marketing unit</li><li><span class="lg-struck">Struck-through</span>&nbsp;= downsized</li></ul></header>
+<div class="kpis"><div><b>13</b><span>marketing people</span></div><div><b>10</b><span>in current roles</span></div>
+<div><b>4</b><span>named on a Samsung site</span></div><div><b>9</b><span>only on other sites</span></div><div><b>21</b><span>data sources</span></div></div>
+<section class="chart" aria-label="Org chart">
+  <div class="root-wrap"><article class="card plain"><h3 class="ut">Samsung Electronics · DX Division</h3><span class=uk>디바이스경험(DX)부문</span><p class="note">Phones, TVs, appliances. Head: TM Roh (Tae-Moon Roh), President &amp; CEO — named on samsung.com.</p></article></div>
+  <ul class="l2row"><li class="col"><article class="card plain"><h3 class="ut mk struck">Global Marketing Office</h3><span class=uk>글로벌마케팅실</span><p class="note">Downsized May 2026. Last head Won-Jin Lee moved to run VD (see VD column).</p></article><ul class="kids"><li><article class="card c-other"><h3 class="ut mk">Global Brand Center</h3><span class=uk>글로벌브랜드센터</span><span class="pill p-other">◐ Other sites · 1</span><div class="person"><span class="av av-other" aria-hidden="true">CSE</span><div class="pp"><span class="nm">Choi Seung-eun</span><span class=kr>최승은</span><span class="role">VP, head — the Global Marketing Office&#x27;s successor</span></div></div><div class="srcs"><a class="src" href="https://m.thebell.co.kr/m/newsview.asp?newskey=202605071710169760109115" target="_blank" rel="noopener">thebell.co.kr</a></div></article><ul class="kids sub"><li><article class="card c-own"><h3 class="ut mk">Brand Marketing Group</h3><span class=uk>브랜드마케팅그룹</span><span class="pill p-own">✓ Samsung site</span><div class="person"><span class="av av-own" aria-hidden="true">CBR</span><div class="pp"><span class="nm">Choi Bo-ram</span><span class=kr>최보람</span><span class="role">Managing Director (상무), group head</span></div></div><div class="srcs"><a class="src" href="https://www.inoutsisanews.com/19470" target="_blank" rel="noopener">inoutsisanews.com</a> <a class="src own" href="https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2026%EB%85%84-%EC%A0%95%EA%B8%B0-%EC%9E%84%EC%9B%90-%EC%9D%B8%EC%82%AC" target="_blank" rel="noopener">news.samsung.com</a> <a class="src" href="https://www.newswire.co.kr/newsRead.php?no=1023853" target="_blank" rel="noopener">newswire.co.kr</a> <a class="src" href="https://www.thelec.kr/news/articleView.html?idxno=44306" target="_blank" rel="noopener">thelec.kr</a> <a class="src" href="https://www.ntoday.co.kr/news/articleView.html?idxno=122092" target="_blank" rel="noopener">ntoday.co.kr</a> <a class="src" href="http://www.kcnews.org/news/articleView.html?idxno=12706" target="_blank" rel="noopener">kcnews.org</a></div></article></li></ul></li></ul></li><li class="col"><article class="card plain"><h3 class="ut">MX Business (Mobile)</h3><span class=uk>MX사업부</span><p class="note">Smartphones and tablets.</p></article><ul class="kids"><li><article class="card c-other"><h3 class="ut mk">Strategic Marketing Office</h3><span class=uk>전략마케팅실</span><span class="pill p-other">◐ Other sites · 1</span><div class="person"><span class="av av-other" aria-hidden="true">CBS</span><div class="pp"><span class="nm">Choi Bang-seop</span><span class=kr>최방섭</span><span class="role">VP, office head (부사장, 전략마케팅실장)</span></div></div><div class="srcs"><a class="src" href="https://m.blog.naver.com/for_my_blog/222792732796" target="_blank" rel="noopener">blog.naver.com</a></div></article></li></ul></li><li class="col"><article class="card c-own"><h3 class="ut">VD Business (TVs)</h3><span class=uk>VD사업부</span><span class="pill p-own">✓ Samsung site</span><div class="person"><span class="av av-own" aria-hidden="true">WJL</span><div class="pp"><span class="nm">Won-Jin Lee</span><span class="role">President, business head since May 2026; ex-head of Global Marketing</span></div></div><div class="srcs"><a class="src" href="https://www.mk.co.kr/en/business/12034800" target="_blank" rel="noopener">mk.co.kr</a> <a class="src" href="https://qz.com/samsung-tv-chief-replaced-marketing-executive-chinese-competition-050426" target="_blank" rel="noopener">qz.com</a> <a class="src own" href="https://news.samsung.com/global/samsung-electronics-announces-new-leadership-3" target="_blank" rel="noopener">news.samsung.com</a></div></article><ul class="kids"><li><article class="card c-other"><h3 class="ut mk">Strategic Marketing Team</h3><span class=uk>전략마케팅팀</span><span class="pill p-other">◐ Other sites · 1</span><div class="person"><span class="av av-other" aria-hidden="true">LH</span><div class="pp"><span class="nm">Lee Heon</span><span class=kr>이헌</span><span class="role">VP, team head (부사장, 전략마케팅팀장)</span></div></div><div class="srcs"><a class="src" href="https://m.blog.naver.com/dealsite/224426100564" target="_blank" rel="noopener">blog.naver.com</a></div></article></li></ul></li><li class="col"><article class="card plain"><h3 class="ut">Korea Region</h3><span class=uk>한국총괄</span><p class="note">Sales and marketing in Korea.</p></article><ul class="kids"><li><article class="card c-own"><h3 class="ut mk">Marketing Team</h3><span class=uk>마케팅팀</span><span class="pill p-own">✓ Samsung site</span><div class="person"><span class="av av-own" aria-hidden="true">JSY</span><div class="pp"><span class="nm">Jang So-yeon</span><span class=kr>장소연</span><span class="role">VP, deputy team head (부사장, 부팀장)</span></div></div><div class="srcs"><a class="src own" href="https://news.samsungsemiconductor.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2025%EB%85%84-%EC%A0%95%EA%B8%B0-%EC%9E%84%EC%9B%90-%EC%9D%B8%EC%82%AC" target="_blank" rel="noopener">news.samsungsemiconductor.com</a></div></article></li></ul></li><li class="col"><article class="card plain"><h3 class="ut">Samsung Electronics America</h3><span class=uk>미주</span><p class="note">US subsidiary.</p></article><ul class="kids"><li><article class="card c-other"><h3 class="ut mk">Corporate Marketing</h3><span class="pill p-other">◐ Other sites · 4</span><div class="person"><span class="av av-other" aria-hidden="true">AS</span><div class="pp"><span class="nm">Allison Stransky</span><span class="role">VP &amp; Chief Marketing Officer</span></div></div><p class="note">Reported leaving for Boston Beer.</p><div class="srcs"><a class="src" href="https://www.marketersthatmatter.com/innovators/allison-stransky" target="_blank" rel="noopener">marketersthatmatter.com</a> <a class="src" href="https://event.adweek.com/awh-austin-2026/speaker/2153632/allison-stransky" target="_blank" rel="noopener">event.adweek.com</a> <a class="src" href="https://www.instagram.com/p/DdMP9IeAVDO" target="_blank" rel="noopener">instagram.com</a> <a class="src" href="https://schedule.sxsw.com/2026/contributors/2214671" target="_blank" rel="noopener">schedule.sxsw.com</a></div></article></li><li><article class="card c-other"><h3 class="ut mk">Mobile (MX) Marketing</h3><span class="pill p-other">◐ Other sites · 1</span><div class="person"><span class="av av-other" aria-hidden="true">OS</span><div class="pp"><span class="nm">Olga Suvorova</span><span class="role">Chief Marketing Officer, Mobile Experience</span></div></div><div class="srcs"><a class="src" href="https://www.bizkonnect.ai/companies/samsung-electronics-america" target="_blank" rel="noopener">bizkonnect.ai</a></div></article></li><li><article class="card c-other"><h3 class="ut mk">TV &amp; Mobile Services, Advertising</h3><span class="pill p-other">◐ Other sites · 1</span><div class="person"><span class="av av-other" aria-hidden="true">CO</span><div class="pp"><span class="nm">Cathy Oh</span><span class="role">Marketing Officer</span></div></div><div class="srcs"><a class="src" href="https://www.linkedin.com/in/cathyoh" target="_blank" rel="noopener">linkedin.com</a></div></article></li><li><article class="card c-other"><h3 class="ut mk">Marketing</h3><span class="pill p-other">◐ Other sites · 1</span><div class="person"><span class="av av-other" aria-hidden="true">RG</span><div class="pp"><span class="nm">Rebecca Gonzales</span><span class="role">Director of Marketing</span></div></div><div class="srcs"><a class="src" href="https://www.linkedin.com/in/rebecca-gonzales-2bba87151" target="_blank" rel="noopener">linkedin.com</a></div></article></li></ul></li></ul>
+</section>
+<section class="former"><h2>Earlier marketing heads Tavily also found</h2><p class="lede" style="margin-top:4px">Past roles: shown for context, not part of today's chart.</p>
+<div class="row"><article class="card c-other"><h3 class="ut mk">Global Marketing (until 2024)</h3><span class="pill p-other">◐ Other sites · 1</span><div class="person"><span class="av av-other" aria-hidden="true">YL</span><div class="pp"><span class="nm">YoungHee Lee</span><span class="role">President &amp; Head of Global Marketing</span></div></div><div class="srcs"><a class="src" href="https://www.crunchbase.com/person/younghee-lee" target="_blank" rel="noopener">crunchbase.com</a></div></article><article class="card c-other"><h3 class="ut mk">America CMO (earlier)</h3><span class="pill p-other">◐ Other sites · 2</span><div class="person"><span class="av av-other" aria-hidden="true">MM</span><div class="pp"><span class="nm">Marc Mathieu</span><span class="role">Chief Marketing Officer, Samsung Electronics America</span></div></div><div class="srcs"><a class="src" href="https://about.me/marcmathieu" target="_blank" rel="noopener">about.me</a> <a class="src" href="https://mmaglobal.com/speakers/marc-mathieu" target="_blank" rel="noopener">mmaglobal.com</a></div></article><article class="card c-own"><h3 class="ut mk">Digital Media marketing (2002–2007)</h3><span class="pill p-own">✓ Samsung site</span><div class="person"><span class="av av-own" aria-hidden="true">DS</span><div class="pp"><span class="nm">Dr. Steel</span><span class="role">VP and head of marketing</span></div></div><div class="srcs"><a class="src own" href="https://pages.samsung.com/us/solvefortomorrow/judges_fb.html" target="_blank" rel="noopener">pages.samsung.com</a></div></article></div></section>
+<footer>Search: Tavily through Telem (5 queries, 50 results), names taken from result titles and snippets — leads, not verified evidence. Placement is inferred from titles. Data: people.json, results.json.</footer>
+</div></body></html>

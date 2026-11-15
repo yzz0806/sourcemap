@@ -1,0 +1,278 @@
+<meta charset="utf-8">
+<title>Tavily Samsung Marketing Search</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+<style>
+/* Editorial report: ink on white, one blue accent, serif headlines, mono data labels, hairlines not boxes.
+   Single light look by design (printed report), colours set explicitly. */
+:root {
+  --ink: #14141a; --grey: #5f6170; --faint: #9a9caa; --hair: #e3e4ea; --paper: #ffffff;
+  --blue: #1f4fd8; --blue-wash: #eef2fd;
+  --f-head: Georgia, "Times New Roman", "AppleMyungjo", "Batang", serif;
+  --f-body: Arial, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --f-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Apple SD Gothic Neo", monospace;
+  --f-brand: Poppins, Arial, sans-serif;
+  --side: 48px; --head-h: 56px;
+  color-scheme: light;
+}
+@media (max-width: 640px) { :root { --side: 20px; } }
+html, body { background: var(--paper); color: var(--ink); }
+body { font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(255,255,255,0.86); }
+.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(255,255,255,0.86);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--hair); }
+.site-in { max-width: 1440px; margin: 0 auto; min-height: var(--head-h); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px;
+  padding-left: max(var(--side), env(safe-area-inset-left, 0px)); padding-right: max(var(--side), env(safe-area-inset-right, 0px)); }
+.brand { font-family: var(--f-brand); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--ink); }
+.site nav { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-left: auto; }
+.site nav a { font-family: var(--f-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--grey); padding-block: 6px; }
+.site nav a[aria-current="page"] { color: var(--ink); border-bottom: 1px solid var(--ink); }
+
+.wrap { max-width: 1440px; margin: 0 auto; padding-block: 48px 72px;
+  padding-left: max(var(--side), env(safe-area-inset-left, 0px)); padding-right: max(var(--side), env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 36px; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--grey); }
+h1 { font-family: var(--f-head); font-weight: 400; font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.05; letter-spacing: -0.025em; margin: 10px 0 0; max-width: 22ch; text-wrap: balance; }
+h2 { font-family: var(--f-head); font-weight: 400; font-size: 1.5rem; letter-spacing: -0.015em; margin: 0; }
+.lede { color: var(--grey); font-size: 1.05rem; margin: 14px 0 0; max-width: 66ch; }
+footer { font-size: 0.82rem; color: var(--grey); border-top: 1px solid var(--hair); padding-top: 16px; }
+code { font-family: var(--f-mono); font-size: 0.85em; }
+
+.facts { display: flex; flex-wrap: wrap; gap: 0; margin-top: 26px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.facts > div { display: flex; flex-direction: column-reverse; gap: 2px; padding: 12px 28px 12px 0; margin-right: 28px; border-right: 1px solid var(--hair); }
+.facts > div:last-child { border-right: 0; }
+.facts span { font-family: var(--f-mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); }
+.facts b { font-family: var(--f-head); font-weight: 400; font-size: 1.6rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+
+.findings { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 12px 48px; border-top: 1px solid var(--ink); padding-top: 22px; }
+@media (max-width: 760px) { .findings { grid-template-columns: minmax(0, 1fr); } }
+.findings ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 10px; max-width: 78ch; }
+.findings b { font-weight: 700; }
+.findings .note { grid-column: -2 / -1; font-size: 0.85rem; color: var(--grey); margin: 0; }
+@media (max-width: 760px) { .findings .note { grid-column: auto; } }
+
+.group { display: flex; flex-direction: column; gap: 14px; }
+.domains { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0 48px; }
+.dom { display: grid; grid-template-columns: minmax(0, 1fr) 90px 24px; gap: 12px; align-items: center; padding-block: 6px; border-bottom: 1px solid var(--hair); }
+.dom .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--f-mono); font-size: 0.78rem; }
+.dom svg { display: block; width: 90px; height: 8px; }
+.dom .num { font-family: var(--f-mono); font-size: 0.78rem; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+
+.bar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--head-h)); z-index: 10; background: rgba(255,255,255,0.92);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); padding-block: 12px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--hair); display: flex; flex-direction: column; gap: 10px; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip { font-family: var(--f-mono); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid var(--hair); background: var(--paper); color: var(--grey); padding: 5px 10px; cursor: pointer; border-radius: 0; }
+.chip:hover { color: var(--ink); border-color: var(--grey); }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.chip .n { opacity: 0.6; margin-left: 6px; }
+input[type="search"] { font: inherit; font-size: 0.92rem; flex: 1 1 240px; min-width: 0; padding: 7px 0; border: 0; border-bottom: 1px solid var(--grey); border-radius: 0; background: transparent; color: var(--ink); }
+input[type="search"]:focus { outline: none; border-bottom-color: var(--blue); }
+label.toggle { font-family: var(--f-mono); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey); display: flex; gap: 6px; align-items: center; cursor: pointer; }
+.count { font-family: var(--f-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-left: auto; font-variant-numeric: tabular-nums; }
+
+.ghead { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; padding-bottom: 6px; border-bottom: 1px solid var(--ink); }
+.ghead .q { font-family: var(--f-head); font-size: 1.45rem; letter-spacing: -0.015em; }
+.ghead .meta { font-family: var(--f-mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+ol.hits { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.hit { display: grid; grid-template-columns: 3em minmax(0, 1fr); gap: 4px 14px; padding-block: 14px; border-bottom: 1px solid var(--hair); }
+.hit.noise { opacity: 0.5; }
+.rank { font-family: var(--f-mono); font-size: 0.78rem; font-weight: 700; color: var(--faint); font-variant-numeric: tabular-nums; padding-top: 3px; }
+.hit .body { min-width: 0; display: flex; flex-direction: column; gap: 4px; max-width: 900px; }
+.hit .title { font-family: var(--f-head); font-size: 1.12rem; color: var(--ink); overflow-wrap: anywhere; }
+.hit .title:hover { color: var(--blue); }
+.hit .line2 { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+.host { font-family: var(--f-mono); font-size: 0.74rem; color: var(--grey); overflow-wrap: anywhere; }
+.tag { font-family: var(--f-mono); font-size: 0.64rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 1px 6px; border: 1px solid var(--hair); color: var(--grey); }
+.tag.official { color: var(--blue); border-color: var(--blue); }
+.tag.chart { color: var(--ink); border-color: var(--ink); }
+.tag.noise, .tag.other { color: var(--faint); }
+.snip { font-size: 0.88rem; color: var(--grey); margin: 0; overflow-wrap: anywhere; white-space: pre-line; max-width: 80ch; }
+mark { background: var(--blue-wash); color: var(--ink); }
+.empty { color: var(--grey); padding: 24px 0; }
+
+.ppgrid { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 20px 56px; margin-top: 18px; }
+@media (max-width: 860px) { .ppgrid { grid-template-columns: minmax(0, 1fr); } }
+.pbar { display: grid; grid-template-columns: minmax(0, 1fr) 160px 22px; gap: 10px; align-items: center; padding-block: 6px; border-bottom: 1px solid var(--hair); }
+.pbar .ph { font-family: var(--f-mono); font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pbar svg { width: 160px; height: 10px; display: block; }
+.pbar b { font-family: var(--f-mono); font-size: 0.8rem; text-align: right; }
+.pnote { font-size: 0.8rem; color: var(--grey); margin: 10px 0 0; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.sq { width: 10px; height: 10px; display: inline-block; } .sq.blue { background: var(--blue); } .sq.ink { background: var(--ink); margin-left: 10px; }
+.plist { list-style: none; margin: 8px 0 0; padding: 0; counter-reset: p; }
+.plist li { padding: 12px 0 12px 34px; border-bottom: 1px solid var(--hair); position: relative; counter-increment: p; }
+.plist li::before { content: counter(p, decimal-leading-zero); position: absolute; left: 0; top: 14px; font-family: var(--f-mono); font-size: 0.75rem; color: var(--grey); }
+.pn b { font-family: var(--f-head); font-weight: 400; font-size: 1.2rem; }
+.aka { font-size: 0.8rem; color: var(--grey); }
+.pt { font-size: 0.9rem; margin: 2px 0 6px; }
+.ps { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-src { font-family: var(--f-mono); font-size: 0.72rem; border: 1px solid var(--hair); padding: 2px 7px; color: var(--ink); }
+.chip-src.own { border-color: var(--blue); color: var(--blue); }
+</style>
+<header class="site"><div class="site-in"><span class="brand">sourcemap</span><nav aria-label="Experiment pages"><a href="https://claude.ai/artifact/11FS45Ai7Y4x5izjg5xRYf" target="_blank" rel="noopener">Org chart</a><a href="https://claude.ai/artifact/HxX7oQmrcjeHZMAdsMFyyk" target="_blank" rel="noopener" aria-current="page">Tavily results</a></nav></div></header>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">sourcemap experiment · search via Telem, Tavily only</div>
+    <h1>Where is Samsung Electronics' marketing org chart?</h1>
+    <p class="lede">Everything Tavily returned for five queries, two of them in Korean. These are search snippets: leads to check, not evidence.</p>
+    <div class="facts" id="facts"></div>
+  </header>
+
+  <section class="findings" aria-labelledby="f-h">
+    <h2 id="f-h">What the results point to</h2>
+    <ul>
+      <li>Samsung publishes no marketing org chart. The structure has to be pieced together from its <a href="https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2026%EB%85%84-%EC%A0%95%EA%B8%B0-%EC%9E%84%EC%9B%90-%EC%9D%B8%EC%82%AC" target="_blank" rel="noopener">yearly executive appointment lists</a> and its <a href="https://www.samsung-dxrecruit.com/dept/detail/C0010" target="_blank" rel="noopener">DX recruiting page for the Global Marketing Office</a>.</li>
+      <li><b>Global Marketing Office (글로벌마케팅실)</b>: led by Lee Young-hee, then Wonjin Lee. In May 2026 Wonjin Lee moved to head the TV business and the office was placed directly under the DX division (<a href="https://www.mk.co.kr/news/business/12034800" target="_blank" rel="noopener">mk.co.kr</a>). VP 최승은 now leads its successor (<a href="https://m.thebell.co.kr/m/newsview.asp?newskey=202605071710169760109115" target="_blank" rel="noopener">thebell</a>).</li>
+      <li>Brand Marketing Group head: 최보람, promoted to 상무 in the 2026 list. MX strategic marketing: 최방섭 (older blog list). VD strategic marketing team: 이헌.</li>
+      <li>Ready-made but partial charts: <a href="https://theorg.com/org/samsung" target="_blank" rel="noopener">theorg</a> (401 people in Marketing and Product Management, crowd-edited), The Official Board, BizKonnect.</li>
+    </ul>
+    <p class="note">Noise: Tavily's own company card came back in 3 of 5 queries, plus generic essays (Scribd, Slideshare, Edraw, ResearchGate) and a fan post on X.</p>
+  </section>
+
+  <section class="group" aria-labelledby="pp-h">
+    <h2 id="pp-h">Marketing people Tavily found</h2>
+    <div class="facts" id="pfacts"></div>
+    <div class="ppgrid">
+      <div><p class="eyebrow">People per data source</p><div id="pchart"></div></div>
+      <div><p class="eyebrow">Each person and where Tavily found them</p><ol class="plist" id="plist"></ol></div>
+    </div>
+  </section>
+
+  <section class="group" aria-labelledby="d-h">
+    <h2 id="d-h">Domains returned</h2>
+    <div class="domains" id="domains"></div>
+  </section>
+
+  <div class="bar">
+    <div class="row" id="qchips" role="group" aria-label="Filter by query"></div>
+    <div class="row">
+      <input type="search" id="q" placeholder="Filter titles, snippets, hosts…" aria-label="Filter results">
+      <label class="toggle"><input type="checkbox" id="hideNoise"> Hide noise</label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="row" id="tchips" role="group" aria-label="Filter by source type"></div>
+  </div>
+
+  <div id="list" style="display:flex;flex-direction:column;gap:28px"></div>
+
+  <footer>Source file: <code>experiment/tavily-samsung-marketing-orgchart/results.json</code>. Re-run with <code>run.py</code> in the same folder.</footer>
+</div>
+
+<script>
+const DATA = __DATA__;
+const PEOPLE = (__PEOPLE__).people.filter((p) => p.marketing);
+(function () {
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const hostsOf = (p) => [...new Set(p.found_in.map((f) => f.host.replace(/^www\.|^m\./, "")))];
+  const per = {};
+  PEOPLE.forEach((p) => hostsOf(p).forEach((h) => (per[h] = (per[h] || []).concat(p.name))));
+  const rows = Object.entries(per).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+  const max = rows[0] ? rows[0][1].length : 1, own = (h) => /samsung/.test(h);
+  document.getElementById("pfacts").innerHTML = [["marketing people", PEOPLE.length], ["data sources", rows.length],
+    ["on Samsung's own sites", PEOPLE.filter((p) => hostsOf(p).some(own)).length], ["only on other sites", PEOPLE.filter((p) => !hostsOf(p).some(own)).length]]
+    .map(([k, v]) => `<div><span>${k}</span> <b>${v}</b></div>`).join("");
+  document.getElementById("pchart").innerHTML = rows.map(([h, ns]) => `<div class="pbar" title="${esc(ns.join(", "))}">
+    <span class="ph">${esc(h)}</span><svg viewBox="0 0 160 10" aria-label="${ns.length} people"><rect x="0" y="1" width="160" height="8" fill="#eef0f4"/>
+    <rect x="0" y="1" width="${(ns.length / max) * 160}" height="8" fill="${own(h) ? "#1f4fd8" : "#14141a"}"/></svg><b>${ns.length}</b></div>`).join("")
+    + `<p class="pnote"><span class="sq blue"></span>Samsung's own site <span class="sq ink"></span>other site · hover a bar for names</p>`;
+  document.getElementById("plist").innerHTML = PEOPLE.map((p) => `<li><div class="pn"><b>${esc(p.name)}</b>${p.aka.length ? ` <span class="aka">also written ${esc(p.aka.join(", "))}</span>` : ""}</div>
+    <div class="pt">${esc(p.title)}</div>
+    <div class="ps">${p.found_in.filter((f, i, a) => a.findIndex((g) => g.host === f.host) === i).map((f) => `<a class="chip-src${own(f.host) ? " own" : ""}" href="${esc(f.url)}" target="_blank" rel="noopener" title="${esc(f.title)}">${esc(f.host.replace(/^www\.|^m\./, ""))}</a>`).join("")}</div></li>`).join("");
+})();
+
+const TYPES = {
+  official: ["samsung.com", "samsungsemiconductor.com", "samsung-dxrecruit.com"],
+  chart: ["theorg.com", "theofficialboard.com", "bizkonnect.ai", "crunchbase.com", "zoominfo.com", "rocketreach.co"],
+  news: ["mk.co.kr", "thebell.co.kr", "newswire.co.kr", "kcnews.org", "thelec.kr", "joongangenews.com", "inoutsisanews.com",
+         "ntoday.co.kr", "thetracker.co.kr", "chosun.com", "qz.com", "axios.com", "adweek.com"],
+  profile: ["linkedin.com", "about.me", "marketersthatmatter.com", "mmaglobal.com", "instagram.com", "sxsw.com"],
+  blog: ["naver.com"],
+  noise: ["tavily.com", "scribd.com", "slideshare.net", "wondershare.com", "researchgate.net", "x.com"],
+};
+const TYPE_LABEL = { official: "Samsung", chart: "Org-chart site", news: "News", profile: "Profile", blog: "Blog", noise: "Noise", other: "Other" };
+const TYPE_CLASS = { official: "official", chart: "chart", news: "news", profile: "profile", blog: "news", noise: "noise", other: "other" };
+
+const host = u => u.split("://").pop().split("/")[0].toLowerCase().replace(/^www\.|^m\./, "");
+function typeOf(h) {
+  for (const [t, list] of Object.entries(TYPES)) if (list.some(d => h === d || h.endsWith("." + d))) return t;
+  return "other";
+}
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const clean = s => s.replace(/​/g, "").replace(/\n{2,}/g, "\n").trim();
+
+const groups = DATA.results.map((r, i) => ({
+  i, query: r.query, ms: r.latency_ms, status: r.status,
+  hits: r.hits.map(h => { const ho = host(h.url); return { ...h, host: ho, type: typeOf(ho) }; }),
+}));
+const all = groups.flatMap(g => g.hits);
+
+// Facts
+const domainsCount = new Map();
+all.forEach(h => domainsCount.set(h.host, (domainsCount.get(h.host) || 0) + 1));
+document.getElementById("facts").innerHTML = [
+  ["provider", DATA.provider], ["queries", groups.length], ["hits", all.length],
+  ["domains", domainsCount.size], ["cost", "$" + DATA.spent_usd.toFixed(3)], ["run", "2026-11-14"],
+].map(([k, v]) => `<div><span>${k}</span> <b>${esc(String(v))}</b></div>`).join("");
+
+// Domain tally
+const sorted = [...domainsCount].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const max = sorted[0][1];
+document.getElementById("domains").innerHTML = sorted.map(([d, n]) => {
+  const w = Math.max(2, (n / max) * 90), t = typeOf(d);
+  const fill = t === "official" ? "#1f4fd8" : t === "noise" ? "#c9cad3" : "#14141a";
+  return `<div class="dom" title="${esc(d)} · ${TYPE_LABEL[t]}"><span class="name">${esc(d)}</span>
+   <svg viewBox="0 0 90 8" role="img" aria-label="${n} results"><line x1="0" y1="4" x2="90" y2="4" stroke="#e3e4ea" stroke-width="1"/><rect x="0" y="1" width="${w}" height="6" fill="${fill}"/></svg>
+   <span class="num">${n}</span></div>`;
+}).join("");
+
+// Filters
+const state = { q: null, type: null, text: "", hideNoise: false };
+const qchips = document.getElementById("qchips"), tchips = document.getElementById("tchips");
+function chip(label, n, pressed, onClick) {
+  const b = document.createElement("button");
+  b.className = "chip"; b.setAttribute("aria-pressed", pressed);
+  b.innerHTML = `${esc(label)}<span class="n">${n}</span>`; b.onclick = onClick; return b;
+}
+function renderChips() {
+  qchips.replaceChildren(chip("All queries", all.length, state.q === null, () => { state.q = null; render(); }),
+    ...groups.map(g => chip(g.query, g.hits.length, state.q === g.i, () => { state.q = g.i; render(); })));
+  const tc = {}; all.forEach(h => tc[h.type] = (tc[h.type] || 0) + 1);
+  tchips.replaceChildren(chip("All types", all.length, state.type === null, () => { state.type = null; render(); }),
+    ...Object.keys(TYPE_LABEL).filter(t => tc[t]).map(t => chip(TYPE_LABEL[t], tc[t], state.type === t, () => { state.type = t; render(); })));
+}
+function hl(text) {
+  const s = esc(text);
+  if (!state.text) return s;
+  const re = new RegExp(state.text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+  return s.replace(re, m => `<mark>${m}</mark>`);
+}
+function render() {
+  renderChips();
+  const t = state.text.toLowerCase();
+  let shown = 0;
+  const html = groups.filter(g => state.q === null || g.i === state.q).map(g => {
+    const hits = g.hits.filter(h => (!state.type || h.type === state.type) && !(state.hideNoise && h.type === "noise") &&
+      (!t || (h.title + " " + h.snippet + " " + h.url).toLowerCase().includes(t)));
+    shown += hits.length;
+    if (!hits.length) return "";
+    return `<section class="group"><div class="ghead"><span class="q">${esc(g.query)}</span>
+      <span class="meta">${g.status} · ${g.ms} ms · ${hits.length}/${g.hits.length} shown</span></div>
+      <ol class="hits">${hits.map(h => `<li class="hit ${h.type === "noise" ? "noise" : ""}">
+        <span class="rank">#${h.rank}</span>
+        <div class="body">
+          <a class="title" href="${esc(h.url)}" target="_blank" rel="noopener">${hl(clean(h.title) || h.url)}</a>
+          <div class="line2"><span class="tag ${TYPE_CLASS[h.type]}">${TYPE_LABEL[h.type]}</span><span class="host">${hl(h.host)}</span></div>
+          <p class="snip">${hl(clean(h.snippet))}</p>
+        </div></li>`).join("")}</ol></section>`;
+  }).join("");
+  document.getElementById("list").innerHTML = html || `<p class="empty">No results match. Clear the filter or pick another query.</p>`;
+  document.getElementById("count").textContent = `${shown} of ${all.length} hits`;
+}
+document.getElementById("q").addEventListener("input", e => { state.text = e.target.value.trim(); render(); });
+document.getElementById("hideNoise").addEventListener("change", e => { state.hideNoise = e.target.checked; render(); });
+render();
+</script>
