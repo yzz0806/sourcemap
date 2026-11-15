@@ -25,7 +25,9 @@ from sourcemap.measure.accuracy import estimate, prior_for
 T0 = date(2026, 11, 14)
 TIER = {"newsroom": Tier.FIRST_PARTY, "wikipedia.org": Tier.RESEARCHED, "theorg.com": Tier.RESEARCHED}
 KIND = {"newsroom": "company's own", "businesswire.com": "wire", "prnewswire.com": "wire", "reuters.com": "news",
-        "cnbc.com": "news", "wikipedia.org": "encyclopedia (revision history)", "finance.yahoo.com": "officer list (Wayback)",
+        "cnbc.com": "news", "stocktitan.net": "wire mirror", "apnews.com": "news", "bloomberg.com": "news",
+        "foxbusiness.com": "news", "fortune.com": "news", "businessinsider.com": "news", "nytimes.com": "news",
+        "techcrunch.com": "tech news", "theverge.com": "tech news", "wikipedia.org": "encyclopedia (revision history)", "finance.yahoo.com": "officer list (Wayback)",
         "marketscreener.com": "officer list (Wayback)", "theorg.com": "org-chart site (Wayback)"}
 
 

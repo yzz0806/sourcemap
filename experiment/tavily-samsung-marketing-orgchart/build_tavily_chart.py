@@ -75,6 +75,44 @@ former = [card("Global Marketing (until 2024)", "", ("YoungHee Lee", "President 
           card("America CMO (earlier)", "", ("Marc Mathieu", "Chief Marketing Officer, Samsung Electronics America")),
           card("Digital Media marketing (2002–2007)", "", ("Dr. Steel", "VP and head of marketing"))]
 
+def sources_html():
+    """Every website Tavily found a marketing person on: type, who it named, and the exact pages."""
+    by = {}
+    for n in all_names:
+        for f in P[n]["found_in"]:
+            h = f["host"].removeprefix("www.").removeprefix("m.")
+            x = by.setdefault(h, {"people": [], "pages": {}})
+            if EN.get(n, n) not in x["people"]:
+                x["people"].append(EN.get(n, n))
+            x["pages"][f["url"]] = f["title"]
+    rows = sorted(by.items(), key=lambda kv: (-len(kv[1]["people"]), kv[0]))
+    mx = max(len(v["people"]) for _, v in rows)
+    tr = "".join(
+        f'<tr><td><b>{e(h)}</b></td><td><span class="tag {"own" if h.endswith(OWN) else "oth"}">{"Samsung site" if h.endswith(OWN) else "Other site"}</span></td>'
+        f'<td class="num"><svg width="110" height="10" aria-hidden="true"><rect width="110" height="10" fill="#eef0f4"/><rect width="{110 * len(v["people"]) / mx:.0f}" height="10" fill="{"#1f4fd8" if h.endswith(OWN) else "#14141a"}"/></svg> {len(v["people"])}</td>'
+        f'<td>{e(", ".join(v["people"]))}</td>'
+        f'<td>{"<br>".join(f"<a href={chr(34)}{e(u)}{chr(34)} target=_blank rel=noopener>{e((t or u)[:90])}</a>" for u, t in v["pages"].items())}</td></tr>'
+        for h, v in rows)
+    return (f'<section class="block"><h2>Data sources</h2><p class="lede" style="margin-top:4px">The {len(rows)} websites Tavily found these 13 people on, '
+            f'most people first. Click a page to open it.</p><div class="tw"><table class="st"><thead><tr><th>Website</th><th>Type</th><th>People</th>'
+            f'<th>Who it names</th><th>Pages</th></tr></thead><tbody>{tr}</tbody></table></div></section>')
+
+
+def results_html():
+    """All of Tavily's results, by query, so the page holds everything the search returned."""
+    data = json.loads((HERE / "results.json").read_text())
+    blocks = []
+    for r in data["results"]:
+        items = "".join(
+            f'<li><span class="rk">#{h["rank"]}</span><div><a href="{e(h["url"])}" target="_blank" rel="noopener">{e(h["title"] or h["url"])}</a>'
+            f'<div class="hu">{e(h["url"].split("://")[-1].split("/")[0])}</div><p class="sn">{e(" ".join(h["snippet"].split())[:260])}</p></div></li>'
+            for h in r["hits"])
+        blocks.append(f'<h3>“{e(r["query"])}” <span class="qm">{len(r["hits"])} results · {r["latency_ms"]} ms</span></h3><ol class="hits">{items}</ol>')
+    return (f'<section class="block"><h2>Everything Tavily returned</h2><p class="lede" style="margin-top:4px">{len(data["results"])} queries · '
+            f'{sum(len(r["hits"]) for r in data["results"])} results · ${data["spent_usd"]:.3f}. Names above were read from these titles and snippets.</p>'
+            f'<details><summary>Show all results</summary>{"".join(blocks)}</details></section>')
+
+
 n_now = 10
 css = (HERE / "samsung-marketing-orgchart.html").read_text().split("<style>")[1].split("</style>")[0]
 extra = """
@@ -92,6 +130,21 @@ extra = """
 .src.own { border-color: var(--blue); color: var(--blue); }
 .former { border-top: 1px solid var(--ink); padding-top: 20px; }
 .former .row { display: grid; grid-template-columns: repeat(3, 272px); gap: 48px; margin-top: 12px; }
+.block { border-top: 1px solid var(--ink); padding-top: 20px; }
+.tw { overflow-x: auto; margin-top: 12px; }
+table.st { border-collapse: collapse; width: 100%; font-size: 13px; }
+.st th { text-align: left; font: 700 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--grey); padding: 8px 14px 8px 0; border-bottom: 1px solid var(--ink); }
+.st td { padding: 9px 14px 9px 0; border-bottom: 1px solid var(--hair); vertical-align: top; }
+.st td a { color: var(--blue); text-decoration: none; font-size: 12px; }
+.st .num { white-space: nowrap; font-family: var(--mono); font-weight: 700; }
+.tag { font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 1px 6px; border: 1px solid; white-space: nowrap; }
+.tag.own { color: var(--blue); } .tag.oth { color: var(--org); }
+details summary { cursor: pointer; color: var(--blue); font-weight: 700; margin-top: 10px; }
+.block h3 { font: 400 19px Georgia, serif; margin: 22px 0 6px; } .qm { font: 700 10.5px var(--mono); color: var(--grey); letter-spacing: .08em; text-transform: uppercase; }
+ol.hits { list-style: none; margin: 0; padding: 0; }
+.hits li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--hair); font-size: 13px; }
+.hits a { color: var(--ink); font-weight: 700; text-decoration: none; } .rk { font: 700 12px var(--mono); color: var(--grey); }
+.hu { font: 11px var(--mono); color: var(--grey); } .sn { margin: 3px 0 0; color: var(--grey); }
 .kpis { display: flex; gap: 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
 .kpis div { padding: 12px 32px 12px 0; margin-right: 32px; border-right: 1px solid var(--hair); }
 .kpis div:last-child { border-right: 0; }
@@ -120,6 +173,8 @@ html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name
 </section>
 <section class="former"><h2>Earlier marketing heads Tavily also found</h2><p class="lede" style="margin-top:4px">Past roles: shown for context, not part of today's chart.</p>
 <div class="row">{''.join(former)}</div></section>
+{sources_html()}
+{results_html()}
 <footer>Search: Tavily through Telem (5 queries, 50 results), names taken from result titles and snippets — leads, not verified evidence. Placement is inferred from titles. Data: people.json, results.json.</footer>
 </div></body></html>"""
 (HERE / "tavily-marketing-orgchart.html").write_text(html)

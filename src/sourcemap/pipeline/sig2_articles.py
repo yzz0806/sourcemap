@@ -1,7 +1,7 @@
 """Leadership-change signals v2 — article sources checked against every filed change.
 
-For each (filed 8-K Item 5.02 change × source) — sources: the company's newsroom, businesswire.com,
-prnewswire.com, reuters.com, cnbc.com — locate a page with a Telem search restricted to the source's site
+For each (filed 8-K Item 5.02 change × source) — sources: the company's newsroom, two press-release wires,
+a wire mirror and eleven news sites — locate a page with a Telem search restricted to the source's site
 (search only *finds*, R2), read the page politely (raw saved), extract the changes it reports (judge, verbatim
 quotes checked), and decide with sig_measure.match_event against that filed change.
 Output records follow the contract in pipeline/sig2_measure.py.
@@ -9,7 +9,9 @@ Output records follow the contract in pipeline/sig2_measure.py.
 
 import re
 
-SOURCES = ["newsroom", "businesswire.com", "prnewswire.com", "reuters.com", "cnbc.com"]
+SOURCES = ["newsroom", "businesswire.com", "prnewswire.com", "stocktitan.net",
+           "reuters.com", "apnews.com", "bloomberg.com", "cnbc.com", "foxbusiness.com", "fortune.com",
+           "businessinsider.com", "nytimes.com", "techcrunch.com", "theverge.com"]
 VERB = {"appointed": "appointed", "departed": "steps down", "role_change": "named"}
 
 

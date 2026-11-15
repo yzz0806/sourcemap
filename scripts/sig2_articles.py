@@ -43,7 +43,7 @@ def main(budget=1.6):
     cos = refs["companies"]
     scache, pcache = load(SEARCH_CACHE, {}), load(PAGE_CACHE, {})
     telem = Telem(env["TELEM_API_KEY"], budget_usd=budget)
-    llm = LLM(env["OPENROUTER_API_KEY"], Path("data/llm_cache"), budget_usd=0.5)
+    llm = LLM(env["OPENROUTER_API_KEY"], Path("data/llm_cache"), budget_usd=1.5)
     tls = threading.local()  # one polite Kit per worker thread (per-host spacing within each)
     lock = threading.Lock()
 
@@ -109,7 +109,7 @@ def main(budget=1.6):
             hits, usd = search(q, "parallel")
             rec["usd"] += usd
             on = [h for h in hits if on_site(h["url"], prefix) and not listing(h["url"])]
-            if not on and not hits:  # the cheap provider returned nothing at all: one fallback
+            if not on:  # the cheap provider found nothing on this site: one fallback provider
                 hits, usd = search(q, "exa")
                 rec["usd"] += usd
                 on = [h for h in hits if on_site(h["url"], prefix) and not listing(h["url"])]

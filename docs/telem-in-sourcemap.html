@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telem in sourcemap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,600&display=swap">
+<style>
+/* Layout: one reading column; a flow diagram, then a use table with bars, then the provider leaderboard. */
+:root {
+  --bg: #f6f7f5; --panel: #ffffff; --fg: #1d2420; --muted: #5d6862; --line: #d6dcd8;
+  --accent: #0f7a5c; --accent-soft: #dcefe7; --ref: #6b4fb3; --ref-soft: #ebe4f8; --warn: #b5541c;
+  --display: "Fraunces", Georgia, serif; --body: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --panel: #1a201d; --fg: #e4ebe7; --muted: #95a39b; --line: #2e3833;
+  --accent: #4cc79f; --accent-soft: #1d3a30; --ref: #b39cf0; --ref-soft: #2c2443; --warn: #f0975e; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --panel: #1a201d; --fg: #e4ebe7; --muted: #95a39b; --line: #2e3833;
+  --accent: #4cc79f; --accent-soft: #1d3a30; --ref: #b39cf0; --ref-soft: #2c2443; --warn: #f0975e; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; }
+main { max-width: 920px; margin: 0 auto; display: grid; gap: 48px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 5vw, 40px); line-height: 1.1; margin: 0 0 12px; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 600; font-size: 22px; margin: 0 0 6px; text-wrap: balance; }
+p { margin: 0; max-width: 65ch; }
+.lede { color: var(--muted); font-size: 17px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.note { color: var(--muted); font-size: 13px; margin-top: 8px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 24px; }
+.stat { border-top: 2px solid var(--accent); padding-top: 8px; }
+.stat b { display: block; font-family: var(--mono); font-size: 26px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.diagram { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-top: 16px; }
+.diagram svg { display: block; min-width: 760px; width: 100%; height: auto; }
+.diagram text { font-family: var(--body); fill: var(--fg); }
+.diagram .sm { font-size: 11px; fill: var(--muted); }
+.diagram .mono { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+.uses { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.uses th { text-align: left; font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); padding: 8px 8px 8px 0; }
+.uses td { vertical-align: top; border-bottom: 1px solid var(--line); padding: 12px 8px 12px 0; }
+.uses td.n { font-family: var(--mono); font-size: 13px; color: var(--muted); width: 28px; }
+.uses .what { font-weight: 600; }
+.uses .how { color: var(--muted); font-size: 13.5px; margin-top: 2px; }
+.uses code { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.uses .num { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px; white-space: nowrap; text-align: right; }
+.bar { height: 6px; background: var(--accent-soft); border-radius: 3px; margin-top: 6px; min-width: 60px; }
+.bar > span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.tag { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 7px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); margin-left: 6px; white-space: nowrap; }
+.table-wrap { overflow-x: auto; }
+.board { display: grid; gap: 8px; margin-top: 16px; }
+.row { display: grid; grid-template-columns: 110px 1fr 44px; gap: 12px; align-items: center; font-size: 14px; }
+.row .track { height: 14px; background: var(--accent-soft); border-radius: 3px; position: relative; }
+.row .fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 3px; }
+.row .v { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); text-align: right; }
+.rule { background: var(--ref-soft); border-left: 3px solid var(--ref); border-radius: 6px; padding: 14px 16px; }
+.rule b { color: var(--ref); }
+</style>
+
+<main>
+  <header>
+    <div class="eyebrow">sourcemap · where Telem is used</div>
+    <h1>Telem finds the sources. Official filings decide what's true.</h1>
+    <p class="lede">Every web search in sourcemap goes through one client (<code>services/websearch.py</code> → <code>router.telem.ai</code>). The same queries go to every provider behind Telem, so each run also benchmarks the search providers.</p>
+    <div class="stats">
+      <div class="stat"><b>≈ 860</b><span>Telem search calls</span></div>
+      <div class="stat"><b>≈ $8</b><span>spent on search</span></div>
+      <div class="stat"><b>9 + auto</b><span>providers compared</span></div>
+      <div class="stat"><b>0</b><span>results used as evidence</span></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Where Telem sits in the pipeline</h2>
+    <p class="note">Telem is the discovery layer, shown in green. Everything to the right of the dashed line is decided by official references, shown in purple.</p>
+    <div class="diagram">
+      <svg viewBox="0 0 900 330" role="img" aria-label="Pipeline: question, planner, Telem fan-out to nine providers, candidate sources, then reading and verification against DART and SEC, then the source map">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--muted)"/></marker>
+        </defs>
+        <!-- question -->
+        <rect x="10" y="130" width="110" height="64" rx="8" style="fill: var(--panel); stroke: var(--line)"/>
+        <text x="65" y="157" text-anchor="middle" font-size="13" font-weight="600">Question</text>
+        <text x="65" y="175" text-anchor="middle" class="sm">"Samsung's marketing</text>
+        <text x="65" y="188" text-anchor="middle" class="sm">org chart?"</text>
+        <line x1="120" y1="162" x2="148" y2="162" style="stroke: var(--muted)" marker-end="url(#ar)"/>
+        <!-- planner -->
+        <rect x="150" y="130" width="110" height="64" rx="8" style="fill: var(--panel); stroke: var(--line)"/>
+        <text x="205" y="157" text-anchor="middle" font-size="13" font-weight="600">Planner</text>
+        <text x="205" y="175" text-anchor="middle" class="sm">publisher categories</text>
+        <text x="205" y="188" text-anchor="middle" class="sm">→ queries</text>
+        <line x1="260" y1="162" x2="288" y2="162" style="stroke: var(--muted)" marker-end="url(#ar)"/>
+        <!-- telem -->
+        <rect x="290" y="20" width="190" height="290" rx="10" style="fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5"/>
+        <text x="385" y="44" text-anchor="middle" font-size="15" font-weight="600" style="fill: var(--accent)">Telem</text>
+        <text x="385" y="60" text-anchor="middle" class="mono">same query → every provider</text>
+        <g font-size="12">
+          <rect x="305" y="72" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="343" y="87" text-anchor="middle">Exa</text>
+          <rect x="389" y="72" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="427" y="87" text-anchor="middle">You.com</text>
+          <rect x="305" y="100" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="343" y="115" text-anchor="middle">Parallel</text>
+          <rect x="389" y="100" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="427" y="115" text-anchor="middle">Brave</text>
+          <rect x="305" y="128" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="343" y="143" text-anchor="middle">Tavily</text>
+          <rect x="389" y="128" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="427" y="143" text-anchor="middle">Perplexity</text>
+          <rect x="305" y="156" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="343" y="171" text-anchor="middle">SerpAPI</text>
+          <rect x="389" y="156" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="427" y="171" text-anchor="middle">LinkUp</text>
+          <rect x="305" y="184" width="76" height="22" rx="4" style="fill: var(--panel)"/><text x="343" y="199" text-anchor="middle">TinyFish</text>
+          <rect x="389" y="184" width="76" height="22" rx="4" style="fill: var(--panel); stroke: var(--accent); stroke-dasharray: 3 2"/><text x="427" y="199" text-anchor="middle">auto-route</text>
+        </g>
+        <line x1="305" y1="222" x2="465" y2="222" style="stroke: var(--accent); opacity: .4"/>
+        <text x="385" y="242" text-anchor="middle" font-size="12" font-weight="600">two outputs</text>
+        <text x="385" y="260" text-anchor="middle" class="sm">① candidate sources</text>
+        <text x="385" y="276" text-anchor="middle" class="sm">② provider leaderboard</text>
+        <text x="385" y="296" text-anchor="middle" class="mono">hits, rank, latency, $</text>
+        <line x1="480" y1="162" x2="518" y2="162" style="stroke: var(--muted)" marker-end="url(#ar)"/>
+        <!-- evidence wall -->
+        <line x1="500" y1="10" x2="500" y2="320" style="stroke: var(--ref); stroke-width: 1.5; stroke-dasharray: 6 5"/>
+        <text x="506" y="22" class="mono" style="fill: var(--ref)">evidence starts here</text>
+        <!-- read -->
+        <rect x="520" y="130" width="110" height="64" rx="8" style="fill: var(--panel); stroke: var(--line)"/>
+        <text x="575" y="157" text-anchor="middle" font-size="13" font-weight="600">Read</text>
+        <text x="575" y="175" text-anchor="middle" class="sm">polite fetch, raw saved,</text>
+        <text x="575" y="188" text-anchor="middle" class="sm">quotes checked</text>
+        <line x1="630" y1="162" x2="658" y2="162" style="stroke: var(--muted)" marker-end="url(#ar)"/>
+        <!-- verify -->
+        <rect x="660" y="130" width="110" height="64" rx="8" style="fill: var(--ref-soft); stroke: var(--ref)"/>
+        <text x="715" y="157" text-anchor="middle" font-size="13" font-weight="600">Verify</text>
+        <text x="715" y="175" text-anchor="middle" class="sm">vs DART · SEC ·</text>
+        <text x="715" y="188" text-anchor="middle" class="sm">own pages</text>
+        <line x1="770" y1="162" x2="798" y2="162" style="stroke: var(--muted)" marker-end="url(#ar)"/>
+        <!-- map -->
+        <rect x="800" y="130" width="90" height="64" rx="8" style="fill: var(--panel); stroke: var(--line)"/>
+        <text x="845" y="157" text-anchor="middle" font-size="13" font-weight="600">Map</text>
+        <text x="845" y="175" text-anchor="middle" class="sm">segment ×</text>
+        <text x="845" y="188" text-anchor="middle" class="sm">source</text>
+        <!-- side use: locate reference pages -->
+        <path d="M480 260 C 560 260, 640 250, 700 196" style="fill: none; stroke: var(--accent); stroke-dasharray: 4 3" marker-end="url(#ar)"/>
+        <text x="560" y="282" class="sm">also: locate reference pages,</text>
+        <text x="560" y="296" class="sm">articles, profiles (find only)</text>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><i style="background: var(--accent)"></i>Telem: finds things</span>
+      <span><i style="background: var(--ref)"></i>Official references: decide truth</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>The eight places Telem is called</h2>
+    <p class="note">Calls and spend come from the cached search files in <code>data/</code>. The bar shows each use's share of all Telem calls.</p>
+    <div class="table-wrap">
+    <table class="uses">
+      <thead><tr><th>#</th><th>Use</th><th style="text-align:right">Calls</th><th style="text-align:right">Spend</th></tr></thead>
+      <tbody id="uses"></tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>What the benchmark showed</h2>
+    <p class="note">Samsung demo, known-answer trials: how often each provider surfaced a known source (DART, theorg, samsung.com) out of 9. Intervals are wide at n = 9.</p>
+    <div class="board" id="board"></div>
+    <p class="note">The planner wrote a Korean query (삼성전자 임원 현황 사업보고서) and Brave returned DART at rank 1. Nobody typed DART's URL.</p>
+  </section>
+
+  <section class="rule">
+    <p><b>The rule (R2):</b> Telem search results only <em>find</em> pages. A verdict always cites a saved copy of the source page and the official reference. The database has no link from a verification to a search hit.</p>
+  </section>
+</main>
+
+<script>
+const uses = [
+  { what: "Samsung marketing demo", how: "21 planner queries × 9 providers + auto-routing. Found DART and theorg; built the first leaderboard.", file: "pipeline/demo_search.py", calls: 42, usd: 1.09, tag: "centrepiece" },
+  { what: "Multi-segment benchmark", how: "Samsung, Nvidia, Airbus: which sites publish org charts.", file: "scripts/demo_multi.py", calls: 72, usd: 1.15 },
+  { what: "Org charts by segment", how: "Korean, US and European companies; then the providers skipped the first time, so all are compared.", file: "scripts/demo_segments.py, seg_more_providers.py", calls: 176, usd: 4.40 },
+  { what: "Locate reference pages", how: "Site-restricted search for a company's own executive-board page (Airbus, Siemens, SAP).", file: "scripts/demo_refs.py", calls: null, usd: null },
+  { what: "Marketing depth", how: "You.com, Brave, Perplexity (benchmark leaders) look for leaders below the CMO.", file: "scripts/demo_marketing_depth.py", calls: null, usd: null },
+  { what: "LinkedIn candidates", how: "\"[name] Samsung LinkedIn\" to find profile URLs.", file: "scripts/samsung_linkedin.py", calls: null, usd: null },
+  { what: "Leadership-change signals v1 + v2", how: "v1: which sources report executive changes. v2: site-restricted search per filed 8-K change (newsroom, wires, Reuters, CNBC); locate MarketScreener and theorg pages.", file: "sig_sources.py, sig2_articles.py, sig2_archive.py", calls: 570, usd: 1.37 },
+  { what: "Tavily-only experiment", how: "One provider through Telem, to compare with the multi-provider approach.", file: "experiment/…/run.py", calls: null, usd: null },
+];
+const total = uses.reduce((s, u) => s + (u.calls || 0), 0);
+document.getElementById("uses").innerHTML = uses.map((u, i) => `
+  <tr>
+    <td class="n">${i + 1}</td>
+    <td><div class="what">${u.what}${u.tag ? `<span class="tag">${u.tag}</span>` : ""}</div>
+        <div class="how">${u.how}</div><code>${u.file}</code>
+        ${u.calls ? `<div class="bar"><span style="width:${(u.calls / total * 100).toFixed(1)}%"></span></div>` : ""}</td>
+    <td class="num">${u.calls ?? "few"}</td>
+    <td class="num">${u.usd != null ? "$" + u.usd.toFixed(2) : "< $0.10"}</td>
+  </tr>`).join("");
+
+const board = [["Exa", 7], ["You.com", 7], ["Parallel", 6], ["auto-route", 6], ["Brave", 5], ["Tavily", 4], ["Perplexity", 3], ["LinkUp", 1], ["TinyFish", 1], ["SerpAPI", 0]];
+document.getElementById("board").innerHTML = board.map(([p, k]) => `
+  <div class="row"><span>${p}</span><div class="track"><div class="fill" style="width:${k / 9 * 100}%"></div></div><span class="v">${k}/9</span></div>`).join("");
+</script>
+
+</html>
